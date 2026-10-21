@@ -24,7 +24,8 @@ h1{margin:0 0 4px;font-size:24px}
 .tools{display:flex;align-items:center;gap:8px 12px;padding:10px 16px;flex-wrap:wrap}
 .count{color:var(--muted);flex:1}
 .sync{margin:0 16px 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:14px}.sync p{margin:0 0 8px}.sync form{display:flex;gap:6px;flex-wrap:wrap}.sync input{flex:1;min-width:200px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}.sync button{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
-#st-file{font:inherit;font-size:13px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer}
+#st-file.bad{color:var(--bad);border-color:var(--bad)}
+#st-file{white-space:nowrap;font:inherit;font-size:13px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer}
 .sort{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)}
 .sort select{font:inherit;font-size:13px;padding:5px 6px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg)}
 #open,#mcount,.done{display:none}
@@ -90,8 +91,8 @@ body:not(.fo) .bar .done{display:none}
 .toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:0 6px 24px rgba(0,0,0,.25);width:min(560px,calc(100% - 32px))}
 .toast[hidden]{display:none}
 .toast input{flex:1 1 200px;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
-.note{font-size:12px;color:var(--bad)}
-.note input{width:100%;font:inherit;font-size:12px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);margin-top:2px}
+.car .note{font-size:12px;color:var(--bad)}
+.car .note input{width:100%;font:inherit;font-size:12px;padding:4px 6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);margin-top:2px}
 .manual{font-size:11px;font-weight:600;color:var(--accent)}
 .more{display:block;margin:0 auto 30px;font:inherit;padding:10px 20px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
 </style>
@@ -122,7 +123,7 @@ body:not(.fo) .bar .done{display:none}
 <button id="reset" type="button">Скинути</button>
 <button class="done" id="done" type="button">Показати</button>
 </div>
-<div class="tools"><button id="open" type="button">Фільтри</button><span class="count" id="count"></span><span id="mcount"></span><button id="st-file" type="button" title="Спільні лайки й «не підходить» для всіх пристроїв (через GitHub)">☁️ Синхронізація</button><label class="sort"><span>Сортування</span><select id="f-sort"><option value="p">Ціна ↑</option><option value="-p">Ціна ↓</option><option value="-os">Спочатку нові оголошення</option><option value="os">Спочатку старі оголошення</option><option value="-y">Рік ↓</option><option value="km">Пробіг ↑</option><option value="-ps">Потужність ↓</option><option value="pr">Оцінка ціни</option></select></label></div>
+<div class="tools"><button id="open" type="button">Фільтри</button><span class="count" id="count"></span><span id="mcount"></span><button id="st-file" type="button" title="Спільні лайки й «не підходить» для всіх пристроїв (через GitHub)">☁️</button><label class="sort"><span>Сортування</span><select id="f-sort"><option value="p">Ціна ↑</option><option value="-p">Ціна ↓</option><option value="-os">Спочатку нові оголошення</option><option value="os">Спочатку старі оголошення</option><option value="-y">Рік ↓</option><option value="km">Пробіг ↑</option><option value="-ps">Потужність ↓</option><option value="pr">Оцінка ціни</option></select></label></div>
 <div class="sync" id="sync" hidden><p>Щоб лайки, «не підходить» і нотатки були спільні на всіх пристроях, вставте GitHub-токен з правом запису в репозиторій <b>mobile-de-auto-search</b> (Contents: Read and write). Його треба вставити один раз на кожному пристрої, зберігається він тільки в цьому браузері. Без токена спільні позначки видно, але змінювати їх можна лише на цьому пристрої. <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Створити токен</a></p><form id="sync-f"><input id="sync-tok" type="password" autocomplete="off" placeholder="github_pat_…"><button type="submit">Зберегти</button><button type="button" id="sync-off">Вимкнути</button></form><p id="sync-msg"></p></div>
 <div class="grid" id="grid"></div>
 <div class="toast" id="toast" hidden><span>Відкинуто.</span><input id="toast-note" placeholder="Чому не підходить? (необов'язково)"><button id="toast-ok" type="button">Зберегти</button><button id="toast-undo" type="button">Скасувати</button></div>
@@ -181,7 +182,8 @@ syncSets();
 const GH = "https://api.github.com/repos/ArtemLysak/mobile-de-auto-search/contents/state.json";
 let ghTok = (() => { try { return localStorage.getItem("gh-token") || ""; } catch (e) { return ""; } })();
 let ghSha = null, ghTimer = null, ghBusy = false;
-const stBtn = t => { const b = $("st-file"); if (b) b.textContent = t; };
+// the button shows only an icon with a status mark; the full status goes to its tooltip
+const stBtn = t => { const b = $("st-file"); if (!b) return; b.title = t.replace("☁️ ", "") + " (спільні позначки через GitHub)"; b.textContent = "☁️" + (t.includes("✓") ? "✓" : t.includes("…") ? "…" : /не |немає/i.test(t) ? "!" : ""); b.classList.toggle("bad", /не |немає/i.test(t)); };
 const ghHead = () => ghTok ? {Authorization: "Bearer " + ghTok, Accept: "application/vnd.github+json"} : {Accept: "application/vnd.github+json"};
 const b64d = s => new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\s/g, "")), c => c.charCodeAt(0)));
 const b64e = s => { const u = new TextEncoder().encode(s); let b = ""; for (let i = 0; i < u.length; i += 8192) b += String.fromCharCode(...u.subarray(i, i + 8192)); return btoa(b); };
@@ -358,7 +360,7 @@ $("reset").addEventListener("click", () => {
 });
 $("st-file").addEventListener("click", () => { $("sync").hidden = !$("sync").hidden; $("sync-tok").value = ghTok; });
 $("sync-f").addEventListener("submit", async e => { e.preventDefault(); ghTok = $("sync-tok").value.trim(); try { localStorage.setItem("gh-token", ghTok); } catch (x) {}
-  $("sync-msg").textContent = "Перевіряю…"; try { await ghRead(); syncSets(); apply(); await ghWrite(); $("sync-msg").textContent = $("st-file").textContent.includes("✓") ? "Готово, позначки тепер спільні." : "Не вдалося записати: перевір, що токен має доступ Contents: Read and write до mobile-de-auto-search."; } catch (x) { $("sync-msg").textContent = "Токен не підходить або немає зв'язку з GitHub."; } });
+  $("sync-msg").textContent = "Перевіряю…"; try { await ghRead(); syncSets(); apply(); await ghWrite(); $("sync-msg").textContent = $("st-file").textContent.includes("✓") ? ($("sync").hidden = true, "Готово, позначки тепер спільні.") : "Не вдалося записати: перевір, що токен має доступ Contents: Read and write до mobile-de-auto-search."; } catch (x) { $("sync-msg").textContent = "Токен не підходить або немає зв'язку з GitHub."; } });
 $("sync-off").addEventListener("click", () => { ghTok = ""; try { localStorage.removeItem("gh-token"); } catch (x) {} $("sync-tok").value = ""; $("sync-msg").textContent = "Токен видалено з цього браузера."; stBtn("☁️ Синхронізація"); });
 urlFields().forEach(e => e.dataset.def = e.value);
 loadUrl();

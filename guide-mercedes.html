@@ -1,0 +1,219 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Як зроблено звіт Mercedes-Benz</title><style>:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f24;--muted:#5f6873;--line:#dfe3e8;--accent:#0b5cad;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1c2025;--fg:#e8ebef;--muted:#9aa4af;--line:#2d333a;--accent:#6aa9ec;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:20px 16px 40px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:24px;line-height:1.25}h2{font-size:19px;margin-top:28px}
+a{color:var(--accent)}code{font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--card)}
+.back{display:inline-block;margin-bottom:8px}
+</style></head><body><main><a class="back" href="./">← Усі звіти</a><h1 id="звіт-mercedes-benz-з-mobilede-як-зроблено">Звіт Mercedes-Benz з
+mobile.de: як зроблено</h1>
+<p>Дані зібрано 21.10.2026. Звіти лежать на сайті <a
+href="https://artemlysak.github.io/mobile-de-auto-search/">https://artemlysak.github.io/mobile-de-auto-search/</a>,
+там же:</p>
+<ul>
+<li><code>mobilede-mercedes.html</code> — сам звіт;</li>
+<li><code>mercedes-data.json</code> — усі зібрані дані, з них можна
+будувати нові фільтри;</li>
+<li><code>mercedes-descriptions.json</code> — тексти описів оголошень
+(id → текст);</li>
+<li><code>state.json</code> у гілці <code>state</code> репозиторію —
+спільні лайки, «не підходить», нотатки й авто, додані вручну (одні на
+всі звіти).</li>
+</ul>
+<p>Зроблено так само, як звіт BMW, з тими самими умовами пошуку й
+фільтрами. Відрізняються тільки назви пакетів, музики й фар.</p>
+<h2 id="1-пошук-на-mobilede">1. Пошук на mobile.de</h2>
+<p><a
+href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=Car&amp;vc=Car&amp;ms=17200&amp;fr=2020:2024&amp;p=21000:30000&amp;ml=:150000&amp;cn=DE&amp;tr=AUTOMATIC_GEAR&amp;st=DEALER&amp;ft=PETROL&amp;ft=DIESEL&amp;ft=HYBRID&amp;ft=HYBRID_DIESEL&amp;dam=false&amp;ref=srp&amp;lang=de">Посилання
+на пошук</a> з такими загальними фільтрами:</p>
+<ul>
+<li>марка Mercedes-Benz, тільки дилери;</li>
+<li>перша реєстрація 2020–2024;</li>
+<li>ціна 21 000–30 000 €;</li>
+<li>пробіг до 150 000 км;</li>
+<li>тільки Німеччина;</li>
+<li>тільки автомат;</li>
+<li>пальне: бензин, дизель, гібрид, плагін-гібрид (без електро).</li>
+</ul>
+<p>Камеру й CarPlay у пошук не ставив: їх перевірено в кожному
+оголошенні.</p>
+<p>Результат пошуку: 8 007 авто.</p>
+<h2 id="2-що-виключено-і-чому">2. Що виключено і чому</h2>
+<p>Виключено ті самі типи авто, що й у BMW:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Що</th>
+<th>Авто</th>
+<th>Чому</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>B-Клас, Vito, V-Клас, Citan, T-Клас, Sprinter</td>
+<td>1 350</td>
+<td>мінівени й фургони, ти виключив раніше</td>
+</tr>
+<tr class="even">
+<td>E-Клас (і все більше: CLS, GLE, S)</td>
+<td>724</td>
+<td>як BMW 5 серії й вище та X5</td>
+</tr>
+<tr class="odd">
+<td>AMG-версії (A 35, CLA 35, GLA 35, C 43 тощо)</td>
+<td>58</td>
+<td>як M-версії BMW; пакет «AMG Line» лишився</td>
+</tr>
+<tr class="even">
+<td>C-Клас купе</td>
+<td>34</td>
+<td>як 2 і 4 серія купе BMW; CLA (4-дверне купе) лишилось, як Gran
+Coupé</td>
+</tr>
+<tr class="odd">
+<td>кабріолети</td>
+<td>29</td>
+<td>ти виключив</td>
+</tr>
+<tr class="even">
+<td>без зрозумілої моделі («Andere», «220» тощо)</td>
+<td>13</td>
+<td>неможливо визначити клас</td>
+</tr>
+</tbody>
+</table>
+<p>Оголошення відкрито для 6 558 авто, включно з E-Класом, тож його
+можна повернути без нового збору. У звіті 5 799 авто:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Модель</th>
+<th>Авто</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A-Клас</td>
+<td>1 247</td>
+</tr>
+<tr class="even">
+<td>C-Клас</td>
+<td>1 992</td>
+</tr>
+<tr class="odd">
+<td>CLA</td>
+<td>431</td>
+</tr>
+<tr class="even">
+<td>CLA Shooting Brake</td>
+<td>783</td>
+</tr>
+<tr class="odd">
+<td>GLA</td>
+<td>508</td>
+</tr>
+<tr class="even">
+<td>GLB</td>
+<td>523</td>
+</tr>
+<tr class="odd">
+<td>GLC</td>
+<td>315</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-як-визначено-фільтри">3. Як визначено фільтри</h2>
+<p>Джерела ті самі, що й у BMW: технічні дані з оголошення, список опцій
+від дилера, текст опису й назва. «Так» ставлю, коли опція є в списку або
+згадана в тексті. Інакше ставлю «Ні або невідомо».</p>
+<table>
+<thead>
+<tr class="header">
+<th>Фільтр</th>
+<th>Звідки</th>
+<th>Так</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Камера (360° / тільки задня / ні або невідомо)</td>
+<td>поле «Einparkhilfe» (Kamera / 360°-Kamera),
+«360°/Rundumsicht/Surround View» у тексті</td>
+<td>360°: 724, тільки задня: 4 375</td>
+</tr>
+<tr class="even">
+<td>CarPlay/Android Auto</td>
+<td>опції «Apple CarPlay» / «Android Auto» або «CarPlay/Android
+Auto/Smartphone-Integration» в описі</td>
+<td>4 722</td>
+</tr>
+<tr class="odd">
+<td>Повний привід (4MATIC)</td>
+<td>опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх
+немає, то «4MATIC» у назві</td>
+<td>955 так, 3 767 ні, 1 077 невідомо</td>
+</tr>
+<tr class="even">
+<td>AMG Line (замість M пакета)</td>
+<td>«AMG Line», «AMG-Line», «AMG Styling/Exterieur», лінія комплектації
+«AMG»</td>
+<td>2 187</td>
+</tr>
+<tr class="odd">
+<td>Аудіо</td>
+<td>Burmester у тексті; Hi-Fi з опції «Soundsystem» або «Advanced Sound
+System»</td>
+<td>Burmester 295, Hi-Fi 2 220</td>
+</tr>
+<tr class="even">
+<td>Пам'ять сидінь</td>
+<td>опція «Sitzeinstellung mit Memory» або «Memory» в тексті</td>
+<td>619</td>
+</tr>
+<tr class="odd">
+<td>HUD</td>
+<td>опція «Head-Up Display» або «Head-Up/HUD» в тексті</td>
+<td>367</td>
+</tr>
+<tr class="even">
+<td>Фари</td>
+<td>Multibeam LED, LED High Performance, LED, ксенон, за текстом і
+опціями</td>
+<td>Multibeam 786, High Performance 2 083, LED 2 571</td>
+</tr>
+<tr class="odd">
+<td>Дах</td>
+<td>опції «Panorama-Dach» / «Schiebedach» або «Pano» в тексті</td>
+<td>панорама 1 344, люк 160</td>
+</tr>
+<tr class="even">
+<td>Складні задні сидіння</td>
+<td>«Sitzlehnen im Fond klappbar», «Rücksitzlehne geteilt/klappbar»,
+«40:20:40», «Durchlade» тощо</td>
+<td>3 918</td>
+</tr>
+</tbody>
+</table>
+<p>Без фільтра, тільки на картці: парктроніки (спереду 5 381, ззаду 5
+542), CO2 з позначкою «0% IEDMT», якщо ≤ 120 г/км (CO2 є в 3 495 авто, з
+них 887 до 120 г/км), місто.</p>
+<p>Модель групується (A 180–A 250 → «A-Клас»), модифікація — це назва з
+mobile.de (A 200, C 220 d тощо). Кузов і покоління (W205/W206 тощо)
+визначаю за назвою, кузовом і роком, розміри приблизні.</p>
+<h2 id="4-лайки-не-підходить-нотатки-посилання">4. Лайки, «не
+підходить», нотатки, посилання</h2>
+<p>Усе як у BMW. «☁️» вмикає спільні позначки через GitHub (один раз
+вставити токен на кожному пристрої). Фільтри записуються в адресу
+сторінки, тож нею можна поділитися.</p>
+<h2 id="5-обмеження">5. Обмеження</h2>
+<ul>
+<li>«Ні або невідомо» не означає «точно немає». Перевіряй в оголошенні
+або спитай дилера.</li>
+<li>Опис обрізано до 2 500 символів, тож опції в самому кінці довгих
+описів могли не потрапити.</li>
+<li>CO2 вказано в ~60% оголошень. Для решти перевіряй COC.</li>
+<li>Розміри кузовів приблизні.</li>
+</ul>
+</main></body></html>
