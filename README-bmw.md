@@ -61,19 +61,18 @@
 
 | Фільтр | Звідки | Так |
 |---|---|---|
-| Камера заднього виду | поле «Einparkhilfe» (Kamera / 360°-Kamera) або слово «Kamera» в назві | 2 855 |
-| Парктроніки спереду / ззаду | поле «Einparkhilfe» (Vorne / Hinten) | 4 632 / 4 707 |
-| Apple CarPlay | опція «Apple CarPlay» або «CarPlay» в описі | 3 013 |
+| Камера (один фільтр: 360° / тільки задня / ні або невідомо) | поле «Einparkhilfe» (Kamera / 360°-Kamera), слово «Kamera» в назві, «360/Surround View» в тексті | 360°: 263, тільки задня: 2 592 |
+| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto» або ці слова в описі | 3 034 |
 | Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 1 377 так, 2 980 ні, 402 невідомо |
 | M пакет | «M Sport», «M-Paket» тощо в назві, лінії комплектації чи описі | 1 406 |
 | Аудіо | Harman Kardon / Bowers & Wilkins у тексті; Hi-Fi з тексту або опції «Soundsystem» | HK 461, Hi-Fi 2 186 |
-| Камера 360° | «360°-Kamera» в полі паркування або «360/Surround View» в тексті | 263 |
 | Пам'ять сидінь | опція «Sitzeinstellung mit Memory» або «Memory» в тексті | 641 |
 | HUD | опція «Head-Up Display» або «Head-Up/HUD» в тексті | 1 331 |
 | Фари | лазерні, адаптивні LED, LED, ксенон, за опціями й текстом | лазер 269, адапт. LED 703, LED 3 618 |
 | Дах | опції «Panorama-Dach» / «Schiebedach» або «Pano/GSD» в тексті | панорама 853, люк 55 |
 | Складні задні сидіння | у тексті «Rücksitzlehne geteilt/klappbar», «40:20:40», «Durchlade(system)» тощо | 2 377 |
-| CO2 ≤ 120 г/км (0% IEDMT) | поле CO2 в оголошенні; є тільки в 1 985 авто | 393 |
+
+Без фільтра, тільки на картці: парктроніки (поле «Einparkhilfe»: спереду 4 632, ззаду 4 707), CO2 з позначкою «0% IEDMT», якщо ≤ 120 г/км (CO2 є лише в 1 985 авто), місто й країна. Фільтр країни прибрано, бо в пошуку вже тільки Німеччина.
 
 Інше:
 

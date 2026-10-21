@@ -114,9 +114,7 @@ body:not(.fo) .bar .done{display:none}
 <label>Оцінка ціни<select id="f-pr"><option value="">Будь-яка</option><option value="1">Дуже хороша</option><option value="2">Хороша і краще</option><option value="3">Справедлива і краще</option></select></label>
 <div id="opt-filters"></div>
 <label>Дата подачі<select id="f-date"><option value="">Всі</option><option value="1">За останній день</option><option value="7">За тиждень</option><option value="30">За місяць</option></select></label>
-<label>Країна<select id="f-cn"><option value="">Усі</option></select></label>
 <label>Пошук у назві<input id="f-q" type="search" placeholder="напр. 40 TFSI e"></label>
-<div class="chips" id="co2-wrap" hidden><label><input id="f-co2" type="checkbox"> CO2 до 120 г/км (0% IEDMT) <span id="co2-n"></span></label></div>
 <div class="chips"><label><input id="f-like" type="checkbox"> ♥ Тільки вподобані (<span id="like-n">0</span>)</label><label><input id="f-out" type="checkbox"> Показати відкинуті (<span id="out-n">0</span>)</label></div>
 <button id="reset" type="button">Скинути</button>
 <button class="done" id="done" type="button">Показати</button>
@@ -145,7 +143,6 @@ const fdate = s => s ? s.slice(0,10).split("-").reverse().join(".") : "";
 const groups = uniq(cars.map(c=>c.g)).sort(byNum);
 groups.forEach(v => $("f-model").add(new Option(v, v)));
 const bodies = uniq(cars.map(c=>c.c)); bodies.forEach(v => $("f-body").add(new Option(BODY[v]||v, v)));
-const countries = uniq(cars.map(c=>c.cn)); countries.forEach(v => $("f-cn").add(new Option(CN[v]||v, v)));
 // "last day/week/month" is measured from the newest listing, i.e. when the data was collected
 const T0 = Math.max(...cars.map(c => c.os ? Date.parse(c.os.replace(" ","T")) : 0));
 cars.forEach(c => c.age = c.os ? (T0 - Date.parse(c.os.replace(" ","T"))) / 864e5 : Infinity);
@@ -183,26 +180,23 @@ async function writeFile() { if (!dirH) return; try { const w = await (await dir
 const stBtn = t => { const b = $("st-file"); if (b) b.textContent = t; };
 function persist() { try { localStorage.setItem("mobilede-state", JSON.stringify(ST)); } catch (e) {} writeFile(); }
 const OPTS = [
-  ["m", "M пакет", {y:"Так", "?":"Ні або невідомо"}],
-  ["audio", "Аудіо", {hk:"Harman Kardon", bw:"Bowers & Wilkins", hifi:"Hi-Fi", "?":"Базове або невідомо"}],
-  ["cam", "Камера 360°", {y:"Так", "?":"Ні або невідомо"}],
-  ["mem", "Пам'ять сидінь", {y:"Так", "?":"Ні або невідомо"}],
-  ["hud", "Проекція (HUD)", {y:"Так", "?":"Ні або невідомо"}],
-  ["lights", "Фари", {laser:"Лазерні", aled:"Адаптивні LED", led:"LED", xenon:"Ксенон", "?":"Невідомо"}],
-  ["roof", "Дах", {pano:"Панорама", sd:"Люк", "?":"Ні або невідомо"}],
-  ["rcam", "Камера заднього виду", {y:"Так", "?":"Ні або невідомо"}],
-  ["pdcf", "Парктроніки спереду", {y:"Так", "?":"Ні або невідомо"}],
-  ["pdcr", "Парктроніки ззаду", {y:"Так", "?":"Ні або невідомо"}],
-  ["cp", "Apple CarPlay", {y:"Так", "?":"Ні або невідомо"}],
-  ["seats", "Складні задні сидіння", {y:"Так", "?":"Ні або невідомо"}],
+  // 4th item: index in the car's option array, or a function deriving the value
+  ["m", "M пакет", {y:"Так", "?":"Ні або невідомо"}, 0],
+  ["audio", "Аудіо", {hk:"Harman Kardon", bw:"Bowers & Wilkins", hifi:"Hi-Fi", "?":"Базове або невідомо"}, 1],
+  ["cam", "Камера", {c360:"360°", rear:"Тільки задня", "?":"Ні або невідомо"}, c => !c.o ? "?" : c.o[2] === "y" ? "c360" : c.o[7] === "y" ? "rear" : "?"],
+  ["mem", "Пам'ять сидінь", {y:"Так", "?":"Ні або невідомо"}, 3],
+  ["hud", "Проекція (HUD)", {y:"Так", "?":"Ні або невідомо"}, 4],
+  ["lights", "Фари", {laser:"Лазерні", aled:"Адаптивні LED", led:"LED", xenon:"Ксенон", "?":"Невідомо"}, 5],
+  ["roof", "Дах", {pano:"Панорама", sd:"Люк", "?":"Ні або невідомо"}, 6],
+  ["cp", "CarPlay/Android Auto", {y:"Так", "?":"Ні або невідомо"}, 10],
+  ["seats", "Складні задні сидіння", {y:"Так", "?":"Ні або невідомо"}, 11],
 ];
 const hasOpts = cars.some(c => c.o);
-$("co2-wrap").hidden = !cars.some(c => c.co2);
-const ov = (c, i) => c.o ? c.o[i] : "?";
+const ov = (c, i) => { const g = OPTS[i][3]; return typeof g === "function" ? g(c) : c.o ? c.o[g] : "?"; };
 if (hasOpts) $("opt-filters").innerHTML = OPTS.map(([k, name, vals]) => `<div><label>${name}</label><div class="chips" id="f-o-${k}">${Object.entries(vals).filter(([v]) => cars.some(c => ov(c, OPTS.findIndex(o => o[0] === k)) === v)).map(([v, l]) => `<label><input type="checkbox" value="${v}"> ${l} <span></span></label>`).join("")}</div></div>`).join("");
 const optChips = c => { if (!c.o) return ""; const t = []; const [m, a, cam, mem, hud, l, rf, rc, pf, pb, cp, st] = c.o;
   if (m === "y") t.push("M пакет"); if (a === "hk") t.push("Harman Kardon"); else if (a === "bw") t.push("Bowers & Wilkins"); else if (a === "hifi") t.push("Hi-Fi");
-  if (cam === "y") t.push("Камера 360°"); if (mem === "y") t.push("Пам'ять сидінь"); if (hud === "y") t.push("HUD"); if (OPTS[5][2][l] && l !== "?") t.push("Фари: " + OPTS[5][2][l]); if (rf === "pano") t.push("Панорама"); else if (rf === "sd") t.push("Люк"); if (rc === "y") t.push("Камера"); if (pf === "y" && pb === "y") t.push("PDC спереду+ззаду"); else if (pf === "y") t.push("PDC спереду"); else if (pb === "y") t.push("PDC ззаду"); if (cp === "y") t.push("CarPlay"); if (st === "y") t.push("Складні сидіння");
+  if (cam === "y") t.push("Камера 360°"); if (mem === "y") t.push("Пам'ять сидінь"); if (hud === "y") t.push("HUD"); if (OPTS[5][2][l] && l !== "?") t.push("Фари: " + OPTS[5][2][l]); if (rf === "pano") t.push("Панорама"); else if (rf === "sd") t.push("Люк"); if (rc === "y" && cam !== "y") t.push("Камера заднього виду"); if (pf === "y" && pb === "y") t.push("PDC спереду+ззаду"); else if (pf === "y") t.push("PDC спереду"); else if (pb === "y") t.push("PDC ззаду"); if (cp === "y") t.push("CarPlay/Android Auto"); if (st === "y") t.push("Складні сидіння");
   return t.length ? `<div class="opts">${t.map(x => `<span class="opt">${x}</span>`).join("")}</div>` : ""; };
 let shown = 0, list = [], modsFor = null;
 function fillMods() {
@@ -231,9 +225,9 @@ function render(more) {
 function apply() {
   fillMods();
   const f = {
-    m: $("f-model").value, b: $("f-body").value, cn: $("f-cn").value, y1: +$("f-y1").value, y2: +$("f-y2").value,
+    m: $("f-model").value, b: $("f-body").value, y1: +$("f-y1").value, y2: +$("f-y2").value,
     p: +$("f-p").value || Infinity, km: +$("f-km").value || Infinity, pr: +$("f-pr").value, d: +$("f-date").value, q: $("f-q").value.trim().toLowerCase(),
-    showOut: $("f-out").checked, co2: $("f-co2").checked, onlyLiked: $("f-like").checked,
+    showOut: $("f-out").checked, onlyLiked: $("f-like").checked,
     fuels: new Set([...$("f-fuel").querySelectorAll("input:checked")].map(i=>i.value)),
     drs: new Set([...$("f-dr").querySelectorAll("input:checked")].map(i=>i.value)),
     mods: new Set([...$("f-var").querySelectorAll("input:checked")].map(i=>i.value)),
@@ -244,11 +238,9 @@ function apply() {
     m: c => !f.m || c.g === f.m,
     mods: c => !f.mods.size || f.mods.has(c.md),
     b: c => !f.b || c.c === f.b,
-    cn: c => !f.cn || c.cn === f.cn,
     pr: c => !f.pr || (c.pr > 0 && c.pr <= f.pr),
     ft: c => f.fuels.has(c.ft),
     dr: c => !f.drs.size || f.drs.has(c.dr),
-    co2: c => !f.co2 || (c.co2 > 0 && c.co2 <= 120),
     d: c => !f.d || c.age <= f.d,
     ...Object.fromEntries(hasOpts ? OPTS.map(([k], i) => ["o" + i, c => { const s = optSel[i]; return !s.size || s.has(ov(c, i)); }]) : []),
     rest: c => (f.showOut ? out.has(c.id) : !out.has(c.id)) && (!f.onlyLiked || liked.has(c.id)) && c.y >= f.y1 && c.y <= f.y2 && c.p <= f.p && c.km <= f.km && (!f.q || (c.g+" "+c.md+" "+c.sub).toLowerCase().includes(f.q)),
@@ -259,13 +251,11 @@ function apply() {
   const label = (sel, o, name) => [...sel.options].forEach(op => { if (op.value) op.text = `${name(op.value)} (${o[op.value]||0})`; });
   label($("f-model"), counts("m"), v => v);
   label($("f-body"), counts("b"), v => BODY[v]||v);
-  label($("f-cn"), counts("cn"), v => CN[v]||v);
   const prc = counts("pr"); [...$("f-pr").options].forEach(op => { if (op.value) { const n = Object.entries(prc).filter(([k]) => +k > 0 && +k <= +op.value).reduce((s,[,v]) => s+v, 0); op.text = op.text.replace(/ \(\d+\)$/, "") + ` (${n})`; } });
   const chip = (box, o) => box.querySelectorAll("label").forEach(l => { const n = o[l.querySelector("input").value]||0; l.querySelector("span").textContent = `(${n})`; l.classList.toggle("zero", !n); });
   [...$("f-date").options].forEach(op => { const n = cars.filter(c => passExcept(c, "d") && (!op.value || c.age <= +op.value)).length; op.text = op.text.replace(/ \(\d+\)$/, "") + ` (${n})`; });
   chip($("f-fuel"), counts("ft"));
   chip($("f-dr"), counts("dr"));
-  $("co2-n").textContent = `(${cars.filter(c => c.co2 > 0 && c.co2 <= 120 && passExcept(c, "co2")).length})`;
   if (hasOpts) OPTS.forEach(([k], i) => { const o = {}; cars.forEach(c => { if (passExcept(c, "o" + i)) o[ov(c, i)] = (o[ov(c, i)]||0) + 1; }); chip($("f-o-" + k), o); });
   chip($("f-var"), counts("mods"));
   list = cars.filter(c => passExcept(c, null));
@@ -314,7 +304,7 @@ renderAdded();
 $("reset").addEventListener("click", () => {
   document.querySelectorAll(".bar select").forEach(s => s.selectedIndex = 0); $("f-y2").value = years[years.length-1];
   document.querySelectorAll(".bar input").forEach(i => { if (i.type !== "checkbox") i.value = ""; });
-  $("f-fuel").querySelectorAll("input").forEach(i => i.checked = true); $("f-out").checked = false; $("f-co2").checked = false; $("f-dr").querySelectorAll("input").forEach(i => i.checked = false); $("f-like").checked = false; document.querySelectorAll("#opt-filters input").forEach(i => i.checked = false);
+  $("f-fuel").querySelectorAll("input").forEach(i => i.checked = true); $("f-out").checked = false; $("f-dr").querySelectorAll("input").forEach(i => i.checked = false); $("f-like").checked = false; document.querySelectorAll("#opt-filters input").forEach(i => i.checked = false);
   apply();
 });
 $("st-file").addEventListener("click", async () => {
