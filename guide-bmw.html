@@ -1,0 +1,256 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Як зроблено звіт BMW</title><style>:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f24;--muted:#5f6873;--line:#dfe3e8;--accent:#0b5cad;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1c2025;--fg:#e8ebef;--muted:#9aa4af;--line:#2d333a;--accent:#6aa9ec;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:20px 16px 40px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:24px;line-height:1.25}h2{font-size:19px;margin-top:28px}
+a{color:var(--accent)}code{font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--card)}
+.back{display:inline-block;margin-bottom:8px}
+</style></head><body><main><a class="back" href="./">← Усі звіти</a><h1 id="звіт-bmw-з-mobilede-як-зроблено">Звіт BMW з mobile.de: як
+зроблено</h1>
+<p>Дані зібрано 21.10.2026. Файли в папці <code>auto-search</code>:</p>
+<ul>
+<li><code>mobilede-bmw.html</code> — сам звіт;</li>
+<li><code>bmw-data.json</code> — усі зібрані дані, з них можна будувати
+нові фільтри;</li>
+<li><code>bmw-descriptions.json</code> — тексти описів оголошень (id →
+текст), винесені окремо, бо разом файл був завеликий;</li>
+<li><code>mobilede-state.json</code> — твої лайки, «не підходить»,
+нотатки й авто, додані вручну. З'являється після першого натискання «💾
+Файл стану».</li>
+</ul>
+<h2 id="1-пошук-на-mobilede">1. Пошук на mobile.de</h2>
+<p><a
+href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=Car&amp;vc=Car&amp;ms=3500&amp;fr=2020:2024&amp;p=21000:30000&amp;ml=:150000&amp;cn=DE&amp;tr=AUTOMATIC_GEAR&amp;st=DEALER&amp;ft=PETROL&amp;ft=DIESEL&amp;ft=HYBRID&amp;ft=HYBRID_DIESEL&amp;dam=false&amp;ref=srp&amp;lang=de">Посилання
+на пошук</a> з такими загальними фільтрами:</p>
+<ul>
+<li>марка BMW, тільки дилери;</li>
+<li>перша реєстрація 2020–2024;</li>
+<li>ціна 21 000–30 000 €;</li>
+<li>пробіг до 150 000 км;</li>
+<li>тільки Німеччина;</li>
+<li>тільки автомат;</li>
+<li>пальне: бензин, дизель, гібрид, плагін-гібрид (без електро).</li>
+</ul>
+<p>Камеру, парктроніки й CarPlay у пошук навмисно не ставив. Дилери
+часто не ставлять ці галочки, і пошук відкидав би машини, де все це
+насправді є. Натомість кожне оголошення перевірено окремо (див. розділ
+3).</p>
+<p>Результат пошуку: 7 371 авто. mobile.de показує максимум 100 сторінок
+на один пошук, тому я ділив його на цінові діапазони.</p>
+<h2 id="2-що-виключено-і-чому">2. Що виключено і чому</h2>
+<p>Виключено ще до відкриття оголошень:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Що</th>
+<th>Чому</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2 Active Tourer, 2 Gran Tourer (також «218» з кузовом мінівен)</td>
+<td>мінівени, ти виключив</td>
+</tr>
+<tr class="even">
+<td>2 серія купе, 4 серія купе</td>
+<td>ти виключив; Gran Coupé лишились</td>
+</tr>
+<tr class="odd">
+<td>усі M-версії (M135, M235, M240, M340, M440, X3 M40 тощо)</td>
+<td>ти виключив</td>
+</tr>
+<tr class="even">
+<td>X2, X5</td>
+<td>ти виключив</td>
+</tr>
+<tr class="odd">
+<td>5 серія й вище, Z4</td>
+<td>ти виключив</td>
+</tr>
+<tr class="even">
+<td>кабріолети</td>
+<td>ти виключив</td>
+</tr>
+</tbody>
+</table>
+<p>Лишилось 4 759 авто:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Модель</th>
+<th>Авто</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1 серія</td>
+<td>1 018</td>
+</tr>
+<tr class="even">
+<td>2 серія Gran Coupé</td>
+<td>281</td>
+</tr>
+<tr class="odd">
+<td>3 серія</td>
+<td>2 058</td>
+</tr>
+<tr class="even">
+<td>4 серія Gran Coupé</td>
+<td>61</td>
+</tr>
+<tr class="odd">
+<td>X1</td>
+<td>959</td>
+</tr>
+<tr class="even">
+<td>X3</td>
+<td>365</td>
+</tr>
+<tr class="odd">
+<td>X4</td>
+<td>17</td>
+</tr>
+</tbody>
+</table>
+<p>Оголошення кожного з них я відкрив: 4 759 із 4 759, жодне не зникло,
+mobile.de не блокував.</p>
+<h2 id="3-як-визначено-фільтри">3. Як визначено фільтри</h2>
+<p>Джерела:</p>
+<ul>
+<li><strong>Сторінка оголошення:</strong> технічні дані, список опцій,
+який заповнює дилер, і текст опису.</li>
+<li><strong>Назва оголошення.</strong></li>
+</ul>
+<p>«Так» ставлю, коли опція є в списку або згадана в назві чи описі.
+Інакше ставлю «Ні або невідомо», бо дилери часто пишуть неповні списки,
+і відсутність запису не доводить, що опції немає.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Фільтр</th>
+<th>Звідки</th>
+<th>Так</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Камера (один фільтр: 360° / тільки задня / ні або невідомо)</td>
+<td>поле «Einparkhilfe» (Kamera / 360°-Kamera), слово «Kamera» в назві,
+«360/Surround View» в тексті</td>
+<td>360°: 263, тільки задня: 2 592</td>
+</tr>
+<tr class="even">
+<td>CarPlay/Android Auto</td>
+<td>опції «Apple CarPlay» / «Android Auto» або ці слова в описі</td>
+<td>3 034</td>
+</tr>
+<tr class="odd">
+<td>Повний привід (xDrive)</td>
+<td>опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх
+немає, то назва</td>
+<td>1 377 так, 2 980 ні, 402 невідомо</td>
+</tr>
+<tr class="even">
+<td>M пакет</td>
+<td>«M Sport», «M-Paket» тощо в назві, лінії комплектації чи описі</td>
+<td>1 406</td>
+</tr>
+<tr class="odd">
+<td>Аудіо</td>
+<td>Harman Kardon / Bowers &amp; Wilkins у тексті; Hi-Fi з тексту або
+опції «Soundsystem»</td>
+<td>HK 461, Hi-Fi 2 186</td>
+</tr>
+<tr class="even">
+<td>Пам'ять сидінь</td>
+<td>опція «Sitzeinstellung mit Memory» або «Memory» в тексті</td>
+<td>641</td>
+</tr>
+<tr class="odd">
+<td>HUD</td>
+<td>опція «Head-Up Display» або «Head-Up/HUD» в тексті</td>
+<td>1 331</td>
+</tr>
+<tr class="even">
+<td>Фари</td>
+<td>лазерні, адаптивні LED, LED, ксенон, за опціями й текстом</td>
+<td>лазер 269, адапт. LED 703, LED 3 618</td>
+</tr>
+<tr class="odd">
+<td>Дах</td>
+<td>опції «Panorama-Dach» / «Schiebedach» або «Pano/GSD» в тексті</td>
+<td>панорама 853, люк 55</td>
+</tr>
+<tr class="even">
+<td>Складні задні сидіння</td>
+<td>у тексті «Rücksitzlehne geteilt/klappbar», «40:20:40»,
+«Durchlade(system)» тощо</td>
+<td>2 377</td>
+</tr>
+</tbody>
+</table>
+<p>Без фільтра, тільки на картці: парктроніки (поле «Einparkhilfe»:
+спереду 4 632, ззаду 4 707), CO2 з позначкою «0% IEDMT», якщо ≤ 120 г/км
+(CO2 є лише в 1 985 авто), місто й країна. Фільтр країни прибрано, бо в
+пошуку вже тільки Німеччина.</p>
+<p>Інше:</p>
+<ul>
+<li><strong>Модель і модифікація:</strong> модель групується (116–128 →
+«1 серія»), модифікація — це назва з mobile.de (118, 320 тощо).</li>
+<li><strong>Кузов і розміри:</strong> кузов і покоління визначаю за
+назвою, кузовом і роком. Розміри — приблизні дані виробника з довідника,
+не з оголошень.</li>
+<li><strong>Дата подачі:</strong> «На mobile.de з…» береться з
+результатів пошуку. Фільтр «за день/тиждень/місяць» рахується від
+моменту збору даних.</li>
+</ul>
+<h2 id="4-лайки-не-підходить-нотатки-ручне-додавання">4. Лайки, «не
+підходить», нотатки, ручне додавання</h2>
+<ul>
+<li><strong>Збереження:</strong> усе зберігається в браузері, як і
+раніше; старі позначки перенесено. Після натискання «💾 Файл стану» й
+вибору папки <code>auto-search</code> ще й у
+<code>mobilede-state.json</code>. Chrome може раз попросити дозвіл
+знову.</li>
+<li><strong>Нотатка:</strong> після «✕ Не підходить» з'являється поле
+для нотатки, необов'язкове. Нотатку видно й можна змінити, коли
+увімкнено «Показати відкинуті».</li>
+<li><strong>Додати авто за посиланням:</strong> авто зберігається в
+стані. Повні дані підтягну при наступному оновленні, навіть якщо машина
+не потрапляє в пошук.</li>
+<li><strong>Телефон:</strong> при кожному оновленні звіту я вбудовую
+<code>mobilede-state.json</code> у файл. Так твої позначки видно і в
+копії на телефоні, але тільки на момент оновлення.</li>
+</ul>
+<h2 id="5-що-є-в-bmw-datajson">5. Що є в <code>bmw-data.json</code></h2>
+<p>Усі 7 371 авто з пошуку, включно з виключеними. Для кожного:</p>
+<ul>
+<li><code>search</code> — дані з результатів пошуку: модель, назва,
+ціна, пробіг, потужність, пальне, кузов, місто, оцінка ціни, дата
+подачі, фото;</li>
+<li><code>listing</code> — дані зі сторінки оголошення, для 4 759
+відкритих авто, у решти <code>null</code>:
+<ul>
+<li><code>kv</code> — усі технічні поля (CO2, колір, салон, власники, ТО
+тощо);</li>
+<li><code>f</code> — повний список опцій;</li>
+<li>опис (перші 2 500 символів) лежить у
+<code>bmw-descriptions.json</code> під тим самим id;</li>
+</ul></li>
+<li><code>derived</code> — що з цього вивів звіт: група, кузов, привід,
+опції, CO2, <code>in_report</code>.</li>
+</ul>
+<h2 id="6-обмеження">6. Обмеження</h2>
+<ul>
+<li>«Ні або невідомо» не означає «точно немає». Перевіряй в оголошенні
+або спитай дилера.</li>
+<li>Опис обрізано до 2 500 символів, тож опції, згадані тільки
+наприкінці довгого опису, могли не потрапити.</li>
+<li>CO2 вказано лише в ~40% оголошень. Для решти перевіряй COC.</li>
+<li>Розміри кузовів приблизні.</li>
+<li>Audi й Mercedes лишились на старих даних і старих умовах пошуку
+(19–30 тис. €, камера, парктроніки, CarPlay).</li>
+</ul>
+</main></body></html>
