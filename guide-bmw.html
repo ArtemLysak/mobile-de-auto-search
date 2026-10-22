@@ -9,7 +9,9 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 .back{display:inline-block;margin-bottom:8px}
 </style></head><body><main><a class="back" href="./">← Усі звіти</a><h1 id="звіт-bmw-з-mobilede-як-зроблено">Звіт BMW з mobile.de: як
 зроблено</h1>
-<p>Дані зібрано 21.10.2026. Звіти лежать на сайті <a
+<p>Дані зібрано 21.10.2026, оновлено 22.10.2026: свіжий пошук, відкрито
+тільки нові оголошення, продані прибрано. Кількості у таблиці фільтрів
+нижче — станом на 21.10. Звіти лежать на сайті <a
 href="https://artemlysak.github.io/mobile-de-auto-search/">https://artemlysak.github.io/mobile-de-auto-search/</a>,
 там же:</p>
 <ul>
@@ -38,8 +40,8 @@ href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=
 часто не ставлять ці галочки, і пошук відкидав би машини, де все це
 насправді є. Натомість кожне оголошення перевірено окремо (див. розділ
 3).</p>
-<p>Результат пошуку: 7 371 авто. mobile.de показує максимум 100 сторінок
-на один пошук, тому я ділив його на цінові діапазони.</p>
+<p>Результат пошуку: 7 367 авто (22.10). mobile.de показує максимум 100
+сторінок на один пошук, тому я ділив його на цінові діапазони.</p>
 <h2 id="2-що-виключено-і-чому">2. Що виключено і чому</h2>
 <p>Виключено ще до відкриття оголошень:</p>
 <table>
@@ -76,7 +78,7 @@ href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=
 </tr>
 </tbody>
 </table>
-<p>Лишилось 4 759 авто:</p>
+<p>Лишилось 4 751 авто:</p>
 <table>
 <thead>
 <tr class="header">
@@ -87,7 +89,7 @@ href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=
 <tbody>
 <tr class="odd">
 <td>1 серія</td>
-<td>1 018</td>
+<td>1 021</td>
 </tr>
 <tr class="even">
 <td>2 серія Gran Coupé</td>
@@ -95,15 +97,15 @@ href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=
 </tr>
 <tr class="odd">
 <td>3 серія</td>
-<td>2 058</td>
+<td>2 052</td>
 </tr>
 <tr class="even">
 <td>4 серія Gran Coupé</td>
-<td>61</td>
+<td>63</td>
 </tr>
 <tr class="odd">
 <td>X1</td>
-<td>959</td>
+<td>951</td>
 </tr>
 <tr class="even">
 <td>X3</td>
@@ -111,12 +113,12 @@ href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=
 </tr>
 <tr class="odd">
 <td>X4</td>
-<td>17</td>
+<td>18</td>
 </tr>
 </tbody>
 </table>
-<p>Оголошення кожного з них я відкрив: 4 759 із 4 759, жодне не зникло,
-mobile.de не блокував.</p>
+<p>Оголошення кожного з них відкрито (кожне лише раз: при оновленні
+відкриваю тільки нові), mobile.de не блокував.</p>
 <h2 id="3-як-визначено-фільтри">3. Як визначено фільтри</h2>
 <p>Джерела:</p>
 <ul>
@@ -228,12 +230,12 @@ mobile.de не блокував.</p>
 буде той самий набір фільтрів.</li>
 </ul>
 <h2 id="5-що-є-в-bmw-datajson">5. Що є в <code>bmw-data.json</code></h2>
-<p>Усі 7 371 авто з пошуку, включно з виключеними. Для кожного:</p>
+<p>Усі 7 367 авто з пошуку, включно з виключеними. Для кожного:</p>
 <ul>
 <li><code>search</code> — дані з результатів пошуку: модель, назва,
 ціна, пробіг, потужність, пальне, кузов, місто, оцінка ціни, дата
 подачі, фото;</li>
-<li><code>listing</code> — дані зі сторінки оголошення, для 4 759
+<li><code>listing</code> — дані зі сторінки оголошення, для всіх
 відкритих авто, у решти <code>null</code>:
 <ul>
 <li><code>kv</code> — усі технічні поля (CO2, колір, салон, власники, ТО
