@@ -1,0 +1,309 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Как сделан отчёт BMW</title><style>:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f24;--muted:#5f6873;--line:#dfe3e8;--accent:#0b5cad;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1c2025;--fg:#e8ebef;--muted:#9aa4af;--line:#2d333a;--accent:#6aa9ec;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:20px 16px 40px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:24px;line-height:1.25}h2{font-size:19px;margin-top:28px}
+a{color:var(--accent)}code{font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--card)}
+.back{display:inline-block;margin-bottom:8px}
+
+.top{display:flex;justify-content:space-between;align-items:center}.top .lang{font-weight:600;text-decoration:none}.top .back{margin:0}
+</style></head><body><main><nav class="top"><a class="back" href="index-ru.html">← Все отчёты</a><a class="lang" href="guide-bmw.html" lang="uk">UA</a></nav><h1 id="отчёт-bmw-с-mobilede-как-сделано">Отчёт BMW с mobile.de: как
+сделано</h1>
+<p>Данные обновлены 25.10.2026. Каждое подходящее объявление открыто и
+прочитано полностью, со всем описанием. Все количества ниже — по
+состоянию на 25.10.2026. Отчёты лежат на сайте <a
+href="https://artemlysak.github.io/mobile-de-auto-search/">https://artemlysak.github.io/mobile-de-auto-search/</a>,
+там же:</p>
+<ul>
+<li><code>mobilede-bmw.html</code> — сам отчёт;</li>
+<li><code>bmw-data.json</code> — все собранные данные, из них можно
+строить новые фильтры;</li>
+<li><code>bmw-descriptions.json</code> — полные тексты описаний
+объявлений (id → текст);</li>
+<li><code>state.json</code> в ветке <code>state</code> репозитория —
+общие лайки, «не подходит», заметки и авто, добавленные вручную (одни на
+все отчёты).</li>
+</ul>
+<p>BMW и Mercedes сделаны одинаково: те же условия поиска, фильтры и
+карточки. Отличаются только названия пакетов, музыки и фар.</p>
+<h2 id="1-поиск-на-mobilede">1. Поиск на mobile.de</h2>
+<p><a
+href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=Car&amp;vc=Car&amp;ms=3500&amp;fr=2020:2024&amp;p=21000:31000&amp;ml=:150000&amp;cn=DE&amp;tr=AUTOMATIC_GEAR&amp;st=DEALER&amp;ft=PETROL&amp;ft=DIESEL&amp;ft=HYBRID&amp;ft=HYBRID_DIESEL&amp;dam=false&amp;ref=srp&amp;lang=de">Ссылка
+на поиск</a> с такими общими фильтрами:</p>
+<ul>
+<li>марка BMW, только дилеры;</li>
+<li>первая регистрация 2020–2024;</li>
+<li>цена 21 000–31 000 €;</li>
+<li>пробег до 150 000 км;</li>
+<li>только Германия;</li>
+<li>только автомат;</li>
+<li>топливо: бензин, дизель, гибрид, плагин-гибрид (без электро).</li>
+</ul>
+<p>Камеру, CarPlay и другие опции в поиск намеренно не ставил. Дилеры
+часто не ставят эти галочки, и поиск отбрасывал бы машины, где всё это
+на самом деле есть. Вместо этого каждое объявление проверено отдельно
+(см. раздел 3).</p>
+<p>Результат поиска: 7 909 авто. mobile.de показывает максимум 100
+страниц на один поиск, поэтому я делил его на ценовые диапазоны.</p>
+<h2 id="2-что-исключено-и-почему">2. Что исключено и почему</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Что</th>
+<th>Почему</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2 Active Tourer, 2 Gran Tourer (также «218» с кузовом минивэн)</td>
+<td>минивэны, ты исключил</td>
+</tr>
+<tr class="even">
+<td>1 серия, 2 серия (вся, включая Gran Coupé)</td>
+<td>ты исключил 24.10</td>
+</tr>
+<tr class="odd">
+<td>316, 318, 418</td>
+<td>ты исключил 24.10</td>
+</tr>
+<tr class="even">
+<td>X1, X4</td>
+<td>ты исключил 24.10</td>
+</tr>
+<tr class="odd">
+<td>4 серия купе</td>
+<td>ты исключил; 4 Gran Coupé остался</td>
+</tr>
+<tr class="even">
+<td>4 Gran Coupé с регистрацией до 2021 года (старый F36)</td>
+<td>ты исключил 25.10</td>
+</tr>
+<tr class="odd">
+<td>«полные» M: M3, M4, X3 M</td>
+<td>как AMG 63 у Mercedes. M Performance (M340i/d, M440i, X3 M40i/d)
+остались — ты вернул 25.10</td>
+</tr>
+<tr class="even">
+<td>X2, X5</td>
+<td>ты исключил</td>
+</tr>
+<tr class="odd">
+<td>5 серия и выше, Z4</td>
+<td>ты исключил</td>
+</tr>
+<tr class="even">
+<td>кабриолеты</td>
+<td>ты исключил</td>
+</tr>
+</tbody>
+</table>
+<p>Осталось 2 103 авто:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Модель</th>
+<th>Авто</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>3 серия</td>
+<td>1 594</td>
+</tr>
+<tr class="even">
+<td>4 серия Gran Coupé</td>
+<td>77</td>
+</tr>
+<tr class="odd">
+<td>X3</td>
+<td>432</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-как-определены-фильтры">3. Как определены фильтры</h2>
+<p>Источники: технические данные из объявления, список опций, который
+заполняет дилер, полный текст описания и название. Названия опций ищу на
+немецком и английском, с разными написаниями.</p>
+<p>«Да» ставлю, когда опция есть в списке или упомянута в названии или
+описании. Иначе ставлю «Нет или неизвестно», потому что дилеры часто
+пишут неполные списки, и отсутствие записи не доказывает, что опции
+нет.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Фильтр</th>
+<th>Что ищу</th>
+<th>Да</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>M пакет</td>
+<td>«M Sport», «M-Sportpaket», «M Package», «M Technic», код опции 337A,
+линия комплектации «M Sport»; все M340/M440/X3 M40 — да</td>
+<td>да 622</td>
+</tr>
+<tr class="even">
+<td>Аудио</td>
+<td>«Harman Kardon», «H/K»; «Bowers &amp; Wilkins», «B&amp;W»; Hi-Fi —
+«HiFi», «Lautsprechersystem», «Soundsystem» в тексте или опциях</td>
+<td>Harman Kardon 193, Bowers &amp; Wilkins 0, Hi-Fi 1 156</td>
+</tr>
+<tr class="odd">
+<td>Фары</td>
+<td>«Laserlicht»; адаптивные — «Adaptive LED», «LED mit erweiterten
+Umfängen», «Matrix»; LED — опция «LED-Scheinwerfer» или «Voll-LED»</td>
+<td>лазерные 290, адаптивные LED 349, LED 1 404, ксенон 5</td>
+</tr>
+<tr class="even">
+<td>Камера (360° / только задняя / нет или неизвестно)</td>
+<td>360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera»,
+«Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket
+mit 360°», «360 camera», «birds eye». Задняя: «Kamera» в поле
+«Einparkhilfe» или названии, «Rückfahrkamera», «RFK», «rear
+view/reversing camera», «Parking Assistant», «Park-Paket mit
+Rückfahrkamera»</td>
+<td>360°: 194, только задняя: 1 146</td>
+</tr>
+<tr class="odd">
+<td>Память сидений</td>
+<td>опция «Sitzeinstellung mit Memory-Funktion», «Memory»,
+«Sitzspeicher», «Speicherfunktion»</td>
+<td>354</td>
+</tr>
+<tr class="even">
+<td>HUD</td>
+<td>опция «Head-Up Display», «Head-Up», «HUD»</td>
+<td>750</td>
+</tr>
+<tr class="odd">
+<td>Крыша</td>
+<td>опции «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD»,
+«Sonnendach»</td>
+<td>панорама 415, люк 49</td>
+</tr>
+<tr class="even">
+<td>CarPlay/Android Auto</td>
+<td>опции «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto»,
+«Smartphone-Integration»</td>
+<td>1 473</td>
+</tr>
+<tr class="odd">
+<td>Складные задние сиденья</td>
+<td>«Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40»,
+«Durchlade(system)»</td>
+<td>1 593</td>
+</tr>
+<tr class="even">
+<td>Бесключевой доступ</td>
+<td>опция «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)»,
+«Komfortzugang», «Comfort Access», «schlüssellos»</td>
+<td>1 144</td>
+</tr>
+<tr class="odd">
+<td>Полный привод (xDrive)</td>
+<td>опции «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; если их нет,
+то название</td>
+<td>948 да, 1 155 нет или неизвестно</td>
+</tr>
+</tbody>
+</table>
+<p>Также есть фильтры: модель и модификация, топливо, год, цена от–до,
+оценка цены mobile.de, пробег от–до, дата подачи. Все фильтры-галочки
+работают одинаково: ничего не выбрано — показываются все варианты. Поиск
+в названии стоит в строке с сортировкой. По умолчанию сначала
+показываются новые объявления.</p>
+<p>На карточке: фото, цена, год, пробег, мощность, топливо, найденные
+опции, растаможка в Испании (раздел 6), город, дата подачи. Если авто
+полноприводное, в названии карточки есть «xDrive».</p>
+<ul>
+<li><strong>Модель и модификация:</strong> модель группируется
+(например, 320–340 → «3 серия», C 180–C 300 → «C-Класс»), модификация —
+это название с mobile.de.</li>
+<li><strong>Кузов и размеры:</strong> кузов и поколение определяю по
+названию, кузову и году; на карточке их нет, они в справочнике «📏».
+Размеры, годы выпуска и рестайлингов и запас хода гибридов —
+приблизительные данные производителя из справочника «📏», не из
+объявлений.</li>
+<li><strong>Дата подачи:</strong> «На mobile.de с…» берётся из
+результатов поиска. Фильтр «за день/неделю/месяц» считается от момента
+сбора данных.</li>
+</ul>
+<h2 id="4-лайки-не-подходит-заметки-ссылки">4. Лайки, «не подходит»,
+заметки, ссылки</h2>
+<ul>
+<li><strong>Синхронизация:</strong> кнопка «☁️» вверху страницы (общая
+для всех отчётов) сохраняет отметки в файл <code>state.json</code> в
+репозитории на GitHub, поэтому они одинаковые на всех устройствах. Чтобы
+менять отметки, на каждом устройстве один раз вставляешь GitHub-токен.
+Токен хранится только в этом браузере. Репозиторий публичный, так что
+отметки и заметки тоже видны всем, кто найдёт файл.</li>
+<li><strong>На карточке:</strong> ✕ слева вверху отклоняет авто (↩︎
+возвращает), ♡ справа вверху — лайк.</li>
+<li><strong>♥ и ✕ рядом с сортировкой:</strong> показать только
+понравившиеся или отклонённые.</li>
+<li><strong>Заметка:</strong> кнопка 📝 справа внизу карточки открывает
+окно по центру экрана. Заметку можно добавить к любому авто.</li>
+<li><strong>Ссылка с токеном:</strong> в панели «☁️» кнопка «🔗 Ссылка с
+токеном» копирует адрес отчёта с твоим токеном, токен из адреса сразу
+убирается. С этим токеном можно менять весь репозиторий, так что давай
+его только тем, кому доверяешь, а потом отзови.</li>
+<li><strong>Добавить авто по ссылке:</strong> авто появляется в общем
+списке вместе с остальными после следующего обновления отчёта (каждые 2
+часа), даже если не проходит фильтры поиска. До этого оно видно в
+перечне «Добавленные вручную».</li>
+<li><strong>Ссылка с фильтрами:</strong> выбранные фильтры, сортировка,
+поиск и номер страницы (по 60 авто) записываются в адрес страницы, им
+можно поделиться.</li>
+</ul>
+<h2 id="5-что-есть-в-bmw-datajson">5. Что есть в
+<code>bmw-data.json</code></h2>
+<p>Все 7 909 авто из поиска, включая исключённые. Для каждого:</p>
+<ul>
+<li><code>search</code> — данные из результатов поиска: модель,
+название, цена, пробег, мощность, топливо, кузов, город, оценка цены,
+дата подачи, фото;</li>
+<li><code>listing</code> — данные со страницы объявления (для открытых
+авто, у остальных <code>null</code>): <code>kv</code> — технические поля
+(CO2, цвет, салон, владельцы и т. п.), <code>f</code> — полный список
+опций;</li>
+<li>полное описание лежит в <code>bmw-descriptions.json</code> под тем
+же id;</li>
+<li><code>derived</code> — что из этого вывел отчёт: группа, кузов,
+привод, опции, CO2, <code>in_report</code>.</li>
+</ul>
+<h2 id="6-растаможка-в-испании-на-карточке">6. Растаможка в Испании на
+карточке</h2>
+<p>На каждой карточке показана примерная сумма растаможки (налог IEDMT),
+а если она больше 0 — ещё и «Вместе с авто». Также можно сортировать по
+«Цена с растаможкой ↑». Остальные расходы одинаковые для всех авто,
+поэтому на карточке их нет: ITV для импорта и ficha técnica, сбор DGT и
+номера вместе примерно 380 €, плюс посредник и доставка.</p>
+<ul>
+<li><strong>Ставка</strong> зависит от CO2, ставки общегосударственные:
+до 120 г/км — 0%, 121–159 — 4,75%, 160–199 — 9,75%, от 200 —
+14,75%.</li>
+<li><strong>CO2</strong> — типичное официальное значение WLTP для
+модификации (модель, топливо, мощность, универсал, полный привод), не из
+объявления. Если CO2 в объявлении отличается на 10 г/км и больше, на
+карточке есть короткая пометка. Точное значение конкретного авто есть в
+COC.</li>
+<li><strong>База налога</strong> — стоимость нового авто по таблице
+Hacienda (оценена приблизительно по модели, топливу и мощности),
+умноженная на коэффициент возраста: 1 год — 84%, 2 — 67%, 3 — 56%, 4 —
+47%, 5 — 39%, 6 — 34%.</li>
+<li><strong>Испанский IVA</strong> не платится, потому что авто старше 6
+месяцев и с пробегом больше 6 000 км.</li>
+<li><strong>Погрешность:</strong> примерно ±20%.</li>
+</ul>
+<h2 id="7-ограничения">7. Ограничения</h2>
+<ul>
+<li>«Нет или неизвестно» не значит «точно нет». Проверяй в объявлении
+или спроси дилера.</li>
+<li>Если опция упомянута в описании как отсутствующая («ohne Panorama»),
+фильтр всё равно может поставить «да». Такое бывает редко.</li>
+<li>Размеры, годы и запас хода в справочнике приблизительные.</li>
+</ul>
+</main></body></html>

@@ -7,7 +7,9 @@ a{color:var(--accent)}code{font-size:.9em;background:var(--card);border:1px soli
 table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
 th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--card)}
 .back{display:inline-block;margin-bottom:8px}
-</style></head><body><main><a class="back" href="./">← Усі звіти</a><h1 id="звіт-mercedes-benz-з-mobilede-як-зроблено">Звіт Mercedes-Benz з
+
+.top{display:flex;justify-content:space-between;align-items:center}.top .lang{font-weight:600;text-decoration:none}.top .back{margin:0}
+</style></head><body><main><nav class="top"><a class="back" href="./">← Усі звіти</a><a class="lang" href="guide-mercedes-ru.html" lang="ru">RU</a></nav><h1 id="звіт-mercedes-benz-з-mobilede-як-зроблено">Звіт Mercedes-Benz з
 mobile.de: як зроблено</h1>
 <p>Дані оновлено 25.10.2026. Кожне оголошення, що підходить, відкрито й
 прочитано повністю, з усім описом. Усі кількості нижче — станом на
@@ -43,7 +45,7 @@ href="https://suchen.mobile.de/fahrzeuge/search.html?isSearchRequest=true&amp;s=
 часто не ставлять ці галочки, і пошук відкидав би машини, де все це
 насправді є. Натомість кожне оголошення перевірено окремо (див. розділ
 3).</p>
-<p>Результат пошуку: 8 760 авто. mobile.de показує максимум 100 сторінок
+<p>Результат пошуку: 8 759 авто. mobile.de показує максимум 100 сторінок
 на один пошук, тому я ділив його на цінові діапазони.</p>
 <h2 id="2-що-виключено-і-чому">2. Що виключено і чому</h2>
 <table>
@@ -233,7 +235,7 @@ mobile.de.</li>
 давай його тільки тим, кому довіряєш, а потім відклич.</li>
 <li><strong>Додати авто за посиланням:</strong> авто з’являється в
 загальному списку разом з іншими після наступного оновлення звіту (кожні
-6 годин), навіть якщо не проходить фільтри пошуку. До того воно видно в
+2 години), навіть якщо не проходить фільтри пошуку. До того воно видно в
 переліку «Додані вручну».</li>
 <li><strong>Посилання з фільтрами:</strong> вибрані фільтри, сортування,
 пошук і номер сторінки (по 60 авто) записуються в адресу сторінки, нею
@@ -241,7 +243,7 @@ mobile.de.</li>
 </ul>
 <h2 id="5-що-є-в-mercedes-datajson">5. Що є в
 <code>mercedes-data.json</code></h2>
-<p>Усі 8 760 авто з пошуку, включно з виключеними. Для кожного:</p>
+<p>Усі 8 759 авто з пошуку, включно з виключеними. Для кожного:</p>
 <ul>
 <li><code>search</code> — дані з результатів пошуку: модель, назва,
 ціна, пробіг, потужність, пальне, кузов, місто, оцінка ціни, дата
