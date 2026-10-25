@@ -86,6 +86,26 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 .car{position:relative;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;color:inherit;text-decoration:none}
 .car:hover{border-color:var(--accent)}
 .car .ph{aspect-ratio:4/3;background:var(--line);width:100%;object-fit:cover;display:block}
+.phw{position:relative}
+.strip{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.strip::-webkit-scrollbar{display:none}
+.strip .ph{flex:0 0 100%;scroll-snap-align:start}
+.np{position:absolute;left:8px;bottom:8px;font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;background:rgba(0,0,0,.65);color:#fff;pointer-events:none;font-variant-numeric:tabular-nums}
+.gb,.sp,.sn{position:absolute;display:flex;align-items:center;justify-content:center;padding:0;border:0;border-radius:999px;background:rgba(0,0,0,.65);color:#fff;cursor:pointer;font:inherit;line-height:1}
+.gb{right:8px;bottom:8px;width:38px;height:38px}
+.sp,.sn{top:50%;transform:translateY(-50%);width:34px;height:34px;font-size:22px;opacity:0;transition:opacity .15s}
+.sp{left:8px}.sn{right:8px}
+.gb:hover,.sp:hover,.sn:hover{background:rgba(0,0,0,.85)}
+@media (hover:hover){.phw:hover .sp,.phw:hover .sn{opacity:1}}
+#gl{margin:0;padding:0;border:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:#000;color:#fff;overflow:hidden}
+#gl::backdrop{background:#000}
+#gl img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+#gl button{position:absolute;font:inherit;border:0;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;width:46px;height:46px;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center}
+#gl button:hover{background:rgba(255,255,255,.3)}
+#gl-x{top:12px;right:12px}#gl-p{left:12px;top:50%;transform:translateY(-50%)}#gl-n{right:12px;top:50%;transform:translateY(-50%)}
+#gl .glb{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:14px}
+#gl .glb a{color:#fff}
+@media (hover:none){#gl-p,#gl-n{display:none!important}}
 .car .b{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
 .car .ft{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:4px}
 .car h2{margin:0;font-size:15px}
@@ -181,6 +201,7 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 <div class="grid" id="grid"></div>
 <nav class="pager" id="pager" aria-label="Страницы"></nav>
 <div class="toast" id="toast" hidden><span id="toast-msg">Отклонено.</span><button id="toast-undo" type="button">Отменить</button></div>
+<dialog id="gl" aria-label="Фото"><img id="gl-img" alt=""><button type="button" id="gl-x" aria-label="Закрыть">✕</button><button type="button" id="gl-p" aria-label="Предыдущее фото">‹</button><button type="button" id="gl-n" aria-label="Следующее фото">›</button><div class="glb"><span id="gl-c"></span><a id="gl-a" target="_blank" rel="noopener">Открыть на mobile.de</a></div></dialog>
 <dialog id="nd"><form method="dialog"><h3 id="nd-t">Заметка</h3><textarea id="nd-in" placeholder="Что думаешь об этом авто?"></textarea><div class="btns"><button type="button" id="nd-del">Удалить</button><button value="cancel">Отменить</button><button type="button" class="pri" id="nd-ok">Сохранить</button></div></form></dialog>
 
 <script>
@@ -197,6 +218,11 @@ const DRL = {y:`Да (${DRW})`, "?":"Нет или неизвестно"};
 const $ = id => document.getElementById(id);
 const uniq = a => [...new Set(a)];
 const byNum = (a,b) => String(a).localeCompare(String(b),"uk",{numeric:true});
+let PHOTOS = null;
+const IMG = (u, r) => `https://img.classistatic.de/api/v1/mo-prod/images/${u.slice(0, 2)}/${u}?rule=${r}`;
+// photo file: id -> uuids joined without dashes
+const photosOf = c => { const s = PHOTOS && PHOTOS[c.id]; if (!s) return c.img ? [c.img.split("/")[1]] : [];
+  return s.match(/.{32}/g).map(u => `${u.slice(0, 8)}-${u.slice(8, 12)}-${u.slice(12, 16)}-${u.slice(16, 20)}-${u.slice(20)}`); };
 const esc = s => String(s).replace(/[&<>"]/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[ch]));
 const fmt = n => n.toLocaleString("uk-UA");
 const fdate = s => s ? s.slice(0,10).split("-").reverse().join(".") : "";
@@ -299,7 +325,8 @@ function fillMods() {
   $("f-var").innerHTML = g ? uniq(cars.filter(c=>c.gk===g).map(c=>c.md)).sort(byNum).map(v => `<label><input type="checkbox" value="${esc(v)}"> ${esc(v)} <span></span></label>`).join("") : "";
 }
 function card(c) {
-  const img = c.img ? `<img class="ph" loading="lazy" alt="" src="https://img.classistatic.de/api/v1/mo-prod/images/${c.img}?rule=mo-360">` : `<div class="ph"></div>`;
+  const ph = photosOf(c);
+  const img = ph.length ? `<div class="phw"><div class="strip">${ph.map((u, i) => `<img class="ph" loading="lazy" alt="" src="${IMG(u, "mo-640")}" srcset="${IMG(u, "mo-640")} 640w, ${IMG(u, "mo-1024")} 1024w" sizes="(max-width: 600px) 100vw, 400px">`).join("")}</div>${ph.length > 1 ? `<button class="sp" type="button" aria-label="Предыдущее фото">‹</button><button class="sn" type="button" aria-label="Следующее фото">›</button><span class="np">1 / ${ph.length}</span>` : ""}<button class="gb" type="button" aria-label="Галерея на весь экран" title="Галерея на весь экран"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button></div>` : `<div class="ph"></div>`;
   const specs = [c.fr, fmt(c.km)+" км", c.ps ? c.ps+" л.с." : "", FT[c.ft], TR[c.tr]||""].filter(Boolean).join(" · ");
   const cls = (out.has(c.id) ? " out" : "") + (liked.has(c.id) ? " liked" : "");
   return `<a class="car${cls}" data-id="${c.id}" target="_blank" rel="noopener" href="https://suchen.mobile.de/fahrzeuge/details.html?id=${c.id}">${img}<button class="like" type="button" aria-label="Нравится" aria-pressed="${liked.has(c.id)}">${liked.has(c.id) ? "♥" : "♡"}</button><button class="rej" type="button" aria-label="${out.has(c.id) ? "Вернуть" : "Не подходит"}" title="${out.has(c.id) ? "Вернуть" : "Не подходит"}">${out.has(c.id) ? "↩" : "✕"}</button><div class="b"><h2>${esc((c.g === c.md ? c.g : c.g + " · " + c.md) + (c.dr === "y" && !(c.g + " " + c.md).toLowerCase().includes(DRW.toLowerCase()) ? " " + DRW : ""))}</h2><div class="sub" title="${esc(c.sub)}">${esc(c.sub)}</div><div><span class="price">${fmt(c.p)} €</span><span class="pr pr${c.pr}">${PR[c.pr]}</span></div><div class="specs">${specs}</div>${optChips(c)}${c.es ? `<div class="es" title="IEDMT по общегосударственной ставке: стоимость нового авто по таблице Hacienda (приблизительно) × коэффициент возраста × ставка по CO2. CO2 — типичное официальное значение WLTP для этой модификации, не из объявления.">🇪🇸 Растаможка ≈ <b>${fmt(c.es[0])} €</b> · ставка ${String(c.es[1]).replace(".",",")}% (CO2 ≈${c.es[2]} г/км)${c.es[0] ? `<br>Вместе с авто ≈ <b>${fmt(c.tot)} €</b>` : ""}${c.co2 && Math.abs(c.co2 - c.es[2]) >= 10 ? `<br><span class="co2n">В объявлении CO2 ${c.co2} г/км</span>` : ""}</div>` : ""}<div class="loc">${esc(c.loc)}, ${CN[c.cn]||c.cn}</div>${ST[c.id]?.a ? `<div class="manual">Добавлено вручную</div>` : ""}${ST[c.id]?.n ? `<div class="note">📝 ${esc(ST[c.id].n)}</div>` : ""}<div class="ft">${c.os ? `<span class="date">На mobile.de с ${fdate(c.os)}</span>` : ""}<button class="nb" type="button" aria-label="Заметка" title="Заметка">📝</button></div></div></a>`;
@@ -398,6 +425,9 @@ const rerender = () => { const y = scrollY; apply(); scrollTo(0, y); };
 $("grid").addEventListener("click", e => {
   const nb = e.target.closest(".nb");
   if (nb) { e.preventDefault(); e.stopPropagation(); openNote(nb.closest(".car").dataset.id); return; }
+  const pb = e.target.closest(".gb, .sp, .sn");
+  if (pb) { e.preventDefault(); e.stopPropagation(); const s = pb.parentNode.querySelector(".strip"), i = Math.round(s.scrollLeft / s.clientWidth);
+    if (pb.classList.contains("gb")) openGal(pb.closest(".car").dataset.id, i); else s.scrollTo({left: (i + (pb.classList.contains("sn") ? 1 : -1)) * s.clientWidth, behavior: "smooth"}); return; }
   const b = e.target.closest(".rej, .like"); if (!b) return;
   e.preventDefault(); e.stopPropagation();
   const id = b.closest(".car").dataset.id, k = b.classList.contains("like") ? "l" : "r";
@@ -447,7 +477,31 @@ $("sync-link").addEventListener("click", async () => { if (!ghTok) { $("sync-msg
 $("sync-off").addEventListener("click", () => { ghTok = ""; try { localStorage.removeItem("gh-token"); } catch (x) {} $("sync-tok").value = ""; $("sync-msg").textContent = "Токен удалён из этого браузера."; stBtn("☁️ Синхронизация"); });
 urlFields().forEach(e => e.dataset.def = e.value);
 loadUrl();
-window.addEventListener("popstate", () => { clearForm(true); loadUrl(); lastPush = 0; apply(); });
+// photo gallery: all photos of a listing, loaded from a separate file after the first paint to keep the page light
+let gl = {id: null, i: 0, a: []};
+const glShow = () => { const n = gl.a.length; gl.i = (gl.i + n) % n; const r = innerWidth * devicePixelRatio > 1100 ? "mo-1600" : "mo-1024";
+  $("gl-img").src = IMG(gl.a[gl.i], r); new Image().src = IMG(gl.a[(gl.i + 1) % n], r); $("gl-c").textContent = `${gl.i + 1} / ${n}`;
+  $("gl-p").hidden = $("gl-n").hidden = n < 2; };
+function openGal(id, i) {
+  gl = {id, i: i || 0, a: photosOf(cars.find(x => x.id === id))}; if (!gl.a.length) return;
+  $("gl-a").href = "https://suchen.mobile.de/fahrzeuge/details.html?id=" + id; glShow();
+  $("gl").showModal(); history.pushState({gl: 1}, "", location.href);  // Back closes the gallery
+}
+fetch("mobilede-mercedes-photos.json").then(r => r.json()).then(p => { PHOTOS = p; rerender(); }).catch(() => {});
+// photo counter on the card follows the swipe
+$("grid").addEventListener("scroll", e => { const s = e.target; if (!s.classList || !s.classList.contains("strip")) return;
+  const n = s.parentNode.querySelector(".np"); if (n) n.textContent = `${Math.round(s.scrollLeft / s.clientWidth) + 1} / ${s.children.length}`; }, true);
+const closeGal = () => { if (history.state && history.state.gl) history.back(); else $("gl").close(); };
+$("gl-x").addEventListener("click", closeGal);
+$("gl-p").addEventListener("click", () => { gl.i--; glShow(); });
+$("gl-n").addEventListener("click", () => { gl.i++; glShow(); });
+$("gl-img").addEventListener("click", e => { gl.i += e.offsetX < e.target.clientWidth / 3 ? -1 : 1; glShow(); });
+$("gl").addEventListener("cancel", e => { e.preventDefault(); closeGal(); });
+$("gl").addEventListener("keydown", e => { if (e.key === "ArrowLeft") { gl.i--; glShow(); } if (e.key === "ArrowRight") { gl.i++; glShow(); } });
+let tx = null;
+$("gl").addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, {passive: true});
+$("gl").addEventListener("touchend", e => { if (tx === null) return; const d = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(d) > 40) { gl.i += d < 0 ? 1 : -1; glShow(); } });
+window.addEventListener("popstate", () => { if ($("gl").open) { $("gl").close(); return; } clearForm(true); loadUrl(); lastPush = 0; apply(); });
 apply();
 ghPull();
 document.addEventListener("visibilitychange", () => { if (!document.hidden && !ghBusy) ghPull(); });
