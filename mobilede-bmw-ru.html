@@ -361,6 +361,7 @@ function apply() {
 // filters live in the URL hash (#model=X1&audio=hk~hifi…) so a filtered view can be shared as a link
 const urlFields = () => [...document.querySelectorAll(".bar select[id], .bar input[id]:not([type=checkbox]), #f-sort, #f-q")];
 const urlChips = () => [...document.querySelectorAll(".bar .chips[id]")];
+let lastPush = 0;
 function saveUrl() {
   const q = new URLSearchParams();
   urlFields().forEach(e => { if (e.value !== (e.dataset.def ?? "")) q.set(e.id.slice(2), e.value); });
@@ -368,7 +369,11 @@ function saveUrl() {
     if (on.length) q.set(c.id.slice(2), on.join("~")); });
   ["like", "out"].forEach(k => { if ($("f-" + k).checked) q.set(k, "1"); });
   if (page > 1) q.set("pg", page);
-  const h = q.toString(); if (h !== location.hash.slice(1)) history.replaceState(null, "", location.pathname + location.search + (h ? "#" + h : ""));
+  const h = q.toString(); if (h === location.hash.slice(1)) return;
+  // every filter change is a history step, so Back undoes it; typing in a field within a second stays one step
+  const url = location.pathname + location.search + (h ? "#" + h : ""), now = Date.now();
+  if (now - lastPush < 1000) history.replaceState(null, "", url); else history.pushState(null, "", url);
+  lastPush = now;
 }
 function loadUrl() {
   const q = new URLSearchParams(location.hash.slice(1));
@@ -423,12 +428,16 @@ $("add-f").addEventListener("submit", e => {
 });
 $("added").addEventListener("click", e => { const id = e.target.dataset.del; if (!id) return; setMark(id, {x: 1}); renderAdded(); rerender(); });
 renderAdded();
-$("reset").addEventListener("click", () => {
+// back to defaults; the reset button keeps the sort order, going back in history restores it too
+function clearForm(sort) {
   document.querySelectorAll(".bar select").forEach(s => s.selectedIndex = 0); $("f-y2").value = years[years.length-1];
-  document.querySelectorAll(".bar input").forEach(i => { if (i.type !== "checkbox") i.value = ""; }); $("f-q").value = ""; page = 1;
+  document.querySelectorAll(".bar input").forEach(i => { if (i.type !== "checkbox") i.value = ""; }); $("f-q").value = "";
   $("f-fuel").querySelectorAll("input").forEach(i => i.checked = false); $("f-out").checked = false; $("f-dr").querySelectorAll("input").forEach(i => i.checked = false); $("f-like").checked = false; document.querySelectorAll("#opt-filters input").forEach(i => i.checked = false);
-  apply();
-});
+  document.querySelectorAll(".bar .chips input").forEach(i => i.checked = false);
+  if (sort) $("f-sort").selectedIndex = 0;
+  page = 1;
+}
+$("reset").addEventListener("click", () => { clearForm(false); apply(); });
 $("st-file").addEventListener("click", () => { $("sync").hidden = !$("sync").hidden; $("sync-tok").value = ghTok; });
 $("sync-f").addEventListener("submit", async e => { e.preventDefault(); ghTok = $("sync-tok").value.trim(); try { localStorage.setItem("gh-token", ghTok); } catch (x) {}
   $("sync-msg").textContent = "Проверяю…"; try { await ghRead(); syncSets(); apply(); await ghWrite(); $("sync-msg").textContent = $("st-file").textContent.includes("✓") ? ($("sync").hidden = true, "Готово, отметки теперь общие.") : "Не удалось записать: проверь, что у токена есть доступ Contents: Read and write к mobile-de-auto-search."; } catch (x) { $("sync-msg").textContent = "Токен не подходит или нет связи с GitHub."; } });
@@ -438,6 +447,7 @@ $("sync-link").addEventListener("click", async () => { if (!ghTok) { $("sync-msg
 $("sync-off").addEventListener("click", () => { ghTok = ""; try { localStorage.removeItem("gh-token"); } catch (x) {} $("sync-tok").value = ""; $("sync-msg").textContent = "Токен удалён из этого браузера."; stBtn("☁️ Синхронизация"); });
 urlFields().forEach(e => e.dataset.def = e.value);
 loadUrl();
+window.addEventListener("popstate", () => { clearForm(true); loadUrl(); lastPush = 0; apply(); });
 apply();
 ghPull();
 document.addEventListener("visibilitychange", () => { if (!document.hidden && !ghBusy) ghPull(); });
