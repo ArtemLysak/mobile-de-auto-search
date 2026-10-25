@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Топ-3 авто</title>
+<style>
+:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f24;--muted:#5f6873;--line:#dfe3e8;--accent:#0b5cad;--ok:#1a7f37;--no:#b3261e;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1c2025;--fg:#e8ebef;--muted:#9aa4af;--line:#2d333a;--accent:#6aa9ec;--ok:#57c27a;--no:#f08080;color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:16px}
+main{max-width:1180px;margin:0 auto}h1{font-size:22px;margin:8px 0}h2{font-size:18px;margin:28px 0 2px}.gs{color:var(--muted);font-size:13px;margin:0 0 10px}
+.top{display:flex;gap:14px;font-size:14px}.top a{color:var(--accent);text-decoration:none}.top .lang{margin-left:auto;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chips a{font-size:13px;padding:4px 10px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:inherit;text-decoration:none}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px}summary{cursor:pointer;font-weight:600}details li{margin:4px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.car{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.ph{display:block;position:relative;aspect-ratio:4/3;background:var(--line)}.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.rk{position:absolute;left:8px;top:8px;background:var(--accent);color:#fff;border-radius:50%;width:30px;height:30px;display:grid;place-items:center;font-size:16px}
+.like{position:absolute;right:8px;top:6px;color:#e0245e;font-size:24px;text-shadow:0 0 3px #fff}
+.bd{padding:10px 12px}h3{font-size:15px;margin:0 0 4px}h3 a{color:inherit;text-decoration:none}
+.meta{color:var(--muted);font-size:13px}.src{font-size:12px;padding:1px 6px;border-radius:6px;border:1px solid var(--line);white-space:nowrap}
+.pr{margin:6px 0}.pr b{font-size:18px}.pr span{color:var(--muted);font-size:13px}.warn{display:inline-block;margin-left:6px;color:var(--no);font-style:normal;font-size:13px;font-weight:600}
+.sc{position:relative;height:18px;background:var(--bg);border-radius:9px;overflow:hidden;margin:6px 0}.sc i{position:absolute;inset:0 auto 0 0;background:color-mix(in srgb,var(--accent) 35%,transparent)}.sc span{position:relative;font-size:12px;padding-left:8px;line-height:18px}
+.ok{color:var(--ok);font-size:13px;margin:4px 0}.no{color:var(--no);font-size:13px;margin:4px 0}.note{font-size:13px;margin:4px 0}
+</style></head><body><main>
+<nav class="top"><a href="./">← Усі звіти</a><a class="lang" href="top3-ru.html" lang="ru">RU</a></nav>
+<h1>Топ-3 авто по кожній моделі, кузову й поколінню</h1>
+<p class="gs">Дані звітів mobile.de і coches.net на 25.10.2026. Ціна жирним — разом із розмитненням. ♥ — ваш лайк.</p>
+<details><summary>Як рахувався бал</summary><ul>
+<li>Обов’язкові опції з брифу: M пакет / AMG Line, CarPlay, Harman Kardon / Burmester, складні задні сидіння, камера, люк, LED-фари — по 12 балів (Hi-Fi без бренду — 4).</li>
+<li>Майже обов’язкові: безключовий доступ, пам’ять сидінь, адаптивний круїз — по 7. Бажані: камера 360°, панорама, HUD, повний привід — по 3.</li>
+<li>Плагін-гібрид із CO2 до 120 г/км (розмитнення 0 €) +8, а W206/X254 з запасом ходу ~100 км ще +3.</li>
+<li>Ціна проти ринку: порівняно зі схожими авто тієї ж групи (рік, пробіг, потужність, паливо, привід), кожні 1 000 € дешевше — +2. Плюс запас до бюджету 30 000 € (+1,5 за кожну тисячу), мінус 2 за кожні 10 тис. км, +2 за кожен рік новіше 2020, оцінка ціни mobile.de, 1 власник +1.</li>
+<li>Не беруться в топ: авто, які ви відхилили ✕, дорожчі за 30 000 € разом із розмитненням, червоні/жовті, з червоним або тканинним салоном, після ремонту ДТП. Якщо в групі менше трьох — додано найкращі понад бюджет із позначкою.</li>
+<li>«Не вказано» означає, що опцію не знайдено в оголошенні — вона може бути, варто перепитати дилера.</li>
+<li>Рестайлінг BMW визначено за кодом моделі в оголошенні (G20N/G21N, Curved Display), інакше за датою реєстрації (з 08.2022 для 3 серії, з 09.2021 для X3). W205/W206 і X253/X254 — за кодом кузова, інакше за датою.</li>
+<li>coches.net (Іспанія, ціна до 25 000 €) — в тому ж рейтингу з позначкою 🇪🇸: розмитнення не потрібне, для приватних продавців додано ITP ≈5 %.</li></ul></details>
+<div class="chips"><a href="#bmw-3-седан-g20-pre">BMW 3 седан (G20) pre</a><a href="#bmw-3-седан-g20-lci">BMW 3 седан (G20 LCI), рестайлінг</a><a href="#bmw-3-touring-g21-pre">BMW 3 Touring / універсал (G21) pre</a><a href="#bmw-3-touring-g21-lci">BMW 3 Touring / універсал (G21 LCI), рестайлінг</a><a href="#bmw-4-gran-coupé-g26-pre">BMW 4 Gran Coupé (G26) pre</a><a href="#bmw-x3-g01-pre">BMW X3 (G01) pre</a><a href="#bmw-x3-g01-lci">BMW X3 (G01 LCI), рестайлінг</a><a href="#mercedes-c-седан-w205">C седан (W205), рестайлінг</a><a href="#mercedes-c-седан-w206">C седан (W206), нове покоління</a><a href="#mercedes-c-універсал-s205">C універсал / T-Modell (S205), рестайлінг</a><a href="#mercedes-c-універсал-s206">C універсал / T-Modell (S206), нове покоління</a><a href="#mercedes-glc-x253">GLC (X253), рестайлінг</a><a href="#mercedes-glc-x254">GLC (X254), нове покоління</a><a href="#mercedes-glc-coupé-c253">GLC Coupé (C253), рестайлінг</a></div>
+<section id="bmw-3-седан-g20-pre"><h2>BMW 3 седан (G20), до рестайлінгу</h2><p class="gs">2019 – 07.2022 · всього 323 авто, у бюджеті й без мінусів 197</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=461423889" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/58/58c8ea27-5d95-469e-97ae-101e1c89392c?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=461423889" target="_blank" rel="noopener">330 e iPerformance Limousine M Sport Glasd. DA Pr</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 06/2020 · 94 706 км · 252 PS · плагін-гібрид</div>
+<div class="pr"><b>29 690 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:92.9%"></i><span>бал 93</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, HUD</p>
+<p class="no">✕ Бракує або не вказано: на 3 323 € дорожче за ринок</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=52097537279936" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/10/109385d1-b38c-4f81-8dcb-373be75ac216?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=52097537279936" target="_blank" rel="noopener">330 e Advantage,Led,Profi,Digital,Cam,Leder,H&amp;K</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 10/2021 · 91 000 км · 292 PS · плагін-гібрид</div>
+<div class="pr"><b>24 500 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:84.0%"></i><span>бал 84</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; на 3 486 € дешевше за ринок; 1 власник. Також: безключовий доступ, адаптивний круїз</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, люк, пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=51220230450432" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/21/21a386c9-3642-42ea-925b-5a9098b74dbb?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=51220230450432" target="_blank" rel="noopener">320 NEUBMW 3203 Limousine 320 d M340d Sport</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 01/2020 · 66 578 км · 190 PS · дизель</div>
+<div class="pr"><b>29 290 €</b> <span>28 500 € + розмитнення ≈790 €</span></div>
+<div class="sc"><i style="width:82.1%"></i><span>бал 82</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7. Також: безключовий доступ, пам’ять сидінь, панорама, HUD</p>
+<p class="no">✕ Бракує або не вказано: на 1 833 € дорожче за ринок, Harman Kardon / Burmester (є Hi-Fi), адаптивний круїз</p>
+</div></article></div></section><section id="bmw-3-седан-g20-lci"><h2>BMW 3 седан (G20 LCI), рестайлінг</h2><p class="gs">з 07.2022 · всього 102 авто, у бюджеті й без мінусів 33</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=50362815988928" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/fd/fd502b69-f172-40c3-b4ab-54e55f5e10fc?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=50362815988928" target="_blank" rel="noopener">330 e xDrive M Sport LC.Pro. Keyless Kamera LED</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 09/2022 · 123 300 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>29 700 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:71.2%"></i><span>бал 71</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; 1 власник. Також: безключовий доступ, пам’ять сидінь, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: на 1 777 € дорожче за ринок, Harman Kardon / Burmester (є Hi-Fi), люк, адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=47901946995104" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/61/6102cbdd-9c9c-4bed-afd0-16dd8892690a?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=47901946995104" target="_blank" rel="noopener">320 e M SPORT AdLED DA LivePr Tempo SHZ HiFi 19&quot;</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 08/2022 · 95 723 км · 204 PS · плагін-гібрид</div>
+<div class="pr"><b>28 390 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:69.9%"></i><span>бал 70</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; 1 власник. Також: безключовий доступ, HUD</p>
+<p class="no">✕ Бракує або не вказано: на 1 171 € дорожче за ринок, Harman Kardon / Burmester (є Hi-Fi), люк, пам’ять сидінь, адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=48222702570272" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/eb/ebfe6ece-0eb5-46e5-b0fd-5c43221a5877?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=48222702570272" target="_blank" rel="noopener">320 d Limo SHD*ACC*HEADUP*AHK*ADAPTIV LED*KAM*H&amp;K</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 10/2023 · 115 000 км · 190 PS · дизель</div>
+<div class="pr"><b>28 999 €</b> <span>27 699 € + розмитнення ≈1 300 €</span></div>
+<div class="sc"><i style="width:67.7%"></i><span>бал 68</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; 1 власник. Також: адаптивний круїз, HUD</p>
+<p class="no">✕ Бракує або не вказано: на 900 € дорожче за ринок, M пакет / AMG Line, безключовий доступ, пам’ять сидінь</p>
+</div></article></div></section><section id="bmw-3-touring-g21-pre"><h2>BMW 3 Touring / універсал (G21), до рестайлінгу</h2><p class="gs">2019 – 07.2022 · всього 834 авто, у бюджеті й без мінусів 471</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=460823539" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/08/08ce2415-b118-48e6-b1e2-953bf608f610?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=460823539" target="_blank" rel="noopener">330 3 Touring 330 e xDrive M Sport Line Pano Leder</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 01/2022 · 94 000 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>25 499 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 109</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; плагін-гібрид, розмитнення 0 €; на 2 928 € дешевше за ринок. Також: безключовий доступ, пам’ять сидінь, панорама, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester (є Hi-Fi), адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=459395905" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/20/20d9ba02-fc40-4b4b-8b12-98bbb6cdabf6?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=459395905" target="_blank" rel="noopener">330 NEUBMW 330exT Luxury AHK PANO HIFI adapt. Fahrwerk</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 07/2022 · 24 990 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>29 280 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 104</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; на 2 698 € дешевше за ринок; малий пробіг (24 990 км). Також: пам’ять сидінь, адаптивний круїз, панорама, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, Harman Kardon / Burmester (є Hi-Fi), безключовий доступ</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=51618658915744" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/7a/7ace05f0-449f-4e9b-a2e8-fe605e51ce21?rule=mo-640" alt=""><b class="rk">3</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=51618658915744" target="_blank" rel="noopener">330 e Touring M Sport Pano AHK HeadUp Laser VOLL</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 02/2021 · 145 000 км · 292 PS · плагін-гібрид</div>
+<div class="pr"><b>25 900 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 102</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €; 1 власник. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°, панорама, HUD</p>
+<p class="no">✕ Бракує або не вказано: на 1 589 € дорожче за ринок</p>
+</div></article></div></section><section id="bmw-3-touring-g21-lci"><h2>BMW 3 Touring / універсал (G21 LCI), рестайлінг</h2><p class="gs">з 07.2022 · всього 530 авто, у бюджеті й без мінусів 191</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=460070011" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/f5/f5020da4-1da3-4bba-b976-dfe7151daf32?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=460070011" target="_blank" rel="noopener">320 i T M Sport PANO Kamera ACC MMRY HiFi</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 02/2023 · 95 000 км · 184 PS · бензин</div>
+<div class="pr"><b>27 190 €</b> <span>25 900 € + розмитнення ≈1 290 €</span></div>
+<div class="sc"><i style="width:96.0%"></i><span>бал 96</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; на 880 € дешевше за ринок; 1 власник. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, панорама</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester (є Hi-Fi)</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=52311947953088" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/fa/fadd670c-5c21-425e-9636-b6d0a4656a2d?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=52311947953088" target="_blank" rel="noopener">320 NEUBMW 320e Touring M Sport LiveCptProf.Ad.LED.Pano.ACC</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2022 · 137 410 км · 204 PS · плагін-гібрид</div>
+<div class="pr"><b>26 880 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:90.6%"></i><span>бал 91</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; плагін-гібрид, розмитнення 0 €; 1 власник. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, панорама, HUD</p>
+<p class="no">✕ Бракує або не вказано: на 2 311 € дорожче за ринок, Harman Kardon / Burmester (є Hi-Fi)</p>
+</div></article><article class="car">
+<a class="ph" href="https://www.coches.net/bmw-71791450-covo.aspx" target="_blank" rel="noopener"><img loading="lazy" src="https://a.ccdn.es/cnet/vehicles/https://a.ccdn.es/cnet/2026/10/20/71791450/2139798879_g.jpg" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://www.coches.net/bmw-71791450-covo.aspx" target="_blank" rel="noopener">320d Serie 3 320d Auto.Touring</a></h3>
+<div class="meta"><span class="src c">coches.net 🇪🇸</span> 2024 · 48 065 км · 190 PS · дизель</div>
+<div class="pr"><b>29 500 €</b> <span>28 100 € вже в Іспанії · приватний, + ITP ≈5 %</span></div>
+<div class="sc"><i style="width:88.1%"></i><span>бал 88</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; на 961 € дешевше за ринок; малий пробіг (48 065 км). Також: безключовий доступ, адаптивний круїз, камера 360°, панорама, HUD</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester (є Hi-Fi), складні задні сидіння, пам’ять сидінь</p>
+</div></article></div></section><section id="bmw-4-gran-coupé-g26-pre"><h2>BMW 4 Gran Coupé (G26), до рестайлінгу</h2><p class="gs">2021 – 03.2024 · всього 84 авто, у бюджеті й без мінусів 26</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=458873930" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/aa/aac33b39-ee12-4328-9403-934fc60f9d60?rule=mo-640" alt=""><b class="rk">1</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=458873930" target="_blank" rel="noopener">420 Gran Coupé 420d M SPORT+H/K+GLASDACH+DA+PA</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 07/2022 · 132 799 км · 190 PS · дизель</div>
+<div class="pr"><b>29 010 €</b> <span>27 890 € + розмитнення ≈1 120 €</span></div>
+<div class="sc"><i style="width:78.3%"></i><span>бал 78</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7. Також: безключовий доступ, панорама</p>
+<p class="no">✕ Бракує або не вказано: пам’ять сидінь, адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=51987291075680" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/5c/5c156c34-a448-419b-859c-38780f66938c?rule=mo-640" alt=""><b class="rk">2</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=51987291075680" target="_blank" rel="noopener">420 Gran Coupé XDrive/M Sport</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 05/2023 · 150 000 км · 190 PS · дизель · xDrive</div>
+<div class="pr"><b>29 329 €</b> <span>27 999 € + розмитнення ≈1 330 €</span></div>
+<div class="sc"><i style="width:77.4%"></i><span>бал 77</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; на 1 204 € дешевше за ринок. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, повний привід</p>
+<p class="no">✕ Бракує або не вказано: CarPlay / Android Auto</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=451126978" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/50/508c30b0-c65d-4aa5-b9fe-60076be4cf40?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=451126978" target="_blank" rel="noopener">420 d xDrive, Gran Coupe, Mild-Hybrid,Panorama</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 11/2021 · 137 800 км · 190 PS · дизель · xDrive</div>
+<div class="pr"><b>27 119 €</b> <span>25 999 € + розмитнення ≈1 120 €</span></div>
+<div class="sc"><i style="width:64.7%"></i><span>бал 65</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; на 1 973 € дешевше за ринок; 1 власник. Також: безключовий доступ, панорама, повний привід</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, Harman Kardon / Burmester (є Hi-Fi), пам’ять сидінь, адаптивний круїз</p>
+</div></article></div></section><section id="bmw-x3-g01-pre"><h2>BMW X3 (G01), до рестайлінгу</h2><p class="gs">2017 – 08.2021 · всього 376 авто, у бюджеті й без мінусів 225</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=49647558052544" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/33/33d4cd58-9e1e-4352-a8d4-b448b4e34b9b?rule=mo-640" alt=""><b class="rk">1</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=49647558052544" target="_blank" rel="noopener">X3 xDrive 30e M Sport Paket, HEAD-UP, LEDER</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2020 · 98 000 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>27 850 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:95.3%"></i><span>бал 95</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; плагін-гібрид, розмитнення 0 €; 1 власник. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: люк</p><p class="note">📝 Почему так долго не продаётся?</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=38711172721440" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/e9/e97ef749-38d2-41d8-a110-a47c4658db98?rule=mo-640" alt=""><b class="rk">2</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=38711172721440" target="_blank" rel="noopener">X3 xDrive 30 e M Sport*Pano*HuD*360 °*Virtual*HK</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 03/2020 · 120 000 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>29 999 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:93.6%"></i><span>бал 94</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°, панорама, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: на 3 719 € дорожче за ринок</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=40813221510368" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/c5/c5b59a9f-1daa-406f-af85-1c5ebea7c1af?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=40813221510368" target="_blank" rel="noopener">X3 xD 30e xLine Sport PANO+360+HEAD+VIRTU+H&amp;K+MF</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2020 · 136 926 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>22 750 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:89.3%"></i><span>бал 89</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; на 3 426 € дешевше за ринок; 1 власник. Також: безключовий доступ, адаптивний круїз, камера 360°, панорама, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, складні задні сидіння, пам’ять сидінь</p>
+</div></article></div></section><section id="bmw-x3-g01-lci"><h2>BMW X3 (G01 LCI), рестайлінг</h2><p class="gs">08.2021 – 2024 · всього 197 авто, у бюджеті й без мінусів 85</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=52325681958144" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/e3/e3cfaeea-eb48-4658-b21f-b627b15001fd?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=52325681958144" target="_blank" rel="noopener">X3 GesponsertNEUBMW X3xDrive20d Aut. Pano,Kam,SportSi,LivePlus,</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 10/2021 · 88 436 км · 190 PS · дизель · xDrive</div>
+<div class="pr"><b>29 560 €</b> <span>28 490 € + розмитнення ≈1 070 €</span></div>
+<div class="sc"><i style="width:77.2%"></i><span>бал 77</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; 1 власник. Також: безключовий доступ, панорама, повний привід</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester (є Hi-Fi), пам’ять сидінь, адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=46614719530592" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/b2/b275b07d-49a0-44ff-8fd9-a855fd5138bd?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=46614719530592" target="_blank" rel="noopener">X3 NEUBMW X3xD30e/Facelift/Pano/KeyL/360Kam/Laser/AHK/HUD</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 11/2021 · 139 904 км · 292 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>28 297 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:75.3%"></i><span>бал 75</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; 1 власник. Також: безключовий доступ, адаптивний круїз, камера 360°, панорама, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: на 1 156 € дорожче за ринок, M пакет / AMG Line, Harman Kardon / Burmester (є Hi-Fi), пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=52268276329344" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/1e/1ed0140f-c211-4d13-b84f-2677b0e89fe4?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=52268276329344" target="_blank" rel="noopener">X3 NEUBMW X3xDrive 30e*LEDER-sport*LED*200KW*Netto-19200€</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 11/2021 · 105 000 км · 272 PS · плагін-гібрид · xDrive</div>
+<div class="pr"><b>22 848 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:72.7%"></i><span>бал 73</span></div>
+<p class="ok">✓ обов’язкових опцій: 3 з 7; плагін-гібрид, розмитнення 0 €; на 5 260 € дешевше за ринок; 1 власник. Також: безключовий доступ, адаптивний круїз, камера 360°, повний привід</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, CarPlay / Android Auto, Harman Kardon / Burmester (є Hi-Fi), люк, пам’ять сидінь</p>
+</div></article></div></section><section id="mercedes-c-седан-w205"><h2>Mercedes C седан (W205), рестайлінг</h2><p class="gs">2018 – 2021 · всього 179 авто, у бюджеті й без мінусів 144</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=52316250758080" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/67/67001788-3a88-4c79-8071-e232fa21ad49?rule=mo-640" alt=""><b class="rk">1</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=52316250758080" target="_blank" rel="noopener">C 300 NEUMercedes-Benz C 300C300e *AMG/LIMO/DISTRONIC/PANO/KAMERA/</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2020 · 62 300 км · 313 PS · плагін-гібрид</div>
+<div class="pr"><b>27 990 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 107</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, панорама</p>
+<p class="ok">Є все обов’язкове й майже обов’язкове</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=51576473605120" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/ee/ee126a6f-c6c9-498b-90c2-9d4929c39906?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=51576473605120" target="_blank" rel="noopener">C 200 Lim. Exclusive Burmester HeadUp Carplay</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 11/2020 · 79 832 км · 184 PS · бензин</div>
+<div class="pr"><b>23 750 €</b> <span>22 900 € + розмитнення ≈850 €</span></div>
+<div class="sc"><i style="width:98.2%"></i><span>бал 98</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; на 1 404 € дешевше за ринок; 1 власник. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°, HUD</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=49076424500064" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/72/7262d3d3-2424-4896-abe1-8fbadb173587?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=49076424500064" target="_blank" rel="noopener">C 300 C Limousine |AMG-LINE|KAMERA|TEMP|NIGHT|</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 01/2021 · 90 265 км · 194 PS · дизель плагін-гібрид</div>
+<div class="pr"><b>27 490 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:88.9%"></i><span>бал 89</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, адаптивний круїз</p>
+<p class="no">✕ Бракує або не вказано: на 2 386 € дорожче за ринок, пам’ять сидінь</p>
+</div></article></div></section><section id="mercedes-c-седан-w206"><h2>Mercedes C седан (W206), нове покоління</h2><p class="gs">з 2021 · всього 225 авто, у бюджеті й без мінусів 92</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=50690267634272" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/a1/a17aaaa8-4105-430e-b745-f0d18f287973?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=50690267634272" target="_blank" rel="noopener">C 200 Limousine AMG-Line Navi/LED/360 Kamera</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 08/2022 · 40 016 км · 204 PS · бензин</div>
+<div class="pr"><b>29 020 €</b> <span>27 990 € + розмитнення ≈1 030 €</span></div>
+<div class="sc"><i style="width:90.3%"></i><span>бал 90</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; на 1 435 € дешевше за ринок; малий пробіг (40 016 км). Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester (є Hi-Fi), люк</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=50551647799584" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/3d/3d1b53a8-90e2-451a-bd9d-315f5ea9b06c?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=50551647799584" target="_blank" rel="noopener">C 300 d Limousine *ACC*PANO*Burmaster*AMG*</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 07/2021 · 139 750 км · 265 PS · дизель</div>
+<div class="pr"><b>29 900 €</b> <span>28 900 € + розмитнення ≈1 000 €</span></div>
+<div class="sc"><i style="width:77.0%"></i><span>бал 77</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7. Також: безключовий доступ, адаптивний круїз, камера 360°, панорама</p>
+<p class="no">✕ Бракує або не вказано: на 1 114 € дорожче за ринок, пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=48592769690464" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/f4/f4000bf6-81a4-42dc-8f55-9f0f93be9a5b?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=48592769690464" target="_blank" rel="noopener">C 200 MB C 200 T d AMG-Line Night Leder Navi LED AHK</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 09/2023 · 104 043 км · 163 PS · дизель</div>
+<div class="pr"><b>25 700 €</b> <span>24 480 € + розмитнення ≈1 220 €</span></div>
+<div class="sc"><i style="width:76.9%"></i><span>бал 77</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; на 3 122 € дешевше за ринок; 1 власник. Також: безключовий доступ, адаптивний круїз</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester, люк, пам’ять сидінь</p>
+</div></article></div></section><section id="mercedes-c-універсал-s205"><h2>Mercedes C універсал / T-Modell (S205), рестайлінг</h2><p class="gs">2018 – 2021 · всього 333 авто, у бюджеті й без мінусів 265</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=45855874726784" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/1c/1cf6e7bc-d87a-45fc-8dc2-a98fef6431a4?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=45855874726784" target="_blank" rel="noopener">C 300 DE AMG H-E Park-Paket/ Burmester Sound/ H-</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2020 · 132 000 км · 306 PS · дизель плагін-гібрид</div>
+<div class="pr"><b>22 911 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 108</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €; на 857 € дешевше за ринок. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°, HUD</p>
+<p class="ok">Є все обов’язкове й майже обов’язкове</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=51924751405248" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/c9/c9de7c81-c3f0-48c8-8be5-4f8e0593003a?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=51924751405248" target="_blank" rel="noopener">C 300 de AMG-Line/Night/Panorama/Comand/Burmester</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 03/2021 · 99 670 км · 194 PS · дизель плагін-гібрид</div>
+<div class="pr"><b>24 490 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 103</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, адаптивний круїз, камера 360°, панорама</p>
+<p class="no">✕ Бракує або не вказано: пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://www.coches.net/mercedes-benz-71498971-covo.aspx" target="_blank" rel="noopener"><img loading="lazy" src="https://a.ccdn.es/cnet/vehicles/20771460/792f3842-89d5-4dc1-93dd-422022c54d82.jpg" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://www.coches.net/mercedes-benz-71498971-covo.aspx" target="_blank" rel="noopener">C 300 de Clase C C 300 de Estate</a></h3>
+<div class="meta"><span class="src c">coches.net 🇪🇸</span> 2020 · 139 000 км · 306 PS · дизель плагін-гібрид</div>
+<div class="pr"><b>25 890 €</b> <span>вже в Іспанії</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 102</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, камера 360°, панорама, HUD</p>
+<p class="ok">Є все обов’язкове й майже обов’язкове</p>
+</div></article></div></section><section id="mercedes-c-універсал-s206"><h2>Mercedes C універсал / T-Modell (S206), нове покоління</h2><p class="gs">з 2021 · всього 1577 авто, у бюджеті й без мінусів 892</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=49077614225952" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/d4/d4789bd8-705c-4869-b9e2-fac7455fa90c?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=49077614225952" target="_blank" rel="noopener">C 200 MB C 200 T d AMG-Line Leder Navi LED Burmester</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2023 · 132 301 км · 163 PS · дизель</div>
+<div class="pr"><b>24 290 €</b> <span>22 780 € + розмитнення ≈1 510 €</span></div>
+<div class="sc"><i style="width:100%"></i><span>бал 104</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; на 1 675 € дешевше за ринок; 1 власник. Також: безключовий доступ, пам’ять сидінь, адаптивний круїз, панорама</p>
+<p class="ok">Є все обов’язкове й майже обов’язкове</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=439744646" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/be/bed0aea9-f76a-4310-91d9-21336959f93f?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=439744646" target="_blank" rel="noopener">C 300 T e Mubeam*Pano*Distro*360*Memor*SO96%</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 09/2022 · 47 245 км · 313 PS · плагін-гібрид</div>
+<div class="pr"><b>29 700 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:95.4%"></i><span>бал 95</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; малий пробіг (47 245 км); 1 власник. Також: пам’ять сидінь, адаптивний круїз, камера 360°, панорама</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, Harman Kardon / Burmester (є Hi-Fi), безключовий доступ</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=461634628" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/e1/e11a785e-91a5-40c9-bc1f-f4da5cbf21bd?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=461634628" target="_blank" rel="noopener">C 200 d T AMG+AHK+PANO+BURMESTER+DISTRONIC</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 05/2023 · 70 279 км · 163 PS · дизель</div>
+<div class="pr"><b>29 550 €</b> <span>28 290 € + розмитнення ≈1 260 €</span></div>
+<div class="sc"><i style="width:95.3%"></i><span>бал 95</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; 1 власник. Також: безключовий доступ, адаптивний круїз, панорама</p>
+<p class="no">✕ Бракує або не вказано: на 1 641 € дорожче за ринок, пам’ять сидінь</p>
+</div></article></div></section><section id="mercedes-glc-x253"><h2>Mercedes GLC (X253), рестайлінг</h2><p class="gs">2019 – 2022 · всього 433 авто, у бюджеті й без мінусів 150</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=51602386036224" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/6d/6df41e57-fcff-4d52-a387-583ddda4de88?rule=mo-640" alt=""><b class="rk">1</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=51602386036224" target="_blank" rel="noopener">GLC 300 de AMG Int.|Multibeam|Pano|Virtual|20&quot;</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 12/2020 · 123 248 км · 306 PS · дизель плагін-гібрид · 4MATIC</div>
+<div class="pr"><b>27 450 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:98.4%"></i><span>бал 98</span></div>
+<p class="ok">✓ обов’язкових опцій: 7 з 7; плагін-гібрид, розмитнення 0 €; на 1 102 € дешевше за ринок; 1 власник. Також: безключовий доступ, адаптивний круїз, панорама, повний привід</p>
+<p class="no">✕ Бракує або не вказано: пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=459939177" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/8b/8b819359-b0ad-40a4-a034-c5c3fa7207a6?rule=mo-640" alt=""><b class="rk">2</b><span class="like">♥</span></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=459939177" target="_blank" rel="noopener">GLC 300 de 4M AMG BURM NIGHT MULTI AHK DISTR PDC</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 10/2020 · 84 232 км · 194 PS · дизель плагін-гібрид · 4MATIC</div>
+<div class="pr"><b>29 980 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:86.0%"></i><span>бал 86</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7; плагін-гібрид, розмитнення 0 €. Також: безключовий доступ, адаптивний круїз, панорама, повний привід</p>
+<p class="no">✕ Бракує або не вказано: складні задні сидіння, пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=42297182164960" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/d3/d3b24c00-3cf3-4c92-9f1d-ac14e35e1f58?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=42297182164960" target="_blank" rel="noopener">GLC 300 4Matic Diesel Business Automatik Pano.</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 03/2022 · 88 039 км · 194 PS · дизель плагін-гібрид · 4MATIC</div>
+<div class="pr"><b>28 700 €</b> <span>розмитнення 0 €</span></div>
+<div class="sc"><i style="width:85.3%"></i><span>бал 85</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; плагін-гібрид, розмитнення 0 €; на 983 € дешевше за ринок; 1 власник. Також: безключовий доступ, адаптивний круїз, панорама, повний привід</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, Harman Kardon / Burmester (є Hi-Fi), пам’ять сидінь</p>
+</div></article></div></section><section id="mercedes-glc-x254"><h2>Mercedes GLC (X254), нове покоління</h2><p class="gs">з 2022 · всього 2 авто, у бюджеті й без мінусів 1</p><div class="grid"><article class="car">
+<a class="ph" href="https://www.coches.net/mercedes-benz-71376074-covo.aspx" target="_blank" rel="noopener"><img loading="lazy" src="https://a.ccdn.es/cnet/vehicles/20672355/b867d439-0feb-40ca-b994-1c80e226229d.jpg" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://www.coches.net/mercedes-benz-71376074-covo.aspx" target="_blank" rel="noopener">GLC 300 e GLC GLC 300 e 4MATIC</a></h3>
+<div class="meta"><span class="src c">coches.net 🇪🇸</span> 2022 · 120 000 км · 313 PS · плагін-гібрид · 4MATIC</div>
+<div class="pr"><b>29 500 €</b> <span>вже в Іспанії</span></div>
+<div class="sc"><i style="width:24.1%"></i><span>бал 24</span></div>
+<p class="ok">✓ обов’язкових опцій: 3 з 7. Також: повний привід</p>
+<p class="no">✕ Бракує або не вказано: M пакет / AMG Line, CarPlay / Android Auto, Harman Kardon / Burmester, люк, безключовий доступ, пам’ять сидінь, адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=45757816048320" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/d2/d2c06e0c-6952-4527-a59c-82a4f3217840?rule=mo-640" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=45757816048320" target="_blank" rel="noopener">GLC 200 4MATIC Autom. *AMG-LINE*AHK*PANO*DISTRO*</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 08/2022 · 115 800 км · 197 PS · бензин · 4MATIC</div>
+<div class="pr"><b>33 450 €</b> <span>30 980 € + розмитнення ≈2 470 €</span><em class="warn">понад бюджет</em></div>
+<div class="sc"><i style="width:53.1%"></i><span>бал 53</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; 1 власник. Також: пам’ять сидінь, адаптивний круїз, панорама, повний привід</p>
+<p class="no">✕ Бракує або не вказано: на 2 306 € дорожче за ринок, Harman Kardon / Burmester, складні задні сидіння, безключовий доступ</p>
+</div></article></div></section><section id="mercedes-glc-coupé-c253"><h2>Mercedes GLC Coupé (C253), рестайлінг</h2><p class="gs">2019 – 2023 · всього 8 авто, у бюджеті й без мінусів 2</p><div class="grid"><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=50263735848128" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/09/09f2daf3-f73b-4217-b001-61c44748cc6f?rule=mo-640" alt=""><b class="rk">1</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=50263735848128" target="_blank" rel="noopener">GLC 200 NEUMercedes-Benz GLC 200Coupe 4M *LEDER*KAMERA*AMBIENTE*</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 01/2021 · 126 000 км · 197 PS · бензин · 4MATIC</div>
+<div class="pr"><b>27 930 €</b> <span>25 880 € + розмитнення ≈2 050 €</span></div>
+<div class="sc"><i style="width:67.0%"></i><span>бал 67</span></div>
+<p class="ok">✓ обов’язкових опцій: 5 з 7; на 2 057 € дешевше за ринок. Також: безключовий доступ, адаптивний круїз, повний привід</p>
+<p class="no">✕ Бракує або не вказано: Harman Kardon / Burmester (є Hi-Fi), люк, пам’ять сидінь</p>
+</div></article><article class="car">
+<a class="ph" href="https://www.coches.net/mercedes-benz-71696813-covo.aspx" target="_blank" rel="noopener"><img loading="lazy" src="https://a.ccdn.es/cnet/vehicles/20927012/f778dd14-dfba-4ea4-aaa4-6507c662ecdb.jpg" alt=""><b class="rk">2</b></a>
+<div class="bd"><h3><a href="https://www.coches.net/mercedes-benz-71696813-covo.aspx" target="_blank" rel="noopener">GLC 220 d GLC Coupé GLC 220 d 4MATIC</a></h3>
+<div class="meta"><span class="src c">coches.net 🇪🇸</span> 2020 · 139 000 км · 194 PS · дизель · 4MATIC</div>
+<div class="pr"><b>29 790 €</b> <span>вже в Іспанії</span></div>
+<div class="sc"><i style="width:23.0%"></i><span>бал 23</span></div>
+<p class="ok">✓ обов’язкових опцій: 4 з 7. Також: повний привід</p>
+<p class="no">✕ Бракує або не вказано: CarPlay / Android Auto, Harman Kardon / Burmester, люк, безключовий доступ, пам’ять сидінь, адаптивний круїз</p>
+</div></article><article class="car">
+<a class="ph" href="https://suchen.mobile.de/fahrzeuge/details.html?id=38840062667296" target="_blank" rel="noopener"><img loading="lazy" src="https://img.classistatic.de/api/v1/mo-prod/images/4f/4f0c0342-eac0-46b4-ab87-dc3bb2e4e3b9?rule=mo-640" alt=""><b class="rk">3</b></a>
+<div class="bd"><h3><a href="https://suchen.mobile.de/fahrzeuge/details.html?id=38840062667296" target="_blank" rel="noopener">GLC 200 Coupe AMG Line*LED*Distro.*HUD*</a></h3>
+<div class="meta"><span class="src m">mobile.de 🇩🇪</span> 08/2020 · 131 900 км · 197 PS · бензин · 4MATIC</div>
+<div class="pr"><b>32 770 €</b> <span>30 980 € + розмитнення ≈1 790 €</span><em class="warn">понад бюджет</em></div>
+<div class="sc"><i style="width:51.8%"></i><span>бал 52</span></div>
+<p class="ok">✓ обов’язкових опцій: 6 з 7. Також: адаптивний круїз, камера 360°, HUD, повний привід</p>
+<p class="no">✕ Бракує або не вказано: на 3 335 € дорожче за ринок, Harman Kardon / Burmester, безключовий доступ, пам’ять сидінь</p>
+</div></article></div></section>
+</main></body></html>
