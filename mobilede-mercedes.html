@@ -189,6 +189,7 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 <button class="fx" id="fx" type="button" aria-label="Закрити фільтри">✕</button>
 <label>Модель<select id="f-model"><option value="">Усі</option></select></label>
 <div id="mods-wrap" hidden><label>Модифікація</label><div class="chips mods" id="f-var"></div></div>
+<div id="body-wrap" hidden><label>Кузов</label><div class="chips" id="f-body"></div></div>
 <div><label>Пальне</label><div class="chips" id="f-fuel"></div></div>
 <div><label>Повний привід</label><div class="chips" id="f-dr"></div></div>
 <div class="rng"><label>Рік від<select id="f-y1"></select></label><label>до<select id="f-y2"></select></label></div>
@@ -321,11 +322,14 @@ const optChips = c => { if (!c.o) return ""; const t = []; const [m, a, cam, mem
   if (cam === "y") t.push("Камера 360°"); if (mem === "y") t.push("Пам'ять сидінь"); if (hud === "y") t.push("HUD"); if (OPTS[5][2][l] && l !== "?") t.push("Фари: " + OPTS[5][2][l]); if (rf === "pano") t.push("Панорама"); else if (rf === "sd") t.push("Люк"); if (rc === "y" && cam !== "y") t.push("Камера заднього виду"); if (cp === "y") t.push("CarPlay/Android Auto"); if (st === "y") t.push("Складні сидіння"); if (kl === "y") t.push("Безключовий доступ");
   return t.length ? `<div class="opts">${t.map(x => `<span class="opt">${x}</span>`).join("")}</div>` : ""; };
 let page = 1, list = [], modsFor = null;
+// Artem 2026-10-25: body type filter only where a model comes in several bodies (3 Series, C-Class)
+const BODYG = new Set(["3", "c"]), BODYL = {Limousine: "Седан", EstateCar: "Універсал (Touring / T-Modell)"};
 function fillMods() {
   const g = $("f-model").value;
-  $("mods-wrap").hidden = !g;
+  $("mods-wrap").hidden = !g; $("body-wrap").hidden = !BODYG.has(g);
   if (g === modsFor) return;
   modsFor = g;
+  $("f-body").innerHTML = BODYG.has(g) ? uniq(cars.filter(c=>c.gk===g).map(c=>c.c)).sort((a, b) => (a !== "Limousine") - (b !== "Limousine")).map(v => `<label><input type="checkbox" value="${esc(v)}"> ${BODYL[v] || BODY[v] || v} <span></span></label>`).join("") : "";
   $("f-var").innerHTML = g ? uniq(cars.filter(c=>c.gk===g).map(c=>c.md)).sort(byNum).map(v => `<label><input type="checkbox" value="${esc(v)}"> ${esc(v)} <span></span></label>`).join("") : "";
 }
 function card(c) {
@@ -356,12 +360,14 @@ function apply() {
     fuels: new Set([...$("f-fuel").querySelectorAll("input:checked")].map(i=>i.value)),
     drs: new Set([...$("f-dr").querySelectorAll("input:checked")].map(i=>i.value)),
     mods: new Set([...$("f-var").querySelectorAll("input:checked")].map(i=>i.value)),
+    bodies: new Set([...$("f-body").querySelectorAll("input:checked")].map(i=>i.value)),
   };
   // each facet's test, so a facet's counts can ignore its own selection
   const optSel = hasOpts ? OPTS.map(([k]) => new Set([...$("f-o-" + k).querySelectorAll("input:checked")].map(i => i.value))) : [];
   const tests = {
     m: c => !f.m || c.gk === f.m,
     mods: c => !f.mods.size || f.mods.has(c.md),
+    b: c => !f.bodies.size || f.bodies.has(c.c),
     pr: c => !f.pr || (c.pr > 0 && c.pr <= f.pr),
     ft: c => !f.fuels.size || f.fuels.has(c.ft),
     dr: c => !f.drs.size || f.drs.has(c.dr),
@@ -380,7 +386,7 @@ function apply() {
   chip($("f-fuel"), counts("ft"));
   chip($("f-dr"), counts("dr"));
   if (hasOpts) OPTS.forEach(([k], i) => { const o = {}; cars.forEach(c => { if (passExcept(c, "o" + i)) o[ov(c, i)] = (o[ov(c, i)]||0) + 1; }); chip($("f-o-" + k), o); });
-  chip($("f-var"), counts("mods"));
+  chip($("f-var"), counts("mods")); chip($("f-body"), counts("b"));
   list = cars.filter(c => passExcept(c, null));
   const s = $("f-sort").value, dir = s[0]==="-" ? -1 : 1, k = s.replace("-","");
   list.sort((a,b) => k==="pr" ? ((a.pr||9)-(b.pr||9)) || a.p-b.p : k==="os" ? (a.os===b.os ? a.p-b.p : !a.os ? 1 : !b.os ? -1 : dir*a.os.localeCompare(b.os)) : dir*(a[k]-b[k]) || a.p-b.p);
