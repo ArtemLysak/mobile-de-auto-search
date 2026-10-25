@@ -114,7 +114,7 @@ body:not(.fo) .bar .done{display:none}
 .addf button,.toast button,.added button{font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer}
 .added{display:flex;flex-direction:column;gap:4px;margin-top:6px;font-size:13px}
 .added div{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:30;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:0 6px 24px rgba(0,0,0,.25);width:min(560px,calc(100% - 32px))}
+.toast{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);justify-content:center;z-index:30;display:flex;gap:8px;align-items:center;flex-wrap:wrap;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;box-shadow:0 6px 24px rgba(0,0,0,.25);width:min(560px,calc(100% - 32px))}
 .toast[hidden]{display:none}
 .toast input{flex:1 1 200px;font:inherit;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
 .car .es{font-size:12.5px;margin:2px 0;padding:6px 8px;border-radius:6px;background:var(--bg)}
@@ -370,7 +370,7 @@ $("grid").addEventListener("click", e => {
   e.preventDefault(); e.stopPropagation();
   const id = b.closest(".car").dataset.id, k = b.classList.contains("like") ? "l" : "r";
   const on = !(ST[id] || {})[k]; setMark(id, {[k]: on ? 1 : 0});
-  if (on) { lastRej = id; lastKind = k; $("toast-msg").textContent = k === "r" ? "Відкинуто." : "Вподобано."; $("toast").hidden = false; clearTimeout(toastT); toastT = setTimeout(hideToast, 5000); }
+  if (on && k === "r") { lastRej = id; lastKind = k; $("toast-msg").textContent = "Відкинуто."; $("toast").hidden = false; clearTimeout(toastT); toastT = setTimeout(hideToast, 5000); }
   rerender();
 });
 let lastKind = "r", toastT, noteId = null;
