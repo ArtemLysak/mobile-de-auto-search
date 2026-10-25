@@ -23,7 +23,7 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 Камеру, CarPlay та інші опції в пошук навмисно не ставив. Дилери часто не ставлять ці галочки, і пошук відкидав би машини, де все це насправді є. Натомість кожне оголошення перевірено окремо (див. розділ 3).
 
-Результат пошуку: 7 909 авто. mobile.de показує максимум 100 сторінок на один пошук, тому я ділив його на цінові діапазони.
+Результат пошуку: 7 908 авто. mobile.de показує максимум 100 сторінок на один пошук, тому я ділив його на цінові діапазони.
 
 ## 2. Що виключено і чому
 
@@ -40,11 +40,11 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 | 5 серія й вище, Z4 | ти виключив |
 | кабріолети | ти виключив |
 
-Лишилось 2 103 авто:
+Лишилось 2 102 авто:
 
 | Модель | Авто |
 |---|---|
-| 3 серія | 1 594 |
+| 3 серія | 1 593 |
 | 4 серія Gran Coupé | 77 |
 | X3 | 432 |
 
@@ -56,17 +56,17 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 | Фільтр | Що шукаю | Так |
 |---|---|---|
-| M пакет | «M Sport», «M-Sportpaket», «M Package», «M Technic», код опції 337A, лінія комплектації «M Sport»; усі M340/M440/X3 M40 — так | так 622 |
+| M пакет | «M Sport», «M-Sportpaket», «M Package», «M Technic», код опції 337A, лінія комплектації «M Sport»; усі M340/M440/X3 M40 — так | так 621 |
 | Аудіо | «Harman Kardon», «H/K»; «Bowers & Wilkins», «B&W»; Hi-Fi — «HiFi», «Lautsprechersystem», «Soundsystem» в тексті чи опціях | Harman Kardon 193, Bowers & Wilkins 0, Hi-Fi 1 156 |
-| Фари | «Laserlicht»; адаптивні — «Adaptive LED», «LED mit erweiterten Umfängen», «Matrix»; LED — опція «LED-Scheinwerfer» або «Voll-LED» | лазерні 290, адаптивні LED 349, LED 1 404, ксенон 5 |
+| Фари | «Laserlicht»; адаптивні — «Adaptive LED», «LED mit erweiterten Umfängen», «Matrix»; LED — опція «LED-Scheinwerfer» або «Voll-LED» | лазерні 289, адаптивні LED 349, LED 1 404, ксенон 5 |
 | Камера (360° / тільки задня / ні або невідомо) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задня: «Kamera» в полі «Einparkhilfe» чи назві, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 194, тільки задня: 1 146 |
-| Пам'ять сидінь | опція «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 354 |
-| HUD | опція «Head-Up Display», «Head-Up», «HUD» | 750 |
+| Пам'ять сидінь | опція «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 353 |
+| HUD | опція «Head-Up Display», «Head-Up», «HUD» | 749 |
 | Дах | опції «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 415, люк 49 |
-| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 1 473 |
-| Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 1 593 |
-| Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 144 |
-| Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 948 так, 1 155 ні або невідомо |
+| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 1 472 |
+| Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 1 592 |
+| Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 143 |
+| Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 948 так, 1 154 ні або невідомо |
 
 Також є фільтри: модель і модифікація, пальне, рік, ціна від–до, оцінка ціни mobile.de, пробіг від–до, дата подачі. Усі фільтри-галочки працюють однаково: нічого не вибрано — показуються всі варіанти. Пошук у назві стоїть у рядку з сортуванням. За замовчуванням спочатку показуються нові оголошення.
 
@@ -88,7 +88,7 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 ## 5. Що є в `bmw-data.json`
 
-Усі 7 909 авто з пошуку, включно з виключеними. Для кожного:
+Усі 7 908 авто з пошуку, включно з виключеними. Для кожного:
 
 - `search` — дані з результатів пошуку: модель, назва, ціна, пробіг, потужність, пальне, кузов, місто, оцінка ціни, дата подачі, фото;
 - `listing` — дані зі сторінки оголошення (для відкритих авто, у решти `null`): `kv` — технічні поля (CO2, колір, салон, власники тощо), `f` — повний список опцій;
