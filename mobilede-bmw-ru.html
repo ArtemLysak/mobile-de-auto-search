@@ -99,11 +99,15 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 @media (hover:hover){.phw:hover .sp,.phw:hover .sn{opacity:1}}
 #gl{margin:0;padding:0;border:0;width:100vw;height:100dvh;max-width:none;max-height:none;background:#000;color:#fff;overflow:hidden}
 #gl::backdrop{background:#000}
-#gl img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+#gl #gl-img{position:absolute;inset:0 0 104px;width:100%;height:calc(100% - 104px);object-fit:contain;user-select:none;-webkit-user-drag:none}
 #gl button{position:absolute;font:inherit;border:0;border-radius:999px;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;width:46px;height:46px;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center}
 #gl button:hover{background:rgba(255,255,255,.3)}
 #gl-x{top:12px;right:12px}#gl-p{left:12px;top:50%;transform:translateY(-50%)}#gl-n{right:12px;top:50%;transform:translateY(-50%)}
-#gl .glb{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:linear-gradient(transparent,rgba(0,0,0,.7));font-size:14px}
+#gl .glb{position:absolute;left:0;right:0;bottom:0;display:flex;flex-direction:column;gap:6px;padding:8px 12px calc(8px + env(safe-area-inset-bottom));font-size:14px}
+#gl .glr{display:flex;justify-content:space-between;align-items:center;gap:12px}
+#gl-t{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}#gl-t::-webkit-scrollbar{display:none}
+#gl-t img{flex:0 0 auto;width:72px;height:54px;object-fit:cover;border-radius:4px;opacity:.5;cursor:pointer;border:2px solid transparent;box-sizing:border-box}
+#gl-t img.on{opacity:1;border-color:#fff}
 #gl .glb a{color:#fff}
 @media (hover:none){#gl-p,#gl-n{display:none!important}}
 .car .b{padding:12px 14px;display:flex;flex-direction:column;gap:6px;flex:1}
@@ -201,7 +205,7 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 <div class="grid" id="grid"></div>
 <nav class="pager" id="pager" aria-label="Страницы"></nav>
 <div class="toast" id="toast" hidden><span id="toast-msg">Отклонено.</span><button id="toast-undo" type="button">Отменить</button></div>
-<dialog id="gl" aria-label="Фото"><img id="gl-img" alt=""><button type="button" id="gl-x" aria-label="Закрыть">✕</button><button type="button" id="gl-p" aria-label="Предыдущее фото">‹</button><button type="button" id="gl-n" aria-label="Следующее фото">›</button><div class="glb"><span id="gl-c"></span><a id="gl-a" target="_blank" rel="noopener">Открыть на mobile.de</a></div></dialog>
+<dialog id="gl" aria-label="Фото"><img id="gl-img" alt=""><button type="button" id="gl-x" aria-label="Закрыть">✕</button><button type="button" id="gl-p" aria-label="Предыдущее фото">‹</button><button type="button" id="gl-n" aria-label="Следующее фото">›</button><div class="glb"><div id="gl-t"></div><div class="glr"><span id="gl-c"></span><a id="gl-a" target="_blank" rel="noopener">Открыть на mobile.de</a></div></div></dialog>
 <dialog id="nd"><form method="dialog"><h3 id="nd-t">Заметка</h3><textarea id="nd-in" placeholder="Что думаешь об этом авто?"></textarea><div class="btns"><button type="button" id="nd-del">Удалить</button><button value="cancel">Отменить</button><button type="button" class="pri" id="nd-ok">Сохранить</button></div></form></dialog>
 
 <script>
@@ -427,7 +431,7 @@ $("grid").addEventListener("click", e => {
   if (nb) { e.preventDefault(); e.stopPropagation(); openNote(nb.closest(".car").dataset.id); return; }
   const pb = e.target.closest(".gb, .sp, .sn");
   if (pb) { e.preventDefault(); e.stopPropagation(); const s = pb.parentNode.querySelector(".strip"), i = Math.round(s.scrollLeft / s.clientWidth);
-    if (pb.classList.contains("gb")) openGal(pb.closest(".car").dataset.id, i); else s.scrollTo({left: (i + (pb.classList.contains("sn") ? 1 : -1)) * s.clientWidth, behavior: "smooth"}); return; }
+    if (pb.classList.contains("gb")) openGal(pb.closest(".car").dataset.id, i); else stripGo(s, i + (pb.classList.contains("sn") ? 1 : -1)); return; }
   const b = e.target.closest(".rej, .like"); if (!b) return;
   e.preventDefault(); e.stopPropagation();
   const id = b.closest(".car").dataset.id, k = b.classList.contains("like") ? "l" : "r";
@@ -481,13 +485,23 @@ loadUrl();
 let gl = {id: null, i: 0, a: []};
 const glShow = () => { const n = gl.a.length; gl.i = (gl.i + n) % n; const r = innerWidth * devicePixelRatio > 1100 ? "mo-1600" : "mo-1024";
   $("gl-img").src = IMG(gl.a[gl.i], r); new Image().src = IMG(gl.a[(gl.i + 1) % n], r); $("gl-c").textContent = `${gl.i + 1} / ${n}`;
-  $("gl-p").hidden = $("gl-n").hidden = n < 2; };
+  $("gl-p").hidden = $("gl-n").hidden = n < 2;
+  [...$("gl-t").children].forEach((im, k) => im.classList.toggle("on", k === gl.i));
+  const on = $("gl-t").children[gl.i]; if (on) on.scrollIntoView({block: "nearest", inline: "center"}); };
+$("gl-t").addEventListener("click", e => { const k = [...$("gl-t").children].indexOf(e.target); if (k >= 0) { gl.i = k; glShow(); } });
 function openGal(id, i) {
   gl = {id, i: i || 0, a: photosOf(cars.find(x => x.id === id))}; if (!gl.a.length) return;
-  $("gl-a").href = "https://suchen.mobile.de/fahrzeuge/details.html?id=" + id; glShow();
+  $("gl-a").href = "https://suchen.mobile.de/fahrzeuge/details.html?id=" + id;
+  $("gl-t").innerHTML = gl.a.length > 1 ? gl.a.map(u => `<img alt="" loading="lazy" src="${IMG(u, "mo-160")}">`).join("") : ""; glShow();
   $("gl").showModal(); history.pushState({gl: 1}, "", location.href);  // Back closes the gallery
 }
 fetch("mobilede-bmw-photos.json").then(r => r.json()).then(p => { PHOTOS = p; rerender(); }).catch(() => {});
+// card strip loops: arrows and a swipe past the last photo go to the first (and back)
+const stripGo = (s, i) => { const n = s.children.length, k = (i + n) % n; s.scrollTo({left: k * s.clientWidth, behavior: Math.abs(k - i) > 0 ? "instant" : "smooth"}); };
+let sx = null;
+$("grid").addEventListener("touchstart", e => { const s = e.target.closest(".strip"); sx = s ? [s, e.touches[0].clientX, Math.round(s.scrollLeft / s.clientWidth)] : null; }, {passive: true});
+$("grid").addEventListener("touchend", e => { if (!sx) return; const [s, x0, i0] = sx, d = e.changedTouches[0].clientX - x0, n = s.children.length; sx = null;
+  if (i0 === n - 1 && d < -40) stripGo(s, n); else if (i0 === 0 && d > 40) stripGo(s, -1); }, {passive: true});
 // photo counter on the card follows the swipe
 $("grid").addEventListener("scroll", e => { const s = e.target; if (!s.classList || !s.classList.contains("strip")) return;
   const n = s.parentNode.querySelector(".np"); if (n) n.textContent = `${Math.round(s.scrollLeft / s.clientWidth) + 1} / ${s.children.length}`; }, true);
@@ -499,7 +513,7 @@ $("gl-img").addEventListener("click", e => { gl.i += e.offsetX < e.target.client
 $("gl").addEventListener("cancel", e => { e.preventDefault(); closeGal(); });
 $("gl").addEventListener("keydown", e => { if (e.key === "ArrowLeft") { gl.i--; glShow(); } if (e.key === "ArrowRight") { gl.i++; glShow(); } });
 let tx = null;
-$("gl").addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, {passive: true});
+$("gl").addEventListener("touchstart", e => { tx = e.target.closest("#gl-t") ? null : e.touches[0].clientX; }, {passive: true});  // thumbnail scrolling is not a swipe
 $("gl").addEventListener("touchend", e => { if (tx === null) return; const d = e.changedTouches[0].clientX - tx; tx = null; if (Math.abs(d) > 40) { gl.i += d < 0 ? 1 : -1; glShow(); } });
 window.addEventListener("popstate", () => { if ($("gl").open) { $("gl").close(); return; } clearForm(true); loadUrl(); lastPush = 0; apply(); });
 apply();
