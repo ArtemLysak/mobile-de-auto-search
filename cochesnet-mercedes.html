@@ -476,7 +476,7 @@ function clearForm(sort) {
   if (sort) $("f-sort").selectedIndex = 0;
   page = 1;
 }
-$("reset").addEventListener("click", () => { clearForm(false); apply(); });
+$("reset").addEventListener("click", () => { clearForm(true); apply(); });  // also sort (back to newest first) and title search
 $("st-file").addEventListener("click", () => { $("sync").hidden = !$("sync").hidden; $("sync-tok").value = ghTok; });
 $("sync-f").addEventListener("submit", async e => { e.preventDefault(); ghTok = $("sync-tok").value.trim(); try { localStorage.setItem("gh-token", ghTok); } catch (x) {}
   $("sync-msg").textContent = "Перевіряю…"; try { await ghRead(); syncSets(); apply(); await ghWrite(); $("sync-msg").textContent = $("st-file").textContent.includes("✓") ? ($("sync").hidden = true, "Готово, позначки тепер спільні.") : "Не вдалося записати: перевір, що токен має доступ Contents: Read and write до mobile-de-auto-search."; } catch (x) { $("sync-msg").textContent = "Токен не підходить або немає зв'язку з GitHub."; } });
