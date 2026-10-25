@@ -1,0 +1,187 @@
+<!doctype html><html lang="uk"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Як зроблено звіт Mercedes-Benz з coches.net</title><style>:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f24;--muted:#5f6873;--line:#dfe3e8;--accent:#0b5cad;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1c2025;--fg:#e8ebef;--muted:#9aa4af;--line:#2d333a;--accent:#6aa9ec;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:20px 16px 40px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:24px;line-height:1.25}h2{font-size:19px;margin-top:28px}
+a{color:var(--accent)}code{font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--card)}
+.back{display:inline-block;margin-bottom:8px}
+
+.top{display:flex;justify-content:space-between;align-items:center}.top .lang{font-weight:600;text-decoration:none}.top .back{margin:0}
+</style></head><body><main><nav class="top"><a class="back" href="./">← Усі звіти</a><a class="lang" href="guide-cochesnet-mercedes-ru.html" lang="ru">RU</a></nav><h1 id="звіт-mercedes-benz-з-cochesnet-як-зроблено">Звіт Mercedes-Benz з
+coches.net: як зроблено</h1>
+<p>Дані зібрано 25.10.2026. Кожне оголошення, що підходить, відкрито й
+прочитано повністю, з усім описом. Звіт лежить поруч зі звітами
+mobile.de:</p>
+<ul>
+<li><code>cochesnet-mercedes.html</code> — сам звіт;</li>
+<li><code>cochesnet-mercedes-data.json</code> — усі зібрані дані, разом
+з описами оголошень.</li>
+</ul>
+<p>Умови ті самі, що у звітах mobile.de, тільки авто вже в Іспанії, тому
+немає розмитнення й можна брати в приватних осіб.</p>
+<h2 id="1-пошук-на-cochesnet">1. Пошук на coches.net</h2>
+<p><a
+href="https://www.coches.net/segunda-mano/?MinPrice=21000&amp;MaxPrice=31000&amp;MaxKms=150000&amp;TransmissionTypeId=1&amp;MakeIds%5B0%5D=28&amp;ModelIds%5B0%5D=8&amp;MakeIds%5B1%5D=28&amp;ModelIds%5B1%5D=1162&amp;MakeIds%5B2%5D=28&amp;ModelIds%5B2%5D=1439&amp;MakeIds%5B3%5D=28&amp;ModelIds%5B3%5D=1194&amp;MinYear=2020&amp;MaxYear=2026">Посилання
+на пошук</a> з такими фільтрами:</p>
+<ul>
+<li>Mercedes-Benz: C-Клас і GLC (разом з GLC Coupé);</li>
+<li>рік 2020–2026;</li>
+<li>ціна 21 000–31 000 €;</li>
+<li>пробіг до 150 000 км;</li>
+<li>тільки автомат;</li>
+<li>уся Іспанія, усі продавці (дилери й приватні особи).</li>
+</ul>
+<p>Результат пошуку: 210 авто.</p>
+<h2 id="2-що-виключено-і-чому">2. Що виключено і чому</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Що</th>
+<th>Чому</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C-Клас купе, AMG 63</td>
+<td>як у звітах mobile.de; C 43 і GLC 43 лишились</td>
+</tr>
+<tr class="even">
+<td>A-Клас, CLA, GLA, GLB, E-Клас і більше, мінівени</td>
+<td>не шукаю, як у звітах mobile.de</td>
+</tr>
+<tr class="odd">
+<td>кабріолети, електро</td>
+<td>ти виключив</td>
+</tr>
+</tbody>
+</table>
+<p>Лишилось 166 авто:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Модель</th>
+<th>Авто</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C-Клас</td>
+<td>122</td>
+</tr>
+<tr class="even">
+<td>GLC</td>
+<td>44</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-як-визначено-фільтри">3. Як визначено фільтри</h2>
+<p>Джерела: назва й повний опис оголошення та стандартна комплектація
+цієї версії, яку coches.net показує в оголошенні (каталог JATO). Слова
+шукаю іспанською й англійською.</p>
+<p>«Так» ставлю, коли опція згадана. Інакше «Ні або невідомо», бо
+продавці часто пишуть неповний опис.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Фільтр</th>
+<th>Що шукаю</th>
+<th>Так</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>M пакет / AMG Line</td>
+<td>«M Sport», «paquete/pack M», «M Package»; для Mercedes «AMG Line»,
+«paquete AMG»; усі M340/M440/X3 M40 і C 43/GLC 43 — так</td>
+<td>так 46</td>
+</tr>
+<tr class="even">
+<td>Аудіо</td>
+<td>«Harman Kardon», «Bowers &amp; Wilkins», «Burmester»; Hi-Fi —
+«HiFi», «sistema de sonido premium», «sound system»</td>
+<td>Burmester 7, Hi-Fi 2</td>
+</tr>
+<tr class="odd">
+<td>Камера 360°</td>
+<td>«360», «visión periférica», «surround/top view», «vista aérea»,
+«cenital», «Parking Assistant Plus»</td>
+<td>так 19</td>
+</tr>
+<tr class="even">
+<td>Камера заднього виду (або 360°)</td>
+<td>«cámara» в описі чи комплектації або камера 360°</td>
+<td>так 149</td>
+</tr>
+<tr class="odd">
+<td>Пам'ять сидінь</td>
+<td>«memoria»</td>
+<td>так 10</td>
+</tr>
+<tr class="even">
+<td>HUD</td>
+<td>«Head-Up», «HUD», «proyección en el parabrisas»</td>
+<td>так 2</td>
+</tr>
+<tr class="odd">
+<td>Фари</td>
+<td>«láser»; «Multibeam»; «LED High Performance»; адаптивні — «LED
+adaptativos», «Matrix», «Intelligent Light»; LED — «faros LED», «full
+LED»</td>
+<td>Multibeam LED 17, LED High Performance 23, адаптивні LED 1, LED
+32</td>
+</tr>
+<tr class="even">
+<td>Дах</td>
+<td>«panorámico», «pano»; люк — «techo solar/corredizo/eléctrico»</td>
+<td>панорама 24, люк 6</td>
+</tr>
+<tr class="odd">
+<td>CarPlay/Android Auto</td>
+<td>«CarPlay», «Android Auto», «integración de smartphone»</td>
+<td>так 57</td>
+</tr>
+<tr class="even">
+<td>Складні задні сидіння</td>
+<td>«asientos/respaldo abatible», «40:20:40», «60:40»</td>
+<td>так 144</td>
+</tr>
+<tr class="odd">
+<td>Безключовий доступ</td>
+<td>«Keyless» (не «Keyless Start»), «Comfort Access», «acceso
+confort/sin llave», «apertura sin llave»</td>
+<td>так 22</td>
+</tr>
+</tbody>
+</table>
+<p>Також є фільтри: модель і модифікація, пальне, повний привід, рік,
+ціна, оцінка ціни coches.net, продавець (дилер або приватна особа),
+пробіг, дата подачі.</p>
+<h2 id="4-чим-відрізняється-від-звітів-mobilede">4. Чим відрізняється
+від звітів mobile.de</h2>
+<ul>
+<li><strong>Розмитнення немає:</strong> авто вже з іспанськими
+номерами.</li>
+<li><strong>Продавець:</strong> у приватної особи покупець платить ITP
+4–8% залежно від регіону, у дилера податок уже в ціні.</li>
+<li><strong>Оцінка ціни</strong> — від coches.net, порівняння з
+середньою ціною схожих авто в Іспанії.</li>
+<li><strong>Рік:</strong> coches.net показує тільки рік, без
+місяця.</li>
+<li><strong>Оновлення вручну:</strong> coches.net показує капчу після
+кількох десятків сторінок, тому звіт оновлюється на запит, а не за
+розкладом. «Додати авто за посиланням» тут немає.</li>
+</ul>
+<h2 id="5-лайки-не-підходить-нотатки">5. Лайки, «не підходить»,
+нотатки</h2>
+<p>Так само, як у звітах mobile.de, і в тому самому файлі
+<code>state.json</code>: ☁️ синхронізує їх між пристроями.</p>
+<h2 id="6-обмеження">6. Обмеження</h2>
+<ul>
+<li>«Ні або невідомо» не означає «точно немає». Перевіряй в оголошенні
+або спитай продавця.</li>
+<li>Комплектація JATO — стандартна для версії; опції, які продавець не
+згадав, тут не видно.</li>
+</ul>
+</main></body></html>

@@ -1,0 +1,187 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Как сделан отчёт Mercedes-Benz с coches.net</title><style>:root{--bg:#f4f5f7;--card:#fff;--fg:#1b1f24;--muted:#5f6873;--line:#dfe3e8;--accent:#0b5cad;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#121417;--card:#1c2025;--fg:#e8ebef;--muted:#9aa4af;--line:#2d333a;--accent:#6aa9ec;color-scheme:dark}}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;padding:20px 16px 40px}
+main{max-width:760px;margin:0 auto}
+h1{font-size:24px;line-height:1.25}h2{font-size:19px;margin-top:28px}
+a{color:var(--accent)}code{font-size:.9em;background:var(--card);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+table{border-collapse:collapse;width:100%;font-size:14px;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}th{background:var(--card)}
+.back{display:inline-block;margin-bottom:8px}
+
+.top{display:flex;justify-content:space-between;align-items:center}.top .lang{font-weight:600;text-decoration:none}.top .back{margin:0}
+</style></head><body><main><nav class="top"><a class="back" href="index-ru.html">← Все отчёты</a><a class="lang" href="guide-cochesnet-mercedes.html" lang="uk">UA</a></nav><h1 id="отчёт-mercedes-benz-с-cochesnet-как-сделано">Отчёт Mercedes-Benz
+с coches.net: как сделано</h1>
+<p>Данные собраны 25.10.2026. Каждое подходящее объявление открыто и
+прочитано полностью, со всем описанием. Отчёт лежит рядом с отчётами
+mobile.de:</p>
+<ul>
+<li><code>cochesnet-mercedes.html</code> — сам отчёт;</li>
+<li><code>cochesnet-mercedes-data.json</code> — все собранные данные,
+вместе с описаниями объявлений.</li>
+</ul>
+<p>Условия те же, что в отчётах mobile.de, только авто уже в Испании,
+поэтому нет растаможки и можно брать у частных лиц.</p>
+<h2 id="1-поиск-на-cochesnet">1. Поиск на coches.net</h2>
+<p><a
+href="https://www.coches.net/segunda-mano/?MinPrice=21000&amp;MaxPrice=31000&amp;MaxKms=150000&amp;TransmissionTypeId=1&amp;MakeIds%5B0%5D=28&amp;ModelIds%5B0%5D=8&amp;MakeIds%5B1%5D=28&amp;ModelIds%5B1%5D=1162&amp;MakeIds%5B2%5D=28&amp;ModelIds%5B2%5D=1439&amp;MakeIds%5B3%5D=28&amp;ModelIds%5B3%5D=1194&amp;MinYear=2020&amp;MaxYear=2026">Ссылка
+на поиск</a> с такими фильтрами:</p>
+<ul>
+<li>Mercedes-Benz: C-Класс и GLC (вместе с GLC Coupé);</li>
+<li>год 2020–2026;</li>
+<li>цена 21 000–31 000 €;</li>
+<li>пробег до 150 000 км;</li>
+<li>только автомат;</li>
+<li>вся Испания, все продавцы (дилеры и частные лица).</li>
+</ul>
+<p>Результат поиска: 210 авто.</p>
+<h2 id="2-что-исключено-и-почему">2. Что исключено и почему</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Что</th>
+<th>Почему</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C-Класс купе, AMG 63</td>
+<td>как в отчётах mobile.de; C 43 и GLC 43 остались</td>
+</tr>
+<tr class="even">
+<td>A-Класс, CLA, GLA, GLB, E-Класс и больше, минивэны</td>
+<td>не ищу, как в отчётах mobile.de</td>
+</tr>
+<tr class="odd">
+<td>кабриолеты, электро</td>
+<td>ты исключил</td>
+</tr>
+</tbody>
+</table>
+<p>Осталось 166 авто:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Модель</th>
+<th>Авто</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C-Класс</td>
+<td>122</td>
+</tr>
+<tr class="even">
+<td>GLC</td>
+<td>44</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-как-определены-фильтры">3. Как определены фильтры</h2>
+<p>Источники: название и полное описание объявления и стандартная
+комплектация этой версии, которую coches.net показывает в объявлении
+(каталог JATO). Слова ищу на испанском и английском.</p>
+<p>«Да» ставлю, когда опция упомянута. Иначе «Нет или неизвестно»,
+потому что продавцы часто пишут неполное описание.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Фильтр</th>
+<th>Что ищу</th>
+<th>Да</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>M пакет / AMG Line</td>
+<td>«M Sport», «paquete/pack M», «M Package»; для Mercedes «AMG Line»,
+«paquete AMG»; все M340/M440/X3 M40 и C 43/GLC 43 — да</td>
+<td>да 46</td>
+</tr>
+<tr class="even">
+<td>Аудио</td>
+<td>«Harman Kardon», «Bowers &amp; Wilkins», «Burmester»; Hi-Fi —
+«HiFi», «sistema de sonido premium», «sound system»</td>
+<td>Burmester 7, Hi-Fi 2</td>
+</tr>
+<tr class="odd">
+<td>Камера 360°</td>
+<td>«360», «visión periférica», «surround/top view», «vista aérea»,
+«cenital», «Parking Assistant Plus»</td>
+<td>да 19</td>
+</tr>
+<tr class="even">
+<td>Камера заднего вида (или 360°)</td>
+<td>«cámara» в описании или комплектации либо камера 360°</td>
+<td>да 149</td>
+</tr>
+<tr class="odd">
+<td>Память сидений</td>
+<td>«memoria»</td>
+<td>да 10</td>
+</tr>
+<tr class="even">
+<td>HUD</td>
+<td>«Head-Up», «HUD», «proyección en el parabrisas»</td>
+<td>да 2</td>
+</tr>
+<tr class="odd">
+<td>Фары</td>
+<td>«láser»; «Multibeam»; «LED High Performance»; адаптивные — «LED
+adaptativos», «Matrix», «Intelligent Light»; LED — «faros LED», «full
+LED»</td>
+<td>Multibeam LED 17, LED High Performance 23, адаптивные LED 1, LED
+32</td>
+</tr>
+<tr class="even">
+<td>Крыша</td>
+<td>«panorámico», «pano»; люк — «techo solar/corredizo/eléctrico»</td>
+<td>панорама 24, люк 6</td>
+</tr>
+<tr class="odd">
+<td>CarPlay/Android Auto</td>
+<td>«CarPlay», «Android Auto», «integración de smartphone»</td>
+<td>да 57</td>
+</tr>
+<tr class="even">
+<td>Складные задние сиденья</td>
+<td>«asientos/respaldo abatible», «40:20:40», «60:40»</td>
+<td>да 144</td>
+</tr>
+<tr class="odd">
+<td>Бесключевой доступ</td>
+<td>«Keyless» (не «Keyless Start»), «Comfort Access», «acceso
+confort/sin llave», «apertura sin llave»</td>
+<td>да 22</td>
+</tr>
+</tbody>
+</table>
+<p>Также есть фильтры: модель и модификация, топливо, полный привод,
+год, цена, оценка цены coches.net, продавец (дилер или частное лицо),
+пробег, дата подачи.</p>
+<h2 id="4-чем-отличается-от-отчётов-mobilede">4. Чем отличается от
+отчётов mobile.de</h2>
+<ul>
+<li><strong>Растаможки нет:</strong> авто уже с испанскими
+номерами.</li>
+<li><strong>Продавец:</strong> у частного лица покупатель платит ITP
+4–8% в зависимости от региона, у дилера налог уже в цене.</li>
+<li><strong>Оценка цены</strong> — от coches.net, сравнение со средней
+ценой похожих авто в Испании.</li>
+<li><strong>Год:</strong> coches.net показывает только год, без
+месяца.</li>
+<li><strong>Обновление вручную:</strong> coches.net показывает капчу
+после нескольких десятков страниц, поэтому отчёт обновляется по запросу,
+а не по расписанию. «Добавить авто по ссылке» здесь нет.</li>
+</ul>
+<h2 id="5-лайки-не-подходит-заметки">5. Лайки, «не подходит»,
+заметки</h2>
+<p>Так же, как в отчётах mobile.de, и в том же файле
+<code>state.json</code>: ☁️ синхронизирует их между устройствами.</p>
+<h2 id="6-ограничения">6. Ограничения</h2>
+<ul>
+<li>«Нет или неизвестно» не значит «точно нет». Проверяй в объявлении
+или спроси продавца.</li>
+<li>Комплектация JATO — стандартная для версии; опции, которые продавец
+не упомянул, здесь не видны.</li>
+</ul>
+</main></body></html>
