@@ -26,10 +26,12 @@ h1{margin:0 0 4px;font-size:24px}
 .count{color:var(--muted);flex:1 1 100%}
 .sync{margin:0 16px 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:14px}.sync p{margin:0 0 8px}.sync form{display:flex;gap:6px;flex-wrap:wrap}.sync input{flex:1;min-width:200px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}.sync button{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
 #st-file.bad{color:var(--bad);border-color:var(--bad)}
-#st-file{white-space:nowrap;font:inherit;font-size:13px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);cursor:pointer}
+#st-file{white-space:nowrap;font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;margin-left:auto;background:var(--card);color:var(--fg);cursor:pointer}
 .sort{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-left:auto}
 .sort select{font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg)}
 #open,#mcount,.done{display:none}
+/* one height for every toolbar control */
+.tools #open,.tools .marks label,.tools .sort select,.tools .q input{height:40px;padding-top:0;padding-bottom:0}.tools .marks label{display:block;line-height:38px}.tools .marks input{vertical-align:middle;margin:0 2px 2px 0}
 /* own arrow so it sits away from the edge */
 .bar select,.sort select{appearance:none;-webkit-appearance:none;padding-right:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238a939d' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
 .bar #reset{margin-top:10px;font-weight:600;color:var(--bad);border:1px solid var(--bad);background:transparent;padding:7px 14px}
@@ -41,7 +43,6 @@ h1{margin:0 0 4px;font-size:24px}
 .bar>.joined{border-bottom:0!important;padding-bottom:0!important}
 .bar .rng{display:flex;gap:8px}.bar .rng label{flex:1}
 .tools .marks label{font-size:12.5px;padding:4px 10px}
-.nav #st-file{margin-left:auto;padding:2px 8px}
 @media (min-width:1000px){
 body{display:grid;grid-template-columns:290px minmax(0,1fr);align-content:start}
 body>*{grid-column:2;min-width:0}
@@ -70,7 +71,12 @@ body:not(.fo) .bar .done{display:none}
 .tools .count{display:none}
 .tools .lt{display:none}
 .tools .marks{flex-wrap:nowrap}
-.tools{flex-wrap:wrap}.tools .q{order:8;flex:1 1 150px}.tools .sort{order:9}.tools .q input{width:100%;font-size:16px}
+.extras .long{display:none}
+.extras{flex-wrap:nowrap}.extras .ref[open]{flex-basis:auto;flex:1 1 100%}.extras:has(.ref[open]){flex-wrap:wrap}
+.extras .ref summary{white-space:nowrap}
+.tools{gap:8px}.tools #open{display:flex;align-items:center;order:1}.tools #mcount{order:2;flex:1 1 0}.tools .marks{order:3}
+.extras{gap:6px}.extras .ref summary,.extras #st-file{font-size:13px}.extras .ref{padding:8px 10px}.extras #st-file{padding:8px 10px}
+.tools{flex-wrap:wrap}.tools .q{order:4;flex:1 1 50%}.tools .sort{order:5}.tools .q input{width:100%;font-size:16px}
 }
 
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;padding:0 16px 16px}
@@ -136,11 +142,11 @@ body:not(.fo) .bar .done{display:none}
 </head>
 <body>
 <header>
-<nav class="nav"><a href="./">← Усі звіти</a><a href="mobilede-bmw.html">BMW</a><a href="mobilede-mercedes.html">Mercedes-Benz</a><a href="guide-bmw.html">Як зроблено цей звіт</a><button id="st-file" type="button" title="Спільні лайки й «не підходить» для всіх пристроїв (через GitHub)">☁️</button></nav>
+<nav class="nav"><a href="./">← Усі звіти</a><a href="mobilede-bmw.html">BMW</a><a href="mobilede-mercedes.html">Mercedes-Benz</a><a href="guide-bmw.html">Як зроблено цей звіт</a></nav>
 <h1>BMW: підходящі авто на mobile.de</h1>
 </header>
-<div class="extras"><details class="ref" id="add"><summary>➕ Додати авто за посиланням</summary><form id="add-f" class="addf"><input id="add-url" type="url" placeholder="https://suchen.mobile.de/fahrzeuge/details.html?id=…" required><button type="submit">Додати</button></form><p class="hint" id="add-msg">Авто збережеться у твоєму стані. Повні дані (фото, ціна, опції) я підтягну при наступному оновленні звіту.</p><div id="added"></div></details>
-<details class="ref" id="ref"><summary>📏 Довідник: розміри й потужність</summary><div id="ref-body"></div></details></div>
+<div class="extras"><details class="ref" id="add"><summary>➕ Додати авто<span class="long"> за посиланням</span></summary><form id="add-f" class="addf"><input id="add-url" type="url" placeholder="https://suchen.mobile.de/fahrzeuge/details.html?id=…" required><button type="submit">Додати</button></form><p class="hint" id="add-msg">Авто збережеться у твоєму стані. Повні дані (фото, ціна, опції) я підтягну при наступному оновленні звіту.</p><div id="added"></div></details>
+<details class="ref" id="ref"><summary>📏 Довідник<span class="long">: розміри й потужність</span></summary><div id="ref-body"></div></details><button id="st-file" type="button" title="Спільні лайки й «не підходить» для всіх пристроїв (через GitHub)">☁️</button></div>
 <div class="bar">
 <label>Модель<select id="f-model"><option value="">Усі</option></select></label>
 <div id="mods-wrap" hidden><label>Модифікація</label><div class="chips mods" id="f-var"></div></div>
