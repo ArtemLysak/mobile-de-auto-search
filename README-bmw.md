@@ -66,7 +66,7 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 | CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 1 473 |
 | Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 1 593 |
 | Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 144 |
-| Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 948 так, 997 ні, 158 невідомо |
+| Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 948 так, 1 155 ні або невідомо |
 
 Також є фільтри: модель і модифікація, пальне, рік, ціна від–до, оцінка ціни mobile.de, пробіг від–до, дата подачі. Усі фільтри-галочки працюють однаково: нічого не вибрано — показуються всі варіанти. Пошук у назві стоїть у рядку з сортуванням.
 
