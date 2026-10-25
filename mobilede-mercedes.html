@@ -29,9 +29,9 @@ h1{margin:0 0 4px;font-size:24px}
 #st-file{white-space:nowrap;font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;margin-left:auto;background:var(--card);color:var(--fg);cursor:pointer}
 .sort{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-left:auto}
 .sort select{font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg)}
-#open,#mcount,.done{display:none}
+#open,#mcount,.done,.fx{display:none}
 /* one height for every toolbar control */
-.tools #open,.tools .marks label,.tools .sort select,.tools .q input{height:40px;padding-top:0;padding-bottom:0}.tools .marks label{display:block;line-height:38px}.tools .marks input{vertical-align:middle;margin:0 2px 2px 0}
+.tools #open,.tools .marks label,.tools .sort select,.tools .q input{height:40px;padding-top:0;padding-bottom:0}.tools .marks label.mk{display:flex;align-items:center;gap:5px;padding:0 10px;line-height:1}.tools .marks label.mk input{margin:0}
 /* own arrow so it sits away from the edge */
 .bar select,.sort select{appearance:none;-webkit-appearance:none;padding-right:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%238a939d' stroke-width='1.6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 11px center}
 .bar #reset{margin-top:10px;font-weight:600;color:var(--bad);border:1px solid var(--bad);background:transparent;padding:7px 14px}
@@ -63,9 +63,12 @@ body.fo .bar{display:flex}
 body.fo{overflow:hidden}
 .bar>label,.bar>div{flex:1 1 140px;min-width:0}
 #opt-filters>div{flex-basis:100%}
+.bar #reset{flex-basis:100%}.bar>.rng,.bar>label{flex-basis:100%}
 .bar select,.bar input:not([type=checkbox]){width:100%}
 .bar .done{display:block;position:fixed;left:16px;right:16px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:21;font:inherit;font-weight:600;padding:12px;border-radius:10px;border:0;background:var(--accent);color:#fff;cursor:pointer}
 body:not(.fo) .bar .done{display:none}
+body.fo .bar{padding-top:64px}
+body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:16px;z-index:21;width:40px;height:40px;padding:0;font-size:20px;line-height:1;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--fg)}
 .bar>div:has(.chips),.bar>.chips,#mods-wrap{flex-basis:100%}
 .chips label{white-space:nowrap}
 .tools .count{display:none}
@@ -148,6 +151,7 @@ body:not(.fo) .bar .done{display:none}
 <div class="extras"><details class="ref" id="add"><summary>➕ Додати авто<span class="long"> за посиланням</span></summary><form id="add-f" class="addf"><input id="add-url" type="url" placeholder="https://suchen.mobile.de/fahrzeuge/details.html?id=…" required><button type="submit">Додати</button></form><p class="hint" id="add-msg">Авто збережеться у твоєму стані. Повні дані (фото, ціна, опції) я підтягну при наступному оновленні звіту.</p><div id="added"></div></details>
 <details class="ref" id="ref"><summary>📏 Довідник<span class="long">: розміри й потужність</span></summary><div id="ref-body"></div></details><button id="st-file" type="button" title="Спільні лайки й «не підходить» для всіх пристроїв (через GitHub)">☁️</button></div>
 <div class="bar">
+<button class="fx" id="fx" type="button" aria-label="Закрити фільтри">✕</button>
 <label>Модель<select id="f-model"><option value="">Усі</option></select></label>
 <div id="mods-wrap" hidden><label>Модифікація</label><div class="chips mods" id="f-var"></div></div>
 <div><label>Пальне</label><div class="chips" id="f-fuel"></div></div>
@@ -161,7 +165,7 @@ body:not(.fo) .bar .done{display:none}
 <button id="reset" type="button">Скинути</button>
 <button class="done" id="done" type="button">Показати</button>
 </div>
-<div class="tools"><button id="open" type="button">Фільтри</button><span class="count" id="count"></span><span id="mcount"></span><div class="chips marks"><label title="Тільки вподобані"><input id="f-like" type="checkbox"> ♥<span class="lt"> Тільки вподобані</span> (<span id="like-n">0</span>)</label><label title="Показати відкинуті"><input id="f-out" type="checkbox"> ✕<span class="lt"> Показати відкинуті</span> (<span id="out-n">0</span>)</label></div><label class="q"><input id="f-q" type="search" placeholder="Пошук у назві" aria-label="Пошук у назві"></label><label class="sort"><span>Сортування</span><select id="f-sort"><option value="p">Ціна ↑</option><option value="-p">Ціна ↓</option><option value="tot">Ціна з розмитненням ↑</option><option value="-os">Спочатку нові оголошення</option><option value="os">Спочатку старі оголошення</option><option value="-y">Рік ↓</option><option value="km">Пробіг ↑</option><option value="-ps">Потужність ↓</option><option value="pr">Оцінка ціни</option></select></label></div>
+<div class="tools"><button id="open" type="button">Фільтри</button><span class="count" id="count"></span><span id="mcount"></span><div class="chips marks"><label class="mk" title="Тільки вподобані"><input id="f-like" type="checkbox"><span>♥<span class="lt"> Тільки вподобані</span> (<span id="like-n">0</span>)</span></label><label class="mk" title="Показати відкинуті"><input id="f-out" type="checkbox"><span>✕<span class="lt"> Показати відкинуті</span> (<span id="out-n">0</span>)</span></label></div><label class="q"><input id="f-q" type="search" placeholder="Пошук у назві" aria-label="Пошук у назві"></label><label class="sort"><span>Сортування</span><select id="f-sort"><option value="p">Ціна ↑</option><option value="-p">Ціна ↓</option><option value="tot">Ціна з розмитненням ↑</option><option value="-os">Спочатку нові оголошення</option><option value="os">Спочатку старі оголошення</option><option value="-y">Рік ↓</option><option value="km">Пробіг ↑</option><option value="-ps">Потужність ↓</option><option value="pr">Оцінка ціни</option></select></label></div>
 <div class="sync" id="sync" hidden><p>Щоб лайки, «не підходить» і нотатки були спільні на всіх пристроях, вставте GitHub-токен з правом запису в репозиторій <b>mobile-de-auto-search</b> (Contents: Read and write). Його треба вставити один раз на кожному пристрої, зберігається він тільки в цьому браузері. Без токена спільні позначки видно, але змінювати їх можна лише на цьому пристрої. <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Створити токен</a></p><form id="sync-f"><input id="sync-tok" type="password" autocomplete="off" placeholder="github_pat_…"><button type="submit">Зберегти</button><button type="button" id="sync-off">Вимкнути</button><button type="button" id="sync-link">🔗 Посилання з токеном</button></form><p id="sync-msg"></p></div>
 <div class="grid" id="grid"></div>
 <nav class="pager" id="pager" aria-label="Сторінки"></nav>
@@ -367,6 +371,7 @@ const onFilter = () => { page = 1; apply(); };
 $("pager").addEventListener("click", e => { const p = +e.target.closest("button[data-pg]:not(:disabled)")?.dataset.pg; if (!p) return; page = p; apply(); $("grid").scrollIntoView(); });
 $("open").addEventListener("click", () => document.body.classList.add("fo"));
 $("done").addEventListener("click", () => { document.body.classList.remove("fo"); scrollTo(0, 0); });
+$("fx").addEventListener("click", () => document.body.classList.remove("fo"));
 let lastRej = null;
 const setMark = (id, patch) => { ST[id] = {r:0, l:0, ...ST[id], ...patch, t: Date.now()}; syncSets(); persist(); };
 const rerender = () => { const y = scrollY; apply(); scrollTo(0, y); };
