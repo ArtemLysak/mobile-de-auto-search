@@ -499,9 +499,11 @@ fetch("mobilede-bmw-photos.json").then(r => r.json()).then(p => { PHOTOS = p; re
 // card strip loops: arrows and a swipe past the last photo go to the first (and back)
 const stripGo = (s, i) => { const n = s.children.length, k = (i + n) % n; s.scrollTo({left: k * s.clientWidth, behavior: Math.abs(k - i) > 0 ? "instant" : "smooth"}); };
 let sx = null;
-$("grid").addEventListener("touchstart", e => { const s = e.target.closest(".strip"); sx = s ? [s, e.touches[0].clientX, Math.round(s.scrollLeft / s.clientWidth)] : null; }, {passive: true});
-$("grid").addEventListener("touchend", e => { if (!sx) return; const [s, x0, i0] = sx, d = e.changedTouches[0].clientX - x0, n = s.children.length; sx = null;
-  if (i0 === n - 1 && d < -40) stripGo(s, n); else if (i0 === 0 && d > 40) stripGo(s, -1); }, {passive: true});
+$("grid").addEventListener("touchstart", e => { const s = e.target.closest(".strip"); sx = s ? [s, e.touches[0].clientX, e.touches[0].clientY, s.scrollLeft] : null; }, {passive: true});
+// wrap only on a clearly horizontal swipe that the strip itself could not follow (already at its end); page scrolling must never wrap
+$("grid").addEventListener("touchend", e => { if (!sx) return; const [s, x0, y0, l0] = sx, t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0, n = s.children.length, w = s.clientWidth; sx = null;
+  if (Math.abs(dx) < 60 || Math.abs(dx) < 2 * Math.abs(dy) || Math.abs(s.scrollLeft - l0) > 2) return;
+  if (dx < 0 && l0 >= (n - 1) * w - 2) stripGo(s, n); else if (dx > 0 && l0 <= 2) stripGo(s, -1); }, {passive: true});
 // photo counter on the card follows the swipe
 $("grid").addEventListener("scroll", e => { const s = e.target; if (!s.classList || !s.classList.contains("strip")) return;
   const n = s.parentNode.querySelector(".np"); if (n) n.textContent = `${Math.round(s.scrollLeft / s.clientWidth) + 1} / ${s.children.length}`; }, true);
