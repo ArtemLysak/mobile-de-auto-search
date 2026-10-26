@@ -53,15 +53,15 @@ BMW и Mercedes сделаны одинаково: те же условия по
 | Фильтр | Что ищу | Да |
 |---|---|---|
 | AMG Line (вместо M пакета) | «AMG Line», «AMG-Line», «AMG Styling/Exterieur/Exterior», «AMG Paket/Package», «AMG Optik», линия комплектации «AMG…»; все C 43/GLC 43 — да | да 764 |
-| Аудио | «Burmester»; Hi-Fi — «Advanced Sound System», «HiFi», «Soundsystem» в тексте или опциях | Burmester 151, Hi-Fi 1 079 |
-| Фары | «Multibeam»; «LED High Performance»; «Intelligent Light System/ILS»; LED — опция «LED-Scheinwerfer» или «Voll-LED» | Multibeam LED 165, LED High Performance 984, адаптивные LED (Intelligent Light System) 41, LED 1 322, ксенон 6 |
-| Камера (360° / только задняя / нет или неизвестно) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задняя: «Kamera» в поле «Einparkhilfe» или названии, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 381, только задняя: 2 045 |
-| Память сидений | опция «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 342 |
+| Аудио | «Burmester»; Hi-Fi — «Advanced Sound System», «HiFi», «Soundsystem» в тексте или опциях | Burmester 151, Hi-Fi 1 074 |
+| Фары | «Multibeam»; «LED High Performance»; «Intelligent Light System/ILS»; LED — опция «LED-Scheinwerfer» или «Voll-LED» | Multibeam LED 165, LED High Performance 984, адаптивные LED (Intelligent Light System) 41, LED 1 308, ксенон 6 |
+| Камера (360° / только задняя / нет или неизвестно) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задняя: «Kamera» в поле «Einparkhilfe» или названии, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 381, только задняя: 2 036 |
+| Память сидений | опция «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 341 |
 | HUD | опция «Head-Up Display», «Head-Up», «HUD» | 239 |
 | Крыша | опции «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 587, люк 179 |
 | CarPlay/Android Auto | опции «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 2 173 |
 | Складные задние сиденья | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 2 084 |
-| Бесключевой доступ | опция «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 607 |
+| Бесключевой доступ | опция «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 590 |
 | Полный привод (4MATIC) | опции «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; если их нет, то название | 664 да, 1 895 нет или неизвестно |
 
 Также есть фильтры: модель и модификация, топливо, год, цена от–до, оценка цены mobile.de, пробег от–до, дата подачи. Все фильтры-галочки работают одинаково: ничего не выбрано — показываются все варианты. Поиск в названии стоит в строке с сортировкой. По умолчанию сначала показываются новые объявления. Фильтры «Цвет кузова», «Материал салона» и «Цвет салона» берутся из полей объявления mobile.de «Farbe» и «Innenausstattung» (есть почти во всех авто; если дилер не указал — «Не указано»). Кнопка «Сбросить» сбрасывает все фильтры, поиск в названии и сортировку (снова «Сначала новые объявления»).
@@ -82,6 +82,7 @@ BMW и Mercedes сделаны одинаково: те же условия по
 - **Заметка:** кнопка 📝 справа внизу карточки открывает окно по центру экрана. Заметку можно добавить к любому авто.
 - **Ссылка с токеном:** в панели «☁️» кнопка «🔗 Ссылка с токеном» копирует адрес отчёта с твоим токеном, токен из адреса сразу убирается. С этим токеном можно менять весь репозиторий, так что давай его только тем, кому доверяешь, а потом отзови.
 - **Журнал действий:** из 26.10.2026 каждый лайк, «не подходит», возврат, заметка и авто, добавленное по ссылке, записывается в файл `log.json` на ветке `state`: время, действие, авто, IP, устройство и браузер, метка браузера. Посмотреть журнал можно в панели «☁️» → «📜 Журнал действий» (последние 300 записей). IP определяется в браузере через api.ipify.org в момент действия, поэтому через VPN или мобильный интернет он меняется. Записи пишут страницы отчётов mobile.de; действия, сделанные до 26.10 или на страницах, которые ещё не обновлены, в журнал не попадают.
+- **Дата лайка:** на понравившейся карточке под характеристиками видны дата и время лайка. Когда включено «♥ Только понравившиеся», в сортировке появляется пункт «Сначала недавно понравившиеся» и включается сам. Для лайков, поставленных до 26.10.2026, берётся время последнего изменения отметки, поэтому оно может быть позже настоящего.
 - **Добавить авто по ссылке:** авто появляется в общем списке вместе с остальными после следующего обновления отчёта (каждые 2 часа), даже если не проходит фильтры поиска. До этого оно видно в перечне «Добавленные вручную».
 - **Ссылка с фильтрами:** выбранные фильтры, сортировка, поиск и номер страницы (по 60 авто) записываются в адрес страницы, им можно поделиться.
 
