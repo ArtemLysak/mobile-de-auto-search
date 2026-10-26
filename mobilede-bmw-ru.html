@@ -166,7 +166,7 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 .car .es{font-size:12.5px;margin:2px 0;padding:6px 8px;border-radius:6px;background:var(--bg)}
 .car .co2n{color:var(--muted);font-size:12px}
 .car .note{font-size:12.5px;color:var(--fg);background:var(--bg);border-radius:6px;padding:6px 8px;white-space:pre-wrap;overflow-wrap:anywhere}
-.nb{flex:none;margin-left:auto;width:42px;height:42px;font:inherit;font-size:20px;line-height:1;padding:0;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}.nb:hover{border-color:var(--accent)}
+.shb{flex:none;margin-left:auto;width:42px;height:42px;font:inherit;font-size:20px;line-height:1;padding:0;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}.shb:hover{border-color:var(--accent)}.shb+.nb{margin-left:8px}.nb{flex:none;margin-left:auto;width:42px;height:42px;font:inherit;font-size:20px;line-height:1;padding:0;border-radius:999px;border:1px solid var(--line);background:var(--bg);color:var(--fg);cursor:pointer}.nb:hover{border-color:var(--accent)}
 #nd{border:1px solid var(--line);border-radius:12px;padding:14px;width:min(480px,calc(100% - 32px));background:var(--card);color:var(--fg);box-shadow:0 10px 40px rgba(0,0,0,.35)}
 #nd::backdrop{background:rgba(0,0,0,.45)}
 #nd h3{margin:0 0 8px;font-size:15px}
@@ -390,7 +390,7 @@ function card(c) {
   const img = ph.length ? `<div class="phw"><div class="strip">${ph.map((u, i) => `<img class="ph" loading="lazy" alt="" src="${IMG(u, "mo-640")}" srcset="${IMG(u, "mo-640")} 640w, ${IMG(u, "mo-1024")} 1024w" sizes="(max-width: 600px) 100vw, 400px">`).join("")}</div>${ph.length > 1 ? `<button class="sp" type="button" aria-label="Предыдущее фото">‹</button><button class="sn" type="button" aria-label="Следующее фото">›</button><span class="np">1 / ${ph.length}</span>` : ""}<button class="gb" type="button" aria-label="Галерея на весь экран" title="Галерея на весь экран"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></button></div>` : `<div class="ph"></div>`;
   const specs = [c.fr, fmt(c.km)+" км", c.ps ? c.ps+" л.с." : "", FT[c.ft], TR[c.tr]||""].filter(Boolean).join(" · ");
   const cls = (out.has(c.id) ? " out" : "") + (liked.has(c.id) ? " liked" : "");
-  return `<a class="car${cls}" data-id="${c.id}" target="_blank" rel="noopener" href="https://suchen.mobile.de/fahrzeuge/details.html?id=${c.id}&lang=en">${img}<button class="like" type="button" aria-label="Нравится" aria-pressed="${liked.has(c.id)}">${liked.has(c.id) ? "♥" : "♡"}</button><button class="rej" type="button" aria-label="${out.has(c.id) ? "Вернуть" : "Не подходит"}" title="${out.has(c.id) ? "Вернуть" : "Не подходит"}">${out.has(c.id) ? "↩" : "✕"}</button><div class="b"><h2>${esc((c.g === c.md ? c.g : c.g + " · " + c.md) + (c.dr === "y" && !(c.g + " " + c.md).toLowerCase().includes(DRW.toLowerCase()) ? " " + DRW : ""))}</h2><div class="sub" title="${esc(c.sub)}">${esc(c.sub)}</div><div><span class="price">${fmt(c.p)} €</span><span class="pr pr${c.pr}">${PR[c.pr]}</span></div>${c.gone ? `<div class="gn">⚠ Исчезло с mobile.de (продано или снято)</div>` : ""}<div class="specs">${specs}</div>${liked.has(c.id) ? `<div class="lkd">♥ ${likeDate(c.id)}</div>` : ""}${optChips(c)}${c.es ? `<div class="es" title="IEDMT по общегосударственной ставке: стоимость нового авто по таблице Hacienda (приблизительно) × коэффициент возраста × ставка по CO2. CO2 — типичное официальное значение WLTP для этой модификации, не из объявления.">🇪🇸 Растаможка ≈ <b>${fmt(c.es[0])} €</b> · ставка ${String(c.es[1]).replace(".",",")}% (CO2 ≈${c.es[2]} г/км)${c.es[0] ? `<br>Вместе с авто ≈ <b>${fmt(c.tot)} €</b>` : ""}${c.co2 && Math.abs(c.co2 - c.es[2]) >= 10 ? `<br><span class="co2n">В объявлении CO2 ${c.co2} г/км</span>` : ""}</div>` : ""}<div class="loc">${esc(c.loc)}, ${CN[c.cn]||c.cn}</div>${ST[c.id]?.a ? `<div class="manual">Добавлено вручную</div>` : ""}${ST[c.id]?.n ? `<div class="note">📝 ${esc(ST[c.id].n)}</div>` : ""}<div class="ft">${c.os ? `<span class="date">На mobile.de с ${fdate(c.os)}</span>` : ""}<button class="nb" type="button" aria-label="Заметка" title="Заметка">📝</button></div></div></a>`;
+  return `<a class="car${cls}" data-id="${c.id}" target="_blank" rel="noopener" href="https://suchen.mobile.de/fahrzeuge/details.html?id=${c.id}&lang=en">${img}<button class="like" type="button" aria-label="Нравится" aria-pressed="${liked.has(c.id)}">${liked.has(c.id) ? "♥" : "♡"}</button><button class="rej" type="button" aria-label="${out.has(c.id) ? "Вернуть" : "Не подходит"}" title="${out.has(c.id) ? "Вернуть" : "Не подходит"}">${out.has(c.id) ? "↩" : "✕"}</button><div class="b"><h2>${esc((c.g === c.md ? c.g : c.g + " · " + c.md) + (c.dr === "y" && !(c.g + " " + c.md).toLowerCase().includes(DRW.toLowerCase()) ? " " + DRW : ""))}</h2><div class="sub" title="${esc(c.sub)}">${esc(c.sub)}</div><div><span class="price">${fmt(c.p)} €</span><span class="pr pr${c.pr}">${PR[c.pr]}</span></div>${c.gone ? `<div class="gn">⚠ Исчезло с mobile.de (продано или снято)</div>` : ""}<div class="specs">${specs}</div>${liked.has(c.id) ? `<div class="lkd">♥ ${likeDate(c.id)}</div>` : ""}${optChips(c)}${c.es ? `<div class="es" title="IEDMT по общегосударственной ставке: стоимость нового авто по таблице Hacienda (приблизительно) × коэффициент возраста × ставка по CO2. CO2 — типичное официальное значение WLTP для этой модификации, не из объявления.">🇪🇸 Растаможка ≈ <b>${fmt(c.es[0])} €</b> · ставка ${String(c.es[1]).replace(".",",")}% (CO2 ≈${c.es[2]} г/км)${c.es[0] ? `<br>Вместе с авто ≈ <b>${fmt(c.tot)} €</b>` : ""}${c.co2 && Math.abs(c.co2 - c.es[2]) >= 10 ? `<br><span class="co2n">В объявлении CO2 ${c.co2} г/км</span>` : ""}</div>` : ""}<div class="loc">${esc(c.loc)}, ${CN[c.cn]||c.cn}</div>${ST[c.id]?.a ? `<div class="manual">Добавлено вручную</div>` : ""}${ST[c.id]?.n ? `<div class="note">📝 ${esc(ST[c.id].n)}</div>` : ""}<div class="ft">${c.os ? `<span class="date">На mobile.de с ${fdate(c.os)}</span>` : ""}<button class="shb" type="button" aria-label="Поделиться" title="Поделиться">🔗</button><button class="nb" type="button" aria-label="Заметка" title="Заметка">📝</button></div></div></a>`;
 }
 const PER = 60;
 const pages = () => Math.max(1, Math.ceil(list.length / PER));
@@ -493,9 +493,12 @@ $("done").addEventListener("click", () => { document.body.classList.remove("fo")
 document.querySelector(".nav .lang").addEventListener("click", e => e.currentTarget.href = e.currentTarget.href.split("#")[0] + location.hash);
 $("fx").addEventListener("click", () => document.body.classList.remove("fo"));
 let lastRej = null;
-const setMark = (id, patch) => { const o = ST[id] || {}; ST[id] = {r:0, l:0, ...o, ...patch, t: Date.now()}; if (patch.l && !o.l) ST[id].lt = ST[id].t; logMarks(id, o, ST[id]); syncSets(); persist(); };
+// like date (lt) is fixed once set; an older like keeps the date shown so far, so a note edit no longer moves it
+const setMark = (id, patch) => { const o = ST[id] || {}; ST[id] = {r:0, l:0, ...o, ...patch, t: Date.now()}; if (patch.l && !o.l) ST[id].lt = ST[id].t; else if (ST[id].l && !ST[id].lt) ST[id].lt = o.t || ST[id].t; logMarks(id, o, ST[id]); syncSets(); persist(); };
 const rerender = () => { const y = scrollY; apply(); scrollTo(0, y); };
 $("grid").addEventListener("click", e => {
+  const sb = e.target.closest(".shb");
+  if (sb) { e.preventDefault(); e.stopPropagation(); shareCar(sb.closest(".car").dataset.id); return; }
   const nb = e.target.closest(".nb");
   if (nb) { e.preventDefault(); e.stopPropagation(); openNote(nb.closest(".car").dataset.id); return; }
   const pb = e.target.closest(".gb, .sp, .sn");
@@ -505,7 +508,7 @@ $("grid").addEventListener("click", e => {
   e.preventDefault(); e.stopPropagation();
   const id = b.closest(".car").dataset.id, k = b.classList.contains("like") ? "l" : "r";
   const on = !(ST[id] || {})[k]; setMark(id, {[k]: on ? 1 : 0});
-  if (on && k === "r") { lastRej = id; lastKind = k; $("toast-msg").textContent = "Отклонено."; $("toast").hidden = false; clearTimeout(toastT); toastT = setTimeout(hideToast, 5000); }
+  if (on && k === "r") { lastRej = id; lastKind = k; $("toast-msg").textContent = "Отклонено."; $("toast-undo").hidden = false; $("toast").hidden = false; clearTimeout(toastT); toastT = setTimeout(hideToast, 5000); }
   rerender();
 });
 let lastKind = "r", toastT, noteId = null;
@@ -515,6 +518,13 @@ const saveNote = n => { if (noteId) setMark(noteId, {n}); $("nd").close(); reren
 $("nd-ok").addEventListener("click", () => saveNote($("nd-in").value.trim()));
 $("nd-del").addEventListener("click", () => saveNote(""));
 $("nd").addEventListener("click", e => { if (e.target === $("nd")) $("nd").close(); });  // tap on the backdrop closes
+// Artem 2026-10-26: share a link to one car of this site (#car=ID); the phone share sheet when there is one, else copy
+async function shareCar(id) {
+  const url = location.origin + location.pathname + "#car=" + id, c = cars.find(x => x.id === id), title = c ? (c.g + " " + c.sub).slice(0, 80) : "";
+  if (navigator.share) { try { await navigator.share({title, url}); return; } catch (e) { if (e.name === "AbortError") return; } }
+  let ok = false; try { await navigator.clipboard.writeText(url); ok = true; } catch (e) {}
+  $("toast-msg").textContent = ok ? "Ссылка скопирована." : url; $("toast-undo").hidden = true; $("toast").hidden = false; clearTimeout(toastT); toastT = setTimeout(hideToast, ok ? 2500 : 8000);
+}
 const hideToast = () => { $("toast").hidden = true; lastRej = null; };
 $("toast-undo").addEventListener("click", () => { if (lastRej) setMark(lastRej, {[lastKind]: 0}); hideToast(); rerender(); });
 // cars added by link: kept in the state (a: 1, u: url) until a report refresh pulls their full data
