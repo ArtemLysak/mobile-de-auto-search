@@ -24,7 +24,7 @@ h1{margin:0 0 4px;font-size:24px}
 .tools{display:flex;align-items:center;gap:10px 12px;padding:12px 16px;flex-wrap:wrap}
 .tools .q input{font:inherit;font-size:13px;padding:7px 10px;width:220px;max-width:100%;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg)}
 .count{color:var(--muted);flex:1 1 100%}
-.sync{margin:0 16px 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:14px}.sync p{margin:0 0 8px}.sync form{display:flex;gap:6px;flex-wrap:wrap}.sync input{flex:1;min-width:200px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}.gn{font-size:13px;font-weight:600;color:var(--bad);margin:2px 0}.lkd{font-size:12px;color:var(--muted);margin-top:2px}.logt{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}.logt th,.logt td{text-align:left;padding:3px 4px;border-bottom:1px solid var(--line);vertical-align:top}#log-b{max-height:60vh;overflow:auto}#log-d summary{cursor:pointer;margin-top:8px}.sync button{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+.sync{margin:0 16px 12px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--card);font-size:14px}.sync p{margin:0 0 8px}.sync form{display:flex;gap:6px;flex-wrap:wrap}.sync input{flex:1;min-width:200px;font:inherit;padding:6px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}.one{margin:0 16px 10px;padding:8px 12px;border:1px solid var(--accent);border-radius:8px;background:var(--card);font-size:14px}.one button{font:inherit;margin-left:8px;padding:4px 8px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}.gn{font-size:13px;font-weight:600;color:var(--bad);margin:2px 0}.lkd{font-size:12px;color:var(--muted);margin-top:2px}.logt{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}.logt th,.logt td{text-align:left;padding:3px 4px;border-bottom:1px solid var(--line);vertical-align:top}#log-b{max-height:60vh;overflow:auto}#log-d summary{cursor:pointer;margin-top:8px}.sync button{font:inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
 #st-file.bad{color:var(--bad);border-color:var(--bad)}
 #st-file{white-space:nowrap;font:inherit;font-size:14px;padding:8px 12px;border:1px solid var(--line);border-radius:10px;margin-left:auto;background:var(--card);color:var(--fg);cursor:pointer}
 .sort{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);margin-left:auto}
@@ -206,7 +206,7 @@ body.fo .bar .fx{display:flex;align-items:center;justify-content:center;position
 </div>
 <div class="tools"><button id="open" type="button">Фільтри</button><span class="count" id="count"></span><span id="mcount"></span><div class="chips marks"><label class="mk" title="Тільки вподобані"><input id="f-like" type="checkbox"><span>♥<span class="lt"> Тільки вподобані</span> (<span id="like-n">0</span>)</span></label><label class="mk" title="Показати відкинуті"><input id="f-out" type="checkbox"><span>✕<span class="lt"> Показати відкинуті</span> (<span id="out-n">0</span>)</span></label></div><label class="q"><input id="f-q" type="search" placeholder="Пошук у назві" aria-label="Пошук у назві"></label><label class="sort"><span>Сортування</span><select id="f-sort"><option value="-os">Спочатку нові оголошення</option><option value="p">Ціна ↑</option><option value="-p">Ціна ↓</option><option value="tot">Ціна з розмитненням ↑</option><option value="os">Спочатку старі оголошення</option><option value="-y">Рік ↓</option><option value="km">Пробіг ↑</option><option value="-ps">Потужність ↓</option><option value="pr">Оцінка ціни</option><option value="-lk" hidden>Спочатку нещодавно вподобані</option></select></label></div>
 <div class="sync" id="sync" hidden><p>Щоб лайки, «не підходить» і нотатки були спільні на всіх пристроях, вставте GitHub-токен з правом запису в репозиторій <b>mobile-de-auto-search</b> (Contents: Read and write). Його треба вставити один раз на кожному пристрої, зберігається він тільки в цьому браузері. Без токена спільні позначки видно, але змінювати їх можна лише на цьому пристрої. <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Створити токен</a></p><form id="sync-f"><input id="sync-tok" type="password" autocomplete="off" placeholder="github_pat_…"><button type="submit">Зберегти</button><button type="button" id="sync-off">Вимкнути</button><button type="button" id="sync-link">🔗 Посилання з токеном</button></form><p id="sync-msg"></p><details id="log-d"><summary>📜 Журнал дій (хто, коли, з якого IP)</summary><p class="hint">Записується лише з сайту, починаючи з 26.10.2026. IP визначається в браузері в момент дії; через VPN чи мобільний інтернет він може змінюватися. «#код» — мітка конкретного браузера.</p><div id="log-b"></div></details></div>
-<div class="grid" id="grid"></div>
+<div id="one" class="one" hidden><span id="one-t"></span> <button id="one-x" type="button">Показати всі авто</button></div><div class="grid" id="grid"></div>
 <nav class="pager" id="pager" aria-label="Сторінки"></nav>
 <div class="toast" id="toast" hidden><span id="toast-msg">Відкинуто.</span><button id="toast-undo" type="button">Скасувати</button></div>
 <dialog id="gl" aria-label="Фото"><img id="gl-img" alt=""><button type="button" id="gl-x" aria-label="Закрити">✕</button><button type="button" id="gl-p" aria-label="Попереднє фото">‹</button><button type="button" id="gl-n" aria-label="Наступне фото">›</button><div class="glb"><div id="gl-t"></div><div class="glr"><span id="gl-c"></span><a id="gl-a" target="_blank" rel="noopener">Відкрити на mobile.de</a></div></div></dialog>
@@ -431,7 +431,7 @@ function apply() {
     dr: c => !f.drs.size || f.drs.has(c.dr),
     d: c => !f.d || c.age <= f.d,
     ...Object.fromEntries(hasOpts ? OPTS.map(([k], i) => ["o" + i, c => { const s = optSel[i]; return !s.size || s.has(ov(c, i)); }]) : []),
-    rest: c => (f.showOut ? out.has(c.id) : !out.has(c.id)) && (!f.onlyLiked || liked.has(c.id)) && c.y >= f.y1 && c.y <= f.y2 && c.p >= f.p1 && c.p <= f.p && c.km >= f.km1 && c.km <= f.km && (!f.q || (c.g+" "+c.md+" "+c.sub).toLowerCase().includes(f.q)),
+    rest: c => carId ? c.id === carId : (f.showOut ? out.has(c.id) : !out.has(c.id)) && (!f.onlyLiked || liked.has(c.id)) && c.y >= f.y1 && c.y <= f.y2 && c.p >= f.p1 && c.p <= f.p && c.km >= f.km1 && c.km <= f.km && (!f.q || (c.g+" "+c.md+" "+c.sub).toLowerCase().includes(f.q)),
   };
   const names = Object.keys(tests);
   const passExcept = (c, skip) => names.every(n => n === skip || tests[n](c));
@@ -451,12 +451,13 @@ function apply() {
   $("out-n").textContent = cars.filter(c => out.has(c.id)).length;
   $("like-n").textContent = cars.filter(c => liked.has(c.id)).length;
   render();
+  $("one").hidden = !carId; if (carId) $("one-t").textContent = list.length ? "Показано одне авто за посиланням." : "Цього авто немає в звіті: ймовірно, воно зникло з mobile.de або не підходить під умови звіту.";
   saveUrl();
 }
 // filters live in the URL hash (#model=X1&audio=hk~hifi…) so a filtered view can be shared as a link
 const urlFields = () => [...document.querySelectorAll(".bar select[id], .bar input[id]:not([type=checkbox]), #f-sort, #f-q")];
 const urlChips = () => [...document.querySelectorAll(".bar .chips[id]")];
-let lastPush = 0;
+let lastPush = 0, carId = "";  // #car=ID: a link to one car (Artem 2026-10-26)
 function saveUrl() {
   const q = new URLSearchParams();
   urlFields().forEach(e => { if (e.value !== (e.dataset.def ?? "")) q.set(e.id.slice(2), e.value); });
@@ -464,6 +465,7 @@ function saveUrl() {
     if (on.length) q.set(c.id.slice(2), on.join("~")); });
   ["like", "out"].forEach(k => { if ($("f-" + k).checked) q.set(k, "1"); });
   if (page > 1) q.set("pg", page);
+  if (carId) q.set("car", carId);
   const h = q.toString(); if (h === location.hash.slice(1)) return;
   // every filter change is a history step, so Back undoes it; typing in a field within a second stays one step
   const url = location.pathname + location.search + (h ? "#" + h : ""), now = Date.now();
@@ -476,7 +478,7 @@ function loadUrl() {
   urlFields().forEach(e => { const k = e.id.slice(2); if (q.has(k)) e.value = q.get(k); });
   urlChips().forEach(c => { const k = c.id.slice(2); if (q.has(k)) { const v = new Set(q.get(k).split("~")); c.querySelectorAll("input").forEach(i => i.checked = v.has(i.value)); } });
   ["like", "out"].forEach(k => { if (q.has(k)) $("f-" + k).checked = true; });
-  page = +q.get("pg") || 1;
+  page = +q.get("pg") || 1; carId = q.get("car") || "";
 }
 // a changed filter starts again from page 1; marks and sync re-renders keep the page
 const onFilter = () => { page = 1; apply(); };
@@ -536,8 +538,9 @@ function clearForm(sort) {
   $("f-fuel").querySelectorAll("input").forEach(i => i.checked = false); $("f-out").checked = false; $("f-dr").querySelectorAll("input").forEach(i => i.checked = false); $("f-like").checked = false; document.querySelectorAll("#opt-filters input").forEach(i => i.checked = false);
   document.querySelectorAll(".bar .chips input").forEach(i => i.checked = false);
   if (sort) $("f-sort").selectedIndex = 0;
-  page = 1;
+  page = 1; carId = "";
 }
+$("one-x").addEventListener("click", () => { carId = ""; page = 1; apply(); });
 $("reset").addEventListener("click", () => { clearForm(true); apply(); });  // also sort (back to newest first) and title search
 $("log-d").addEventListener("toggle", e => { if (e.target.open) showLog(); });
 $("st-file").addEventListener("click", () => { $("sync").hidden = !$("sync").hidden; $("sync-tok").value = ghTok; });
