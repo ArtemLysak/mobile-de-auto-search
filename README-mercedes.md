@@ -37,12 +37,12 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 | кабріолети | ти виключив |
 | без зрозумілої моделі («Andere», «220» тощо) | неможливо визначити клас |
 
-Лишилось 2 559 авто:
+Лишилось 2 557 авто:
 
 | Модель | Авто |
 |---|---|
-| C-Клас | 2 158 |
-| GLC | 401 |
+| C-Клас | 2 155 |
+| GLC | 402 |
 
 ## 3. Як визначено фільтри
 
@@ -52,17 +52,17 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 | Фільтр | Що шукаю | Так |
 |---|---|---|
-| AMG Line (замість M пакета) | «AMG Line», «AMG-Line», «AMG Styling/Exterieur/Exterior», «AMG Paket/Package», «AMG Optik», лінія комплектації «AMG…»; усі C 43/GLC 43 — так | так 772 |
+| AMG Line (замість M пакета) | «AMG Line», «AMG-Line», «AMG Styling/Exterieur/Exterior», «AMG Paket/Package», «AMG Optik», лінія комплектації «AMG…»; усі C 43/GLC 43 — так | так 773 |
 | Аудіо | «Burmester»; Hi-Fi — «Advanced Sound System», «HiFi», «Soundsystem» в тексті чи опціях | Burmester 148, Hi-Fi 1 078 |
-| Фари | «Multibeam»; «LED High Performance»; «Intelligent Light System/ILS»; LED — опція «LED-Scheinwerfer» або «Voll-LED» | Multibeam LED 165, LED High Performance 985, адаптивні LED (Intelligent Light System) 40, LED 1 321, ксенон 6 |
-| Камера (360° / тільки задня / ні або невідомо) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задня: «Kamera» в полі «Einparkhilfe» чи назві, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 387, тільки задня: 2 038 |
-| Пам'ять сидінь | опція «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 339 |
+| Фари | «Multibeam»; «LED High Performance»; «Intelligent Light System/ILS»; LED — опція «LED-Scheinwerfer» або «Voll-LED» | Multibeam LED 165, LED High Performance 984, адаптивні LED (Intelligent Light System) 40, LED 1 320, ксенон 6 |
+| Камера (360° / тільки задня / ні або невідомо) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задня: «Kamera» в полі «Einparkhilfe» чи назві, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 387, тільки задня: 2 037 |
+| Пам'ять сидінь | опція «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 340 |
 | HUD | опція «Head-Up Display», «Head-Up», «HUD» | 238 |
-| Дах | опції «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 590, люк 178 |
-| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 2 166 |
-| Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 2 083 |
-| Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 612 |
-| Повний привід (4MATIC) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 666 так, 1 893 ні або невідомо |
+| Дах | опції «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 591, люк 178 |
+| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 2 165 |
+| Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 2 081 |
+| Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 613 |
+| Повний привід (4MATIC) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 666 так, 1 891 ні або невідомо |
 
 Також є фільтри: модель і модифікація, пальне, рік, ціна від–до, оцінка ціни mobile.de, пробіг від–до, дата подачі. Усі фільтри-галочки працюють однаково: нічого не вибрано — показуються всі варіанти. Пошук у назві стоїть у рядку з сортуванням. За замовчуванням спочатку показуються нові оголошення. Фільтри «Колір кузова», «Матеріал салону» й «Колір салону» беруться з полів оголошення mobile.de «Farbe» та «Innenausstattung» (є майже в усіх авто; якщо дилер не вказав — «Не вказано»). Кнопка «Скинути» скидає всі фільтри, пошук у назві й сортування (знову «Спочатку нові оголошення»).
 
@@ -72,7 +72,7 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 - **Кузов і розміри:** кузов і покоління визначаю за назвою, кузовом і роком; на картці їх немає, вони в довіднику «📏». Для 3 серії та C-Класу після вибору моделі з’являється фільтр «Кузов» (седан / універсал Touring або T-Modell) — тип кузова береться з оголошення на mobile.de. Розміри, роки випуску й рестайлінгів і запас ходу гібридів — приблизні дані виробника з довідника «📏», не з оголошень.
 - **Покоління C-Класу:** за датою першої реєстрації: з 07.2021 — W206/S206, раніше — W205/S205. Код кузова в оголошенні не враховую, бо дилери часто пишуть його неточно.
 - **Дата подачі:** «На mobile.de з…» береться з результатів пошуку. Фільтр «за день/тиждень/місяць» рахується від моменту збору даних.
-- **Фото:** на картці показуються всі фото оголошення (2 538 авто з кількома фото) у хорошій якості (640–1024 px). Гортати їх можна прямо на картці свайпом, а на комп’ютері — стрілками ‹ › при наведенні; лічильник зліва внизу показує номер фото. Кнопка галереї справа внизу фото відкриває галерею на весь екран (1600 px, на телефоні 1024 px) з того ж фото, внизу — маленькі превʼю всіх фото: гортати свайпом, стрілками клавіатури, натисканням на край фото або на превʼю, після останнього фото йде перше (і на картці теж), закрити — ✕, Esc або кнопкою «Назад». Натискання на саме фото чи текст картки відкриває оголошення. Беруться лише фото з галереї оголошення в тому ж порядку, що на mobile.de (без банера, логотипу й блоку дилера). Список фото збирається з кожного відкритого оголошення, для нових — під час оновлення кожні 2 години.
+- **Фото:** на картці показуються всі фото оголошення (2 536 авто з кількома фото) у хорошій якості (640–1024 px). Гортати їх можна прямо на картці свайпом, а на комп’ютері — стрілками ‹ › при наведенні; лічильник зліва внизу показує номер фото. Кнопка галереї справа внизу фото відкриває галерею на весь екран (1600 px, на телефоні 1024 px) з того ж фото, внизу — маленькі превʼю всіх фото: гортати свайпом, стрілками клавіатури, натисканням на край фото або на превʼю, після останнього фото йде перше (і на картці теж), закрити — ✕, Esc або кнопкою «Назад». Натискання на саме фото чи текст картки відкриває оголошення. Беруться лише фото з галереї оголошення в тому ж порядку, що на mobile.de (без банера, логотипу й блоку дилера). Список фото збирається з кожного відкритого оголошення, для нових — під час оновлення кожні 2 години.
 
 ## 4. Лайки, «не підходить», нотатки, посилання
 
