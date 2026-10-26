@@ -23,7 +23,7 @@ BMW и Mercedes сделаны одинаково: те же условия по
 
 Камеру, CarPlay и другие опции в поиск намеренно не ставил. Дилеры часто не ставят эти галочки, и поиск отбрасывал бы машины, где всё это на самом деле есть. Вместо этого каждое объявление проверено отдельно (см. раздел 3).
 
-Результат поиска: 8 779 авто. mobile.de показывает максимум 100 страниц на один поиск, поэтому я делил его на ценовые диапазоны.
+Результат поиска: 8 785 авто. mobile.de показывает максимум 100 страниц на один поиск, поэтому я делил его на ценовые диапазоны.
 
 ## 2. Что исключено и почему
 
@@ -37,12 +37,12 @@ BMW и Mercedes сделаны одинаково: те же условия по
 | кабриолеты | ты исключил |
 | без понятной модели («Andere», «220» и т. п.) | невозможно определить класс |
 
-Осталось 2 557 авто:
+Осталось 2 556 авто:
 
 | Модель | Авто |
 |---|---|
 | C-Класс | 2 158 |
-| GLC | 399 |
+| GLC | 398 |
 
 ## 3. Как определены фильтры
 
@@ -52,17 +52,17 @@ BMW и Mercedes сделаны одинаково: те же условия по
 
 | Фильтр | Что ищу | Да |
 |---|---|---|
-| AMG Line (вместо M пакета) | «AMG Line», «AMG-Line», «AMG Styling/Exterieur/Exterior», «AMG Paket/Package», «AMG Optik», линия комплектации «AMG…»; все C 43/GLC 43 — да | да 772 |
-| Аудио | «Burmester»; Hi-Fi — «Advanced Sound System», «HiFi», «Soundsystem» в тексте или опциях | Burmester 150, Hi-Fi 1 076 |
-| Фары | «Multibeam»; «LED High Performance»; «Intelligent Light System/ILS»; LED — опция «LED-Scheinwerfer» или «Voll-LED» | Multibeam LED 165, LED High Performance 987, адаптивные LED (Intelligent Light System) 40, LED 1 317, ксенон 6 |
-| Камера (360° / только задняя / нет или неизвестно) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задняя: «Kamera» в поле «Einparkhilfe» или названии, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 386, только задняя: 2 038 |
-| Память сидений | опция «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 338 |
-| HUD | опция «Head-Up Display», «Head-Up», «HUD» | 237 |
-| Крыша | опции «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 588, люк 178 |
-| CarPlay/Android Auto | опции «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 2 167 |
-| Складные задние сиденья | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 2 082 |
-| Бесключевой доступ | опция «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 608 |
-| Полный привод (4MATIC) | опции «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; если их нет, то название | 663 да, 1 894 нет или неизвестно |
+| AMG Line (вместо M пакета) | «AMG Line», «AMG-Line», «AMG Styling/Exterieur/Exterior», «AMG Paket/Package», «AMG Optik», линия комплектации «AMG…»; все C 43/GLC 43 — да | да 770 |
+| Аудио | «Burmester»; Hi-Fi — «Advanced Sound System», «HiFi», «Soundsystem» в тексте или опциях | Burmester 149, Hi-Fi 1 075 |
+| Фары | «Multibeam»; «LED High Performance»; «Intelligent Light System/ILS»; LED — опция «LED-Scheinwerfer» или «Voll-LED» | Multibeam LED 165, LED High Performance 984, адаптивные LED (Intelligent Light System) 40, LED 1 319, ксенон 6 |
+| Камера (360° / только задняя / нет или неизвестно) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задняя: «Kamera» в поле «Einparkhilfe» или названии, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 388, только задняя: 2 036 |
+| Память сидений | опция «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 337 |
+| HUD | опция «Head-Up Display», «Head-Up», «HUD» | 238 |
+| Крыша | опции «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 590, люк 178 |
+| CarPlay/Android Auto | опции «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 2 164 |
+| Складные задние сиденья | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 2 080 |
+| Бесключевой доступ | опция «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 609 |
+| Полный привод (4MATIC) | опции «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; если их нет, то название | 663 да, 1 893 нет или неизвестно |
 
 Также есть фильтры: модель и модификация, топливо, год, цена от–до, оценка цены mobile.de, пробег от–до, дата подачи. Все фильтры-галочки работают одинаково: ничего не выбрано — показываются все варианты. Поиск в названии стоит в строке с сортировкой. По умолчанию сначала показываются новые объявления. Фильтры «Цвет кузова», «Материал салона» и «Цвет салона» берутся из полей объявления mobile.de «Farbe» и «Innenausstattung» (есть почти во всех авто; если дилер не указал — «Не указано»). Кнопка «Сбросить» сбрасывает все фильтры, поиск в названии и сортировку (снова «Сначала новые объявления»).
 
@@ -90,7 +90,7 @@ BMW и Mercedes сделаны одинаково: те же условия по
 
 ## 5. Что есть в `mercedes-data.json`
 
-Все 8 779 авто из поиска, включая исключённые. Для каждого:
+Все 8 785 авто из поиска, включая исключённые. Для каждого:
 
 - `search` — данные из результатов поиска: модель, название, цена, пробег, мощность, топливо, кузов, город, оценка цены, дата подачи, фото;
 - `listing` — данные со страницы объявления (для открытых авто, у остальных `null`): `kv` — технические поля (CO2, цвет, салон, владельцы и т. п.), `f` — полный список опций, `g` — id всех фото (ссылка: `https://img.classistatic.de/api/v1/mo-prod/images/<первые 2 символа id>/<id>?rule=mo-1600`);
