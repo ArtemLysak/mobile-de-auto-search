@@ -2010,7 +2010,7 @@ function render(){const only=$("onlylike").checked,loc=document.documentElement.
   $("one").hidden=!carId;if(carId)$("one-t").textContent=document.querySelector(`.car[data-id="${CSS.escape(carId)}"]`)?"Показано одно авто по ссылке.":"Этого авто нет в топе этой страницы. Нажмите «Показать все авто».";}
 const SHARED="Ссылка скопирована.",MSG_REJ=$("toast-msg").textContent;
 async function shareCar(id,c){const url=location.origin+location.pathname+"#car="+id,title=(c.querySelector("h3")||{}).textContent||"";
-  if(navigator.share){try{await navigator.share({title,url});return;}catch(e){if(e.name==="AbortError")return;}}
+  if(navigator.share&&matchMedia("(pointer: coarse)").matches){try{await navigator.share({title,url});return;}catch(e){if(e.name==="AbortError")return;}}
   let ok=false;try{await navigator.clipboard.writeText(url);ok=true;}catch(e){}
   $("toast-msg").textContent=ok?SHARED:url;$("undo").hidden=true;$("toast").hidden=false;clearTimeout(tt);tt=setTimeout(()=>$("toast").hidden=true,ok?2500:8000);}
 let last=null,tt=null,noteId=null,gl={a:[],i:0};

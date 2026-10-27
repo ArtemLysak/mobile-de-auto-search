@@ -521,7 +521,7 @@ $("nd").addEventListener("click", e => { if (e.target === $("nd")) $("nd").close
 // Artem 2026-10-26: share a link to one car of this site (#car=ID); the phone share sheet when there is one, else copy
 async function shareCar(id) {
   const url = location.origin + location.pathname + "#car=" + id, c = cars.find(x => x.id === id), title = c ? (c.g + " " + c.sub).slice(0, 80) : "";
-  if (navigator.share) { try { await navigator.share({title, url}); return; } catch (e) { if (e.name === "AbortError") return; } }
+  if (navigator.share && matchMedia("(pointer: coarse)").matches) { try { await navigator.share({title, url}); return; } catch (e) { if (e.name === "AbortError") return; } }
   let ok = false; try { await navigator.clipboard.writeText(url); ok = true; } catch (e) {}
   $("toast-msg").textContent = ok ? "Посилання скопійовано." : url; $("toast-undo").hidden = true; $("toast").hidden = false; clearTimeout(toastT); toastT = setTimeout(hideToast, ok ? 2500 : 8000);
 }
