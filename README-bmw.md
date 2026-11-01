@@ -1,6 +1,6 @@
 # Звіт BMW з mobile.de: як зроблено
 
-Дані оновлено 30.10.2026. Кожне оголошення, що підходить, відкрито й прочитано повністю, з усім описом. Усі кількості нижче — станом на 30.10.2026. Звіти лежать на сайті https://artemlysak.github.io/mobile-de-auto-search/, там же:
+Дані оновлено 01.11.2026. Кожне оголошення, що підходить, відкрито й прочитано повністю, з усім описом. Усі кількості нижче — станом на 01.11.2026. Звіти лежать на сайті https://artemlysak.github.io/mobile-de-auto-search/, там же:
 
 - `mobilede-bmw.html` — сам звіт;
 - `bmw-data.json` — усі зібрані дані, з них можна будувати нові фільтри;
@@ -23,7 +23,7 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 Камеру, CarPlay та інші опції в пошук навмисно не ставив. Дилери часто не ставлять ці галочки, і пошук відкидав би машини, де все це насправді є. Натомість кожне оголошення перевірено окремо (див. розділ 3).
 
-Результат пошуку: 7 968 авто. mobile.de показує максимум 100 сторінок на один пошук, тому я ділив його на цінові діапазони.
+Результат пошуку: 7 940 авто. mobile.de показує максимум 100 сторінок на один пошук, тому я ділив його на цінові діапазони.
 
 ## 2. Що виключено і чому
 
@@ -44,9 +44,9 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 | Модель | Авто |
 |---|---|
-| 3 серія | 1 607 |
-| 4 серія Gran Coupé | 86 |
-| X3 | 427 |
+| 3 серія | 1 606 |
+| 4 серія Gran Coupé | 93 |
+| X3 | 421 |
 
 ## 3. Як визначено фільтри
 
@@ -56,17 +56,17 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 | Фільтр | Що шукаю | Так |
 |---|---|---|
-| M пакет | «M Sport», «M-Sportpaket», «M Package», «M Technic Sportpaket», код опції 337A, лінія комплектації «M Sport»; усі M340/M440/X3 M40 — так. Окремі опції «M-Technic» (кермо, підвіска, аеродинамічний пакет) — не M пакет | так 574 |
-| Аудіо | «Harman Kardon», «H/K»; «Bowers & Wilkins», «B&W»; Hi-Fi — «HiFi», «Lautsprechersystem», «Soundsystem» в тексті чи опціях | Harman Kardon 201, Bowers & Wilkins 0, Hi-Fi 1 153 |
-| Фари | «Laserlicht»; адаптивні — «Adaptive LED», «LED mit erweiterten Umfängen», «Matrix»; LED — опція «LED-Scheinwerfer» або «Voll-LED» | лазерні 300, адаптивні LED 355, LED 1 405, ксенон 4 |
-| Камера (360° / тільки задня / ні або невідомо) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задня: «Kamera» в полі «Einparkhilfe» чи назві, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 201, тільки задня: 1 146 |
-| Пам'ять сидінь | опція «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 356 |
-| HUD | опція «Head-Up Display», «Head-Up», «HUD» | 752 |
-| Дах | опції «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 425, люк 47 |
-| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 1 487 |
-| Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 1 608 |
-| Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 150 |
-| Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 945 так, 1 175 ні або невідомо |
+| M пакет | «M Sport», «M-Sportpaket», «M Package», «M Technic Sportpaket», код опції 337A, лінія комплектації «M Sport»; усі M340/M440/X3 M40 — так. Окремі опції «M-Technic» (кермо, підвіска, аеродинамічний пакет) — не M пакет | так 575 |
+| Аудіо | «Harman Kardon», «H/K»; «Bowers & Wilkins», «B&W»; Hi-Fi — «HiFi», «Lautsprechersystem», «Soundsystem» в тексті чи опціях | Harman Kardon 207, Bowers & Wilkins 0, Hi-Fi 1 149 |
+| Фари | «Laserlicht»; адаптивні — «Adaptive LED», «LED mit erweiterten Umfängen», «Matrix»; LED — опція «LED-Scheinwerfer» або «Voll-LED» | лазерні 306, адаптивні LED 351, LED 1 405, ксенон 4 |
+| Камера (360° / тільки задня / ні або невідомо) | 360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задня: «Kamera» в полі «Einparkhilfe» чи назві, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera» | 360°: 206, тільки задня: 1 146 |
+| Пам'ять сидінь | опція «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion» | 350 |
+| HUD | опція «Head-Up Display», «Head-Up», «HUD» | 758 |
+| Дах | опції «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach» | панорама 416, люк 49 |
+| CarPlay/Android Auto | опції «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration» | 1 484 |
+| Складні задні сидіння | «Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)» | 1 607 |
+| Безключовий доступ | опція «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos» | 1 152 |
+| Повний привід (xDrive) | опції «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; якщо їх немає, то назва | 937 так, 1 183 ні або невідомо |
 
 Також є фільтри: модель і модифікація, пальне, рік, ціна від–до, оцінка ціни mobile.de, пробіг від–до, дата подачі. Усі фільтри-галочки працюють однаково: нічого не вибрано — показуються всі варіанти. Пошук у назві стоїть у рядку з сортуванням. За замовчуванням спочатку показуються нові оголошення. Фільтри «Колір кузова», «Матеріал салону» й «Колір салону» беруться з полів оголошення mobile.de «Farbe» та «Innenausstattung» (є майже в усіх авто; якщо дилер не вказав — «Не вказано»). Кнопка «Скинути» скидає всі фільтри, пошук у назві й сортування (знову «Спочатку нові оголошення»).
 
@@ -95,7 +95,7 @@ BMW і Mercedes зроблено однаково: ті самі умови по
 
 ## 5. Що є в `bmw-data.json`
 
-Усі 7 968 авто з пошуку, включно з виключеними. Для кожного:
+Усі 7 940 авто з пошуку, включно з виключеними. Для кожного:
 
 - `search` — дані з результатів пошуку: модель, назва, ціна, пробіг, потужність, пальне, кузов, місто, оцінка ціни, дата подачі, фото;
 - `listing` — дані зі сторінки оголошення (для відкритих авто, у решти `null`): `kv` — технічні поля (CO2, колір, салон, власники тощо), `f` — повний список опцій, `g` — id усіх фото (посилання: `https://img.classistatic.de/api/v1/mo-prod/images/<перші 2 символи id>/<id>?rule=mo-1600`);
