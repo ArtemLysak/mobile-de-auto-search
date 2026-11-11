@@ -10,7 +10,7 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 
 .top{display:flex;justify-content:space-between;align-items:center}.top .lang{font-weight:600;text-decoration:none}.top .back{margin:0}
 </style></head><body><main><nav class="top"><a class="back" href="index-ru.html">← Все отчёты</a><a class="lang" href="guide-bmw.html" lang="uk">UA</a></nav><h1>Отчёт BMW с mobile.de: как сделано</h1>
-<p>Данные обновлены 11.11.2026. Каждое подходящее объявление открыто и прочитано полностью, со всем описанием. Все количества ниже — по состоянию на 11.11.2026. Отчёты лежат на сайте https://artemlysak.github.io/mobile-de-auto-search/, там же:</p>
+<p>Данные обновлены 12.11.2026. Каждое подходящее объявление открыто и прочитано полностью, со всем описанием. Все количества ниже — по состоянию на 12.11.2026. Отчёты лежат на сайте https://artemlysak.github.io/mobile-de-auto-search/, там же:</p>
 <ul>
 <li><code>mobilede-bmw.html</code> — сам отчёт;</li>
 <li><code>bmw-data.json</code> — все собранные данные, из них можно строить новые фильтры;</li>
@@ -53,8 +53,8 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 <td>ты исключил 24.10</td>
 </tr>
 <tr>
-<td>X1, X4</td>
-<td>ты исключил 24.10</td>
+<td>X1</td>
+<td>ты исключил 24.10; X4 вернул 12.11</td>
 </tr>
 <tr>
 <td>4 серия купе</td>
@@ -65,8 +65,8 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 <td>ты исключил 25.10</td>
 </tr>
 <tr>
-<td>«полные» M: M3, M4, X3 M</td>
-<td>как AMG 63 у Mercedes. M Performance (M340i/d, M440i, X3 M40i/d) остались — ты вернул 25.10</td>
+<td>«полные» M: M3, M4, X3 M, X4 M</td>
+<td>как AMG 63 у Mercedes. M Performance (M340i/d, M440i, X3 M40i/d, X4 M40i/d) остались — ты вернул 25.10</td>
 </tr>
 <tr>
 <td>X2, X5</td>
@@ -82,7 +82,7 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 </tr>
 </tbody>
 </table>
-<p>Осталось 3 194 авто:</p>
+<p>Осталось 3 262 авто:</p>
 <table>
 <thead>
 <tr>
@@ -103,6 +103,10 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 <td>X3</td>
 <td>786</td>
 </tr>
+<tr>
+<td>X4</td>
+<td>68</td>
+</tr>
 </tbody>
 </table>
 <h2>3. Как определены фильтры</h2>
@@ -119,58 +123,58 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 <tbody>
 <tr>
 <td>M пакет</td>
-<td>«M Sport», «M-Sportpaket», «M Package», «M Technic Sportpaket», код опции 337A, линия комплектации «M Sport»; все M340/M440/X3 M40 — да. Отдельные опции «M-Technic» (руль, подвеска, аэродинамический пакет) — не M пакет</td>
-<td>да 1 150</td>
+<td>«M Sport», «M-Sportpaket», «M Package», «M Technic Sportpaket», код опции 337A, линия комплектации «M Sport»; все M340/M440/X3 M40/X4 M40 — да. Отдельные опции «M-Technic» (руль, подвеска, аэродинамический пакет) — не M пакет</td>
+<td>да 1 184</td>
 </tr>
 <tr>
 <td>Аудио</td>
 <td>«Harman Kardon», «H/K»; «Bowers &amp; Wilkins», «B&amp;W»; Hi-Fi — «HiFi», «Lautsprechersystem», «Soundsystem» в тексте или опциях</td>
-<td>Harman Kardon 385, Bowers &amp; Wilkins 0, Hi-Fi 1 762</td>
+<td>Harman Kardon 398, Bowers &amp; Wilkins 0, Hi-Fi 1 798</td>
 </tr>
 <tr>
 <td>Фары</td>
 <td>«Laserlicht»; адаптивные — «Adaptive LED», «LED mit erweiterten Umfängen», «Matrix»; LED — опция «LED-Scheinwerfer» или «Voll-LED»</td>
-<td>лазерные 497, адаптивные LED 660, LED 1 900, ксенон 4</td>
+<td>лазерные 501, адаптивные LED 685, LED 1 938, ксенон 4</td>
 </tr>
 <tr>
 <td>Камера (360° / только задняя / нет или неизвестно)</td>
 <td>360°: поле «Einparkhilfe» = 360°-Kamera, «360°-Kamera», «Rundumsicht», «Surround/Top/3D View», «Parkassistent Plus», «Park-Paket mit 360°», «360 camera», «birds eye». Задняя: «Kamera» в поле «Einparkhilfe» или названии, «Rückfahrkamera», «RFK», «rear view/reversing camera», «Parking Assistant», «Park-Paket mit Rückfahrkamera»</td>
-<td>360°: 417, только задняя: 1 896</td>
+<td>360°: 434, только задняя: 1 939</td>
 </tr>
 <tr>
 <td>Память сидений</td>
 <td>опция «Sitzeinstellung mit Memory-Funktion», «Memory», «Sitzspeicher», «Speicherfunktion»</td>
-<td>677</td>
+<td>710</td>
 </tr>
 <tr>
 <td>HUD</td>
 <td>опция «Head-Up Display», «Head-Up», «HUD»</td>
-<td>1 269</td>
+<td>1 308</td>
 </tr>
 <tr>
 <td>Крыша</td>
 <td>опции «Panorama-Dach» / «Schiebedach», «Pano», «Glasdach», «GSD», «Sonnendach»</td>
-<td>панорама 780, люк 71</td>
+<td>панорама 807, люк 71</td>
 </tr>
 <tr>
 <td>CarPlay/Android Auto</td>
 <td>опции «Apple CarPlay» / «Android Auto», «CarPlay», «Android Auto», «Smartphone-Integration»</td>
-<td>2 208</td>
+<td>2 254</td>
 </tr>
 <tr>
 <td>Складные задние сиденья</td>
 <td>«Rücksitzlehne geteilt/klappbar», «Fond… umklappbar», «40:20:40», «Durchlade(system)»</td>
-<td>2 363</td>
+<td>2 411</td>
 </tr>
 <tr>
 <td>Бесключевой доступ</td>
 <td>опция «Schlüssellose Zentralverriegelung (Keyless)», «Keyless(-Go)», «Komfortzugang», «Comfort Access», «schlüssellos»</td>
-<td>1 867</td>
+<td>1 915</td>
 </tr>
 <tr>
 <td>Полный привод (xDrive)</td>
 <td>опции «Allradantrieb» / «Frontantrieb» / «Heckantrieb»; если их нет, то название</td>
-<td>1 579 да, 1 615 нет или неизвестно</td>
+<td>1 647 да, 1 615 нет или неизвестно</td>
 </tr>
 </tbody>
 </table>
@@ -181,7 +185,7 @@ th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-alig
 <li><strong>Кузов и размеры:</strong> кузов и поколение определяю по названию, кузову и году; на карточке их нет, они в справочнике «📏». Для 3 серии и C-Класса после выбора модели появляется фильтр «Кузов» (седан / универсал Touring или T-Modell) — тип кузова берётся из объявления на mobile.de. Размеры, годы выпуска и рестайлингов и запас хода гибридов — приблизительные данные производителя из справочника «📏», не из объявлений.</li>
 <li><strong>Поколение C-Класса:</strong> по дате первой регистрации: с 07.2021 — W206/S206, раньше — W205/S205. Код кузова в объявлении не учитываю, потому что дилеры часто пишут его неточно.</li>
 <li><strong>Дата подачи:</strong> «На mobile.de с…» берётся из результатов поиска. Фильтр «за день/неделю/месяц» считается от момента сбора данных.</li>
-<li><strong>Фото:</strong> на карточке показываются все фото объявления (3 153 авто с несколькими фото) в хорошем качестве (640–1024 px). Листать их можно прямо на карточке свайпом, а на компьютере — стрелками ‹ › при наведении; счётчик слева внизу показывает номер фото. Кнопка галереи справа внизу фото открывает галерею на весь экран (1600 px, на телефоне 1024 px) с того же фото, внизу — маленькие превью всех фото: листать свайпом, стрелками клавиатуры, нажатием на край фото или на превью, после последнего фото идёт первое (и на карточке тоже), закрыть — ✕, Esc или кнопкой «Назад». Нажатие на само фото или текст карточки открывает объявление. Берутся только фото из галереи объявления в том же порядке, что на mobile.de (без баннера, логотипа и блока дилера). Список фото собирается из каждого открытого объявления, для новых — при обновлении каждые 2 часа.</li>
+<li><strong>Фото:</strong> на карточке показываются все фото объявления (3 221 авто с несколькими фото) в хорошем качестве (640–1024 px). Листать их можно прямо на карточке свайпом, а на компьютере — стрелками ‹ › при наведении; счётчик слева внизу показывает номер фото. Кнопка галереи справа внизу фото открывает галерею на весь экран (1600 px, на телефоне 1024 px) с того же фото, внизу — маленькие превью всех фото: листать свайпом, стрелками клавиатуры, нажатием на край фото или на превью, после последнего фото идёт первое (и на карточке тоже), закрыть — ✕, Esc или кнопкой «Назад». Нажатие на само фото или текст карточки открывает объявление. Берутся только фото из галереи объявления в том же порядке, что на mobile.de (без баннера, логотипа и блока дилера). Список фото собирается из каждого открытого объявления, для новых — при обновлении каждые 2 часа.</li>
 </ul>
 <h2>4. Лайки, «не подходит», заметки, ссылки</h2>
 <ul>
